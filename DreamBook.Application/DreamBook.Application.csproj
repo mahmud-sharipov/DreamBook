@@ -21,6 +21,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="FluentValidation" Version="10.3.3" />
     <PackageReference Include="Json.Net" Version="1.0.33" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="5.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -32,8 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\Messages\Messages.Designer.cs">
-      <DependentUpon>Messages.resx</DependentUpon>
+    <Compile Update="Resources\ExceptionMessages\ExceptionMessages.Designer.cs">
+      <DependentUpon>ExceptionMessages.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\FluentMessages\FluentMessages.Designer.cs">
+      <DependentUpon>FluentMessages.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -45,12 +51,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Messages\Messages.en.resx">
+    <EmbeddedResource Update="Resources\ExceptionMessages\ExceptionMessages.en.resx">
       <CustomToolNamespace>DreamBook.AppLanguageResources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Messages\Messages.resx">
+    <EmbeddedResource Update="Resources\ExceptionMessages\ExceptionMessages.resx">
       <CustomToolNamespace>DreamBook.Application.LanguageResources</CustomToolNamespace>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\FluentMessages\FluentMessages.en.resx">
+      <CustomToolNamespace>DreamBook.AppLanguageResources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\FluentMessages\FluentMessages.resx">
+      <CustomToolNamespace>DreamBook.Application.LanguageResources</CustomToolNamespace>
+      <LastGenOutput>FluentMessages.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Model\ModelsLabel.en.resx">

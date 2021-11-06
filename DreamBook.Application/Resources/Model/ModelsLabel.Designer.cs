@@ -19,7 +19,7 @@ namespace DreamBook.Application.LanguageResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ModelsLabel {
@@ -70,97 +70,16 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Дата и время.
+        ///   Looks up a localized string similar to День рождения.
         /// </summary>
-        public static string Ad_DateTime {
+        public static string Birthday {
             get {
-                return ResourceManager.GetString("Ad_DateTime", resourceCulture);
+                return ResourceManager.GetString("Birthday", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Изображение.
-        /// </summary>
-        public static string Ad_Image {
-            get {
-                return ResourceManager.GetString("Ad_Image", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Активный.
-        /// </summary>
-        public static string Ad_IsActive {
-            get {
-                return ResourceManager.GetString("Ad_IsActive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Источник.
-        /// </summary>
-        public static string Ad_Source {
-            get {
-                return ResourceManager.GetString("Ad_Source", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Переводы.
-        /// </summary>
-        public static string Ad_Translations {
-            get {
-                return ResourceManager.GetString("Ad_Translations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Перевод рекламы.
-        /// </summary>
-        public static string AdTranslation {
-            get {
-                return ResourceManager.GetString("AdTranslation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Реклама.
-        /// </summary>
-        public static string AdTranslation_Ad {
-            get {
-                return ResourceManager.GetString("AdTranslation_Ad", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Описание.
-        /// </summary>
-        public static string AdTranslation_Description {
-            get {
-                return ResourceManager.GetString("AdTranslation_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Язык.
-        /// </summary>
-        public static string AdTranslation_Language {
-            get {
-                return ResourceManager.GetString("AdTranslation_Language", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Заголовок.
-        /// </summary>
-        public static string AdTranslation_Title {
-            get {
-                return ResourceManager.GetString("AdTranslation_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Book.
+        ///   Looks up a localized string similar to Книга.
         /// </summary>
         public static string Book {
             get {
@@ -169,101 +88,47 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Категория.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Цвет.
+        /// </summary>
+        public static string Color {
+            get {
+                return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата и время.
+        /// </summary>
+        public static string DateTime {
+            get {
+                return ResourceManager.GetString("DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Описание.
         /// </summary>
-        public static string Book_Description {
+        public static string Description {
             get {
-                return ResourceManager.GetString("Book_Description", resourceCulture);
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Язык.
-        /// </summary>
-        public static string Book_Language {
-            get {
-                return ResourceManager.GetString("Book_Language", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Название.
-        /// </summary>
-        public static string Book_Name {
-            get {
-                return ResourceManager.GetString("Book_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Переводы.
-        /// </summary>
-        public static string Book_Translations {
-            get {
-                return ResourceManager.GetString("Book_Translations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Мечтать.
+        ///   Looks up a localized string similar to Сон.
         /// </summary>
         public static string Dream {
             get {
                 return ResourceManager.GetString("Dream", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Поделится.
-        /// </summary>
-        public static string Dream_CanBeShared {
-            get {
-                return ResourceManager.GetString("Dream_CanBeShared", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Дата время.
-        /// </summary>
-        public static string Dream_DateTime {
-            get {
-                return ResourceManager.GetString("Dream_DateTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Описание.
-        /// </summary>
-        public static string Dream_Description {
-            get {
-                return ResourceManager.GetString("Dream_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Изображение.
-        /// </summary>
-        public static string Dream_Image {
-            get {
-                return ResourceManager.GetString("Dream_Image", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Сонник.
-        /// </summary>
-        public static string Dream_Interpretations {
-            get {
-                return ResourceManager.GetString("Dream_Interpretations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Местоположение.
-        /// </summary>
-        public static string Dream_Location {
-            get {
-                return ResourceManager.GetString("Dream_Location", resourceCulture);
             }
         }
         
@@ -277,65 +142,20 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Заголовок.
+        ///   Looks up a localized string similar to Поделится.
         /// </summary>
-        public static string Dream_Title {
+        public static string DreamCanBeShared {
             get {
-                return ResourceManager.GetString("Dream_Title", resourceCulture);
+                return ResourceManager.GetString("DreamCanBeShared", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Тип.
+        ///   Looks up a localized string similar to Сны.
         /// </summary>
-        public static string Dream_Type {
+        public static string Dreams {
             get {
-                return ResourceManager.GetString("Dream_Type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Пользователь.
-        /// </summary>
-        public static string Dream_User {
-            get {
-                return ResourceManager.GetString("Dream_User", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Погода.
-        /// </summary>
-        public static string Dream_Weather {
-            get {
-                return ResourceManager.GetString("Dream_Weather", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Сонник сна.
-        /// </summary>
-        public static string DreamInterpretation {
-            get {
-                return ResourceManager.GetString("DreamInterpretation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Сон.
-        /// </summary>
-        public static string DreamInterpretation_Dream {
-            get {
-                return ResourceManager.GetString("DreamInterpretation_Dream", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Сонник.
-        /// </summary>
-        public static string DreamInterpretation_Interpretation {
-            get {
-                return ResourceManager.GetString("DreamInterpretation_Interpretation", resourceCulture);
+                return ResourceManager.GetString("Dreams", resourceCulture);
             }
         }
         
@@ -349,83 +169,38 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Цвет.
+        ///   Looks up a localized string similar to Электронная почта.
         /// </summary>
-        public static string DreamType_Color {
+        public static string Email {
             get {
-                return ResourceManager.GetString("DreamType_Color", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Сны.
-        /// </summary>
-        public static string DreamType_Dreams {
-            get {
-                return ResourceManager.GetString("DreamType_Dreams", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Переводы.
-        /// </summary>
-        public static string DreamType_Translations {
-            get {
-                return ResourceManager.GetString("DreamType_Translations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Перевод типа сна.
-        /// </summary>
-        public static string DreamTypeTranslation {
-            get {
-                return ResourceManager.GetString("DreamTypeTranslation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Описание.
-        /// </summary>
-        public static string DreamTypeTranslation_Description {
-            get {
-                return ResourceManager.GetString("DreamTypeTranslation_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Тип.
-        /// </summary>
-        public static string DreamTypeTranslation_DreamType {
-            get {
-                return ResourceManager.GetString("DreamTypeTranslation_DreamType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Язык.
-        /// </summary>
-        public static string DreamTypeTranslation_Language {
-            get {
-                return ResourceManager.GetString("DreamTypeTranslation_Language", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Название.
-        /// </summary>
-        public static string DreamTypeTranslation_Name {
-            get {
-                return ResourceManager.GetString("DreamTypeTranslation_Name", resourceCulture);
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Идентификатор.
         /// </summary>
-        public static string Entity_Guid {
+        public static string EntityGuid {
             get {
-                return ResourceManager.GetString("Entity_Guid", resourceCulture);
+                return ResourceManager.GetString("EntityGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пол.
+        /// </summary>
+        public static string Gender {
+            get {
+                return ResourceManager.GetString("Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изображение.
+        /// </summary>
+        public static string Image {
+            get {
+                return ResourceManager.GetString("Image", resourceCulture);
             }
         }
         
@@ -439,74 +214,20 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Сны.
+        ///   Looks up a localized string similar to Толкование.
         /// </summary>
-        public static string Interpretation_Dreams {
+        public static string Interpretations {
             get {
-                return ResourceManager.GetString("Interpretation_Dreams", resourceCulture);
+                return ResourceManager.GetString("Interpretations", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Переводы.
+        ///   Looks up a localized string similar to Активный.
         /// </summary>
-        public static string Interpretation_Translations {
+        public static string IsActive {
             get {
-                return ResourceManager.GetString("Interpretation_Translations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Перевод сонника.
-        /// </summary>
-        public static string InterpretationTranslation {
-            get {
-                return ResourceManager.GetString("InterpretationTranslation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Описание.
-        /// </summary>
-        public static string InterpretationTranslation_Description {
-            get {
-                return ResourceManager.GetString("InterpretationTranslation_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Сонник.
-        /// </summary>
-        public static string InterpretationTranslation_Interpretation {
-            get {
-                return ResourceManager.GetString("InterpretationTranslation_Interpretation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Язык.
-        /// </summary>
-        public static string InterpretationTranslation_Language {
-            get {
-                return ResourceManager.GetString("InterpretationTranslation_Language", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Название.
-        /// </summary>
-        public static string InterpretationTranslation_Name {
-            get {
-                return ResourceManager.GetString("InterpretationTranslation_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Краткое описание.
-        /// </summary>
-        public static string InterpretationTranslation_ShortDescription {
-            get {
-                return ResourceManager.GetString("InterpretationTranslation_ShortDescription", resourceCulture);
+                return ResourceManager.GetString("IsActive", resourceCulture);
             }
         }
         
@@ -522,18 +243,27 @@ namespace DreamBook.Application.LanguageResources {
         /// <summary>
         ///   Looks up a localized string similar to Код языка.
         /// </summary>
-        public static string Language_Code {
+        public static string LanguageCode {
             get {
-                return ResourceManager.GetString("Language_Code", resourceCulture);
+                return ResourceManager.GetString("LanguageCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Местоположение.
+        /// </summary>
+        public static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Название.
         /// </summary>
-        public static string Language_Name {
+        public static string Name {
             get {
-                return ResourceManager.GetString("Language_Name", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -547,56 +277,11 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Категория.
-        /// </summary>
-        public static string Post_Category {
-            get {
-                return ResourceManager.GetString("Post_Category", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cодержание.
         /// </summary>
         public static string Post_Content {
             get {
                 return ResourceManager.GetString("Post_Content", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Дата и время.
-        /// </summary>
-        public static string Post_DateTime {
-            get {
-                return ResourceManager.GetString("Post_DateTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Изображение.
-        /// </summary>
-        public static string Post_Image {
-            get {
-                return ResourceManager.GetString("Post_Image", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Активный.
-        /// </summary>
-        public static string Post_IsActive {
-            get {
-                return ResourceManager.GetString("Post_IsActive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Заголовок.
-        /// </summary>
-        public static string Post_Title {
-            get {
-                return ResourceManager.GetString("Post_Title", resourceCulture);
             }
         }
         
@@ -612,63 +297,45 @@ namespace DreamBook.Application.LanguageResources {
         /// <summary>
         ///   Looks up a localized string similar to Публикации.
         /// </summary>
-        public static string PostCategory_Posts {
+        public static string Posts {
             get {
-                return ResourceManager.GetString("PostCategory_Posts", resourceCulture);
+                return ResourceManager.GetString("Posts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Краткое описание.
+        /// </summary>
+        public static string ShortDescription {
+            get {
+                return ResourceManager.GetString("ShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Источник.
+        /// </summary>
+        public static string Source {
+            get {
+                return ResourceManager.GetString("Source", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заголовок.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Переводы.
         /// </summary>
-        public static string PostCategory_Translations {
+        public static string Translations {
             get {
-                return ResourceManager.GetString("PostCategory_Translations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Перевод категории публикаций.
-        /// </summary>
-        public static string PostCategoryTranslation {
-            get {
-                return ResourceManager.GetString("PostCategoryTranslation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Категория.
-        /// </summary>
-        public static string PostCategoryTranslation_Category {
-            get {
-                return ResourceManager.GetString("PostCategoryTranslation_Category", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Описание.
-        /// </summary>
-        public static string PostCategoryTranslation_Description {
-            get {
-                return ResourceManager.GetString("PostCategoryTranslation_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Язык.
-        /// </summary>
-        public static string PostCategoryTranslation_Language {
-            get {
-                return ResourceManager.GetString("PostCategoryTranslation_Language", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Название.
-        /// </summary>
-        public static string PostCategoryTranslation_Name {
-            get {
-                return ResourceManager.GetString("PostCategoryTranslation_Name", resourceCulture);
+                return ResourceManager.GetString("Translations", resourceCulture);
             }
         }
         
@@ -678,42 +345,6 @@ namespace DreamBook.Application.LanguageResources {
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to День рождения.
-        /// </summary>
-        public static string User_Birthday {
-            get {
-                return ResourceManager.GetString("User_Birthday", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Сны.
-        /// </summary>
-        public static string User_Dreams {
-            get {
-                return ResourceManager.GetString("User_Dreams", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Электронная почта.
-        /// </summary>
-        public static string User_Email {
-            get {
-                return ResourceManager.GetString("User_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Пол.
-        /// </summary>
-        public static string User_Gender {
-            get {
-                return ResourceManager.GetString("User_Gender", resourceCulture);
             }
         }
         
@@ -729,9 +360,18 @@ namespace DreamBook.Application.LanguageResources {
         /// <summary>
         ///   Looks up a localized string similar to Имя пользователя.
         /// </summary>
-        public static string User_Username {
+        public static string Username {
             get {
-                return ResourceManager.GetString("User_Username", resourceCulture);
+                return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Погода.
+        /// </summary>
+        public static string Weather {
+            get {
+                return ResourceManager.GetString("Weather", resourceCulture);
             }
         }
         
@@ -741,33 +381,6 @@ namespace DreamBook.Application.LanguageResources {
         public static string Word {
             get {
                 return ResourceManager.GetString("Word", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Толкование.
-        /// </summary>
-        public static string Word_Interpretations {
-            get {
-                return ResourceManager.GetString("Word_Interpretations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Название.
-        /// </summary>
-        public static string Word_Name {
-            get {
-                return ResourceManager.GetString("Word_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Переводы.
-        /// </summary>
-        public static string Word_Translations {
-            get {
-                return ResourceManager.GetString("Word_Translations", resourceCulture);
             }
         }
     }

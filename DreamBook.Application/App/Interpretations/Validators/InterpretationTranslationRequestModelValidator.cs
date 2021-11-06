@@ -10,13 +10,13 @@ namespace DreamBook.Application.Interpretations
     {
         public InterpretationTranslationRequestModelValidator(AppLanguageManager appLanguageManager) : base()
         {
-            RuleFor(p => p.Description).NotEmpty().WithName(ModelsLabel.InterpretationTranslation_Description);
+            RuleFor(p => p.Description).NotEmpty().WithName(ModelsLabel.Description);
 
             RuleFor(p => p.LanguageGuid)
                 .NotEmpty()
-                .Must(code => appLanguageManager.SupportLanguageGuid.Contains(code))
-                .WithMessage(type => Messages.LanguageDoesNotSupport.Format(type.LanguageGuid))
-                .WithName(ModelsLabel.InterpretationTranslation_Language);
+                .Must(code => appLanguageManager.SupportLanguagesGuid.Contains(code))
+                .WithMessage(type => ExceptionMessages.LanguageNotFound.Format(type.LanguageGuid))
+                .WithName(ModelsLabel.Language);
         }
     }
 }

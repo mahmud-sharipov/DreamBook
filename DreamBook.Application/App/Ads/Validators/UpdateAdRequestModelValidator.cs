@@ -8,11 +8,11 @@ namespace DreamBook.Application.Ads
     {
         public UpdateAdRequestModelValidator(AppLanguageManager appLanguageManager) : base()
         {
-            RuleFor(p => p.Guid).NotEmpty().WithName(ModelsLabel.Entity_Guid);
-            RuleFor(p => p.Source).NotEmpty().WithName(ModelsLabel.Ad_Source);
+            RuleFor(p => p.Guid).NotEmpty().WithName(ModelsLabel.EntityGuid);
+            RuleFor(p => p.Source).NotEmpty().WithName(ModelsLabel.Source);
             RuleForEach(p => p.Translations)
                 .SetValidator(new AdTranslationRequestModelValidator(appLanguageManager))
-                .WithName(ModelsLabel.Ad_Translations);
+                .WithName(ModelsLabel.Translations);
         }
     }
 }

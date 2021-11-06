@@ -82,7 +82,7 @@ namespace DreamBook.Application.Abstraction.Service
             await Context.AddAsync(entity);
             var result = await Context.SaveChangesAsync();
             if (result == 0)
-                throw new Exception(Messages.EntityWasNotSavedToDB.Format(typeof(TEntity).Name));
+                throw new Exception(ExceptionMessages.EntityWasNotSavedToDB.Format(typeof(TEntity).Name));
 
             return Mapper.Map<TEntity, TResponseWithTranslation>(entity);
         }
@@ -107,7 +107,7 @@ namespace DreamBook.Application.Abstraction.Service
 
             var result = await Context.SaveChangesAsync();
             if (result == 0)
-                throw new Exception(Messages.EntityWasNotSavedToDB.Format(typeof(TEntity).Name));
+                throw new Exception(ExceptionMessages.EntityWasNotSavedToDB.Format(typeof(TEntity).Name));
         }
 
         public virtual async Task Delete(Guid id)

@@ -95,7 +95,7 @@ namespace DreamBook.Application.Dreams
             await Context.AddAsync(entity);
             var result = await Context.SaveChangesAsync();
             if (result == 0)
-                throw new Exception(Messages.EntityWasNotSavedToDB.Format(typeof(Dream).Name));
+                throw new Exception(ExceptionMessages.EntityWasNotSavedToDB.Format(typeof(Dream).Name));
 
             return MapEntity(entity);
         }
@@ -118,7 +118,7 @@ namespace DreamBook.Application.Dreams
 
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(Dream entity)
         {
-            return (false, Messages.EntityCanNotBeDeleted);
+            return (false, ExceptionMessages.EntityCanNotBeDeleted);
         }
 
         protected override string GetDefaultSearchPropertyName() => nameof(Dream.Title);

@@ -7,11 +7,11 @@ namespace DreamBook.Application.Users
     {
         public UpdateUserRequestModelValidator() : base()
         {
-            RuleFor(p => p.Guid).NotEmpty().WithName(ModelsLabel.Entity_Guid);
-            RuleFor(p => p.Username).NotEmpty().WithName(ModelsLabel.User_Username);
-            RuleFor(p => p.Email).NotEmpty().EmailAddress().WithName(ModelsLabel.User_Email);
+            RuleFor(p => p.Guid).NotEmpty().WithName(ModelsLabel.EntityGuid);
+            RuleFor(p => p.Username).NotEmpty().WithName(ModelsLabel.Username);
+            RuleFor(p => p.Email).NotEmpty().EmailAddress().WithName(ModelsLabel.Email);
             RuleFor(p => p.Name).NotEmpty().WithName(ModelsLabel.User_Name);
-            RuleFor(p => p.Gender).NotEmpty().WithName(ModelsLabel.User_Gender);
+            RuleFor(p => p.Gender).NotEmpty().WithName(ModelsLabel.Gender);
         }
     }
 }

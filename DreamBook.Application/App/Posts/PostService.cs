@@ -23,7 +23,7 @@ namespace DreamBook.Application.Posts
 
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(Post entity)
         {
-            return (false, Messages.EntityCanNotBeDeleted);
+            return (false, ExceptionMessages.EntityCanNotBeDeleted);
         }
 
         protected override string GetDefaultSearchPropertyName() => nameof(Post.Title);

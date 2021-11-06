@@ -8,9 +8,12 @@ namespace DreamBook.Application.Books
     {
         public UpdateBookRequestModelValidator(AppLanguageManager appLanguageManager)
         {
+            RuleFor(p => p.Translations)
+                .NotEmpty().WithMessage(FluentMessages.NotEmpty.Format(ModelsLabel.Translations));
+
             RuleForEach(p => p.Translations)
-                .SetValidator(new BookTranslaionRequestModelValidator(appLanguageManager))
-                .WithName(ModelsLabel.Book_Translations);
+                .NotNull().WithMessage(FluentMessages.NotNull.Format(ModelsLabel.Translations))
+                .SetValidator(new BookTranslaionRequestModelValidator(appLanguageManager));
         }
     }
 }

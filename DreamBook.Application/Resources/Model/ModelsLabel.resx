@@ -120,238 +120,109 @@
   <data name="Ad" xml:space="preserve">
     <value>Реклама</value>
   </data>
-  <data name="Ad_DateTime" xml:space="preserve">
-    <value>Дата и время</value>
-  </data>
-  <data name="Ad_Image" xml:space="preserve">
-    <value>Изображение</value>
-  </data>
-  <data name="Ad_IsActive" xml:space="preserve">
-    <value>Активный</value>
-  </data>
-  <data name="Ad_Source" xml:space="preserve">
+  <data name="Source" xml:space="preserve">
     <value>Источник</value>
   </data>
-  <data name="Ad_Translations" xml:space="preserve">
-    <value>Переводы</value>
-  </data>
-  <data name="AdTranslation" xml:space="preserve">
-    <value>Перевод рекламы</value>
-  </data>
-  <data name="AdTranslation_Ad" xml:space="preserve">
-    <value>Реклама</value>
-  </data>
-  <data name="AdTranslation_Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="AdTranslation_Language" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="AdTranslation_Title" xml:space="preserve">
-    <value>Заголовок</value>
-  </data>
   <data name="Dream" xml:space="preserve">
-    <value>Мечтать</value>
+    <value>Сон</value>
   </data>
-  <data name="Dream_CanBeShared" xml:space="preserve">
+  <data name="DreamCanBeShared" xml:space="preserve">
     <value>Поделится</value>
   </data>
-  <data name="Dream_DateTime" xml:space="preserve">
-    <value>Дата время</value>
-  </data>
-  <data name="Dream_Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="Dream_Image" xml:space="preserve">
-    <value>Изображение</value>
-  </data>
-  <data name="Dream_Interpretations" xml:space="preserve">
-    <value>Сонник</value>
-  </data>
-  <data name="Dream_Location" xml:space="preserve">
+  <data name="Location" xml:space="preserve">
     <value>Местоположение</value>
   </data>
   <data name="Dream_NumberOfViews" xml:space="preserve">
     <value>Количество просмотров</value>
   </data>
-  <data name="Dream_Title" xml:space="preserve">
-    <value>Заголовок</value>
-  </data>
-  <data name="Dream_Type" xml:space="preserve">
-    <value>Тип</value>
-  </data>
-  <data name="Dream_User" xml:space="preserve">
-    <value>Пользователь</value>
-  </data>
-  <data name="Dream_Weather" xml:space="preserve">
+  <data name="Weather" xml:space="preserve">
     <value>Погода</value>
-  </data>
-  <data name="DreamInterpretation" xml:space="preserve">
-    <value>Сонник сна</value>
-  </data>
-  <data name="DreamInterpretation_Dream" xml:space="preserve">
-    <value>Сон</value>
-  </data>
-  <data name="DreamInterpretation_Interpretation" xml:space="preserve">
-    <value>Сонник</value>
   </data>
   <data name="DreamType" xml:space="preserve">
     <value>Тип сна</value>
   </data>
-  <data name="DreamType_Color" xml:space="preserve">
+  <data name="Color" xml:space="preserve">
     <value>Цвет</value>
   </data>
-  <data name="DreamType_Dreams" xml:space="preserve">
-    <value>Сны</value>
-  </data>
-  <data name="DreamTypeTranslation" xml:space="preserve">
-    <value>Перевод типа сна</value>
-  </data>
-  <data name="DreamTypeTranslation_Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="DreamTypeTranslation_DreamType" xml:space="preserve">
-    <value>Тип</value>
-  </data>
-  <data name="DreamTypeTranslation_Language" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="DreamTypeTranslation_Name" xml:space="preserve">
-    <value>Название</value>
-  </data>
-  <data name="Entity_Guid" xml:space="preserve">
+  <data name="EntityGuid" xml:space="preserve">
     <value>Идентификатор</value>
   </data>
   <data name="Interpretation" xml:space="preserve">
     <value>Сонник</value>
   </data>
-  <data name="Interpretation_Dreams" xml:space="preserve">
-    <value>Сны</value>
-  </data>
-  <data name="InterpretationTranslation" xml:space="preserve">
-    <value>Перевод сонника</value>
-  </data>
-  <data name="InterpretationTranslation_Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="InterpretationTranslation_Interpretation" xml:space="preserve">
-    <value>Сонник</value>
-  </data>
-  <data name="InterpretationTranslation_Name" xml:space="preserve">
-    <value>Название</value>
-  </data>
   <data name="Language" xml:space="preserve">
     <value>Язык</value>
   </data>
-  <data name="Language_Code" xml:space="preserve">
+  <data name="LanguageCode" xml:space="preserve">
     <value>Код языка</value>
-  </data>
-  <data name="Language_Name" xml:space="preserve">
-    <value>Название</value>
   </data>
   <data name="Post" xml:space="preserve">
     <value>Почта</value>
   </data>
-  <data name="Post_Category" xml:space="preserve">
-    <value>Категория</value>
-  </data>
-  <data name="Post_DateTime" xml:space="preserve">
+  <data name="DateTime" xml:space="preserve">
     <value>Дата и время</value>
   </data>
   <data name="Post_Content" xml:space="preserve">
     <value>Cодержание</value>
   </data>
-  <data name="Post_Image" xml:space="preserve">
+  <data name="Image" xml:space="preserve">
     <value>Изображение</value>
   </data>
-  <data name="Post_IsActive" xml:space="preserve">
+  <data name="IsActive" xml:space="preserve">
     <value>Активный</value>
   </data>
-  <data name="Post_Title" xml:space="preserve">
+  <data name="Title" xml:space="preserve">
     <value>Заголовок</value>
   </data>
   <data name="PostCategory" xml:space="preserve">
     <value>Категория публикации</value>
   </data>
-  <data name="PostCategory_Posts" xml:space="preserve">
+  <data name="Posts" xml:space="preserve">
     <value>Публикации</value>
   </data>
-  <data name="PostCategory_Translations" xml:space="preserve">
-    <value>Переводы</value>
-  </data>
-  <data name="PostCategoryTranslation" xml:space="preserve">
-    <value>Перевод категории публикаций</value>
-  </data>
-  <data name="PostCategoryTranslation_Category" xml:space="preserve">
+  <data name="Category" xml:space="preserve">
     <value>Категория</value>
-  </data>
-  <data name="PostCategoryTranslation_Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="PostCategoryTranslation_Language" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="PostCategoryTranslation_Name" xml:space="preserve">
-    <value>Название</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Пользователь</value>
   </data>
-  <data name="User_Birthday" xml:space="preserve">
+  <data name="Birthday" xml:space="preserve">
     <value>День рождения</value>
   </data>
-  <data name="User_Dreams" xml:space="preserve">
+  <data name="Dreams" xml:space="preserve">
     <value>Сны</value>
   </data>
-  <data name="User_Email" xml:space="preserve">
+  <data name="Email" xml:space="preserve">
     <value>Электронная почта</value>
   </data>
-  <data name="User_Gender" xml:space="preserve">
+  <data name="Gender" xml:space="preserve">
     <value>Пол</value>
   </data>
   <data name="User_Name" xml:space="preserve">
     <value>Имя</value>
   </data>
-  <data name="User_Username" xml:space="preserve">
+  <data name="Username" xml:space="preserve">
     <value>Имя пользователя</value>
   </data>
-  <data name="DreamType_Translations" xml:space="preserve">
-    <value>Переводы</value>
-  </data>
-  <data name="Interpretation_Translations" xml:space="preserve">
-    <value>Переводы</value>
-  </data>
-  <data name="InterpretationTranslation_Language" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="InterpretationTranslation_ShortDescription" xml:space="preserve">
+  <data name="ShortDescription" xml:space="preserve">
     <value>Краткое описание</value>
   </data>
   <data name="Book" xml:space="preserve">
-    <value>Book</value>
-  </data>
-  <data name="Book_Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="Book_Language" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="Book_Name" xml:space="preserve">
-    <value>Название</value>
-  </data>
-  <data name="Book_Translations" xml:space="preserve">
-    <value>Переводы</value>
+    <value>Книга</value>
   </data>
   <data name="Word" xml:space="preserve">
     <value>Слово</value>
   </data>
-  <data name="Word_Interpretations" xml:space="preserve">
+  <data name="Interpretations" xml:space="preserve">
     <value>Толкование</value>
   </data>
-  <data name="Word_Name" xml:space="preserve">
+  <data name="Name" xml:space="preserve">
     <value>Название</value>
   </data>
-  <data name="Word_Translations" xml:space="preserve">
+  <data name="Translations" xml:space="preserve">
     <value>Переводы</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
   </data>
 </root>

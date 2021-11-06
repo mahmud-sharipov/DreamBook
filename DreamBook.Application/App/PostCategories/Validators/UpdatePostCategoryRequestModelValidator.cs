@@ -10,7 +10,7 @@ namespace DreamBook.Application.PostCategories
         {
             RuleForEach(p => p.Translations)
                 .SetValidator(new PostCategoryTranslaionRequestModelValidator(appLanguageManager))
-                .WithName(ModelsLabel.Word_Translations);
+                .WithName(ModelsLabel.Translations);
         }
     }
 }

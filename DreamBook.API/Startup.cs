@@ -44,8 +44,7 @@ namespace DreamBook.API
                 option.Filters.Add<ValidationFilter>();
             })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ApplicationValidatorEntryPoint>())
-                .AddDataAnnotationsLocalization();
+                .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ApplicationValidatorEntryPoint>());
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.AddHttpsRedirection(op => op.RedirectStatusCode = 307);

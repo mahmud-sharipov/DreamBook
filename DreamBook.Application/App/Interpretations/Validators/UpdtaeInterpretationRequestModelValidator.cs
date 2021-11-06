@@ -8,14 +8,14 @@ namespace DreamBook.Application.Interpretations
     {
         public UpdtaeInterpretationRequestModelValidator(AppLanguageManager appLanguageManager) : base()
         {
-            RuleFor(p => p.Guid).NotEmpty().WithName(ModelsLabel.Entity_Guid);
+            RuleFor(p => p.Guid).NotEmpty().WithName(ModelsLabel.EntityGuid);
 
             RuleFor(p => p.WordGuid).NotEmpty();
             RuleFor(p => p.BookGuid).NotEmpty();
 
             RuleForEach(p => p.Translations)
                 .SetValidator(new InterpretationTranslationRequestModelValidator(appLanguageManager))
-                .WithName(ModelsLabel.Interpretation_Translations);
+                .WithName(ModelsLabel.Translations);
         }
     }
 }

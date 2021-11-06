@@ -6,7 +6,7 @@ namespace DreamBook.Application.DreamTypes
 {
     public class UpdateDreamTypeRequestModel : CreateDreamTypeRequestModel
     {
-        [Display(ResourceType = typeof(ModelsLabel), Name = nameof(ModelsLabel.Entity_Guid))]
+        [Display(ResourceType = typeof(ModelsLabel), Name = nameof(ModelsLabel.EntityGuid))]
         public Guid Guid { get; set; }
     }
 }

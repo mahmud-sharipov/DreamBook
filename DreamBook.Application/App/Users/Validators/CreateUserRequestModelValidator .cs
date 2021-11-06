@@ -7,8 +7,8 @@ namespace DreamBook.Application.Users
     {
         public CreateUserRequestModelValidator() : base()
         {
-            RuleFor(p => p.Username).NotEmpty().WithName(ModelsLabel.User_Username);
-            RuleFor(p => p.Email).NotEmpty().EmailAddress().WithName(ModelsLabel.User_Email);
+            RuleFor(p => p.Username).NotEmpty().WithName(ModelsLabel.Username);
+            RuleFor(p => p.Email).NotEmpty().EmailAddress().WithName(ModelsLabel.Email);
         }
     }
 }

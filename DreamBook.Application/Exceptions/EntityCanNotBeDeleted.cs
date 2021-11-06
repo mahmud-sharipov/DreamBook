@@ -10,6 +10,6 @@ namespace DreamBook.Application.Exceptions
 
         public EntityCanNotBeDeleted(string entityName, Guid entityId, string reason) : this(entityName, entityId.ToString(), reason) { }
 
-        public EntityCanNotBeDeleted(string entityName, string entityId, string reason) : base(Messages.EntityCanNotBeDeleted.Format(entityName, entityId, reason)) { }
+        public EntityCanNotBeDeleted(string entityName, string entityId, string reason) : base(ExceptionMessages.EntityCanNotBeDeleted.Format(entityName, entityId, reason)) { }
     }
 }

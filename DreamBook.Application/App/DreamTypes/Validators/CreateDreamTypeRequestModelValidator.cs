@@ -8,11 +8,11 @@ namespace DreamBook.Application.DreamTypes
     {
         public CreateDreamTypeRequestModelValidator(AppLanguageManager appLanguageManager) : base()
         {
-            RuleFor(p => p.Color).NotEmpty().WithName(ModelsLabel.DreamType_Color);
+            RuleFor(p => p.Color).NotEmpty().WithName(ModelsLabel.Color);
 
             RuleForEach(p => p.Translations)
                .SetValidator(new DreamTypeTranslationRequestModelValidator(appLanguageManager))
-               .WithName(ModelsLabel.DreamType_Translations);
+               .WithName(ModelsLabel.Translations);
         }
     }
 }

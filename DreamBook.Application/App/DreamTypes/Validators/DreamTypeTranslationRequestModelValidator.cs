@@ -9,13 +9,13 @@ namespace DreamBook.Application.DreamTypes
     {
         public DreamTypeTranslationRequestModelValidator(AppLanguageManager appLanguageManager) : base()
         {
-            RuleFor(p => p.Name).NotEmpty().WithName(ModelsLabel.DreamTypeTranslation_Name);
+            RuleFor(p => p.Name).NotEmpty().WithName(ModelsLabel.Name);
 
             RuleFor(p => p.LanguageGuid)
                 .NotEmpty()
-                .Must(code => appLanguageManager.SupportLanguageGuid.Contains(code))
-                .WithMessage(type => Messages.LanguageDoesNotSupport.Format(type.LanguageGuid))
-                .WithName(ModelsLabel.DreamTypeTranslation_Language);
+                .Must(code => appLanguageManager.SupportLanguagesGuid.Contains(code))
+                .WithMessage(type => ExceptionMessages.LanguageNotFound.Format(type.LanguageGuid))
+                .WithName(ModelsLabel.Language);
         }
     }
 }

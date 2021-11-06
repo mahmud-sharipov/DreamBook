@@ -6,7 +6,7 @@ namespace DreamBook.Application.Interpretations
 {
     public class UpdateInterpretationRequestModel : CreateInterpretationRequestModel
     {
-        [Display(ResourceType = typeof(ModelsLabel), Name = nameof(ModelsLabel.Entity_Guid))]
+        [Display(ResourceType = typeof(ModelsLabel), Name = nameof(ModelsLabel.EntityGuid))]
         public Guid Guid { get; set; }
     }
 }

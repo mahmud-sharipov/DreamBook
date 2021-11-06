@@ -7,9 +7,9 @@ namespace DreamBook.Application.Posts
     {
         public CreatePostRequestModelValidator() : base()
         {
-            RuleFor(p => p.Title).NotEmpty().WithName(ModelsLabel.Post_Title);
+            RuleFor(p => p.Title).NotEmpty().WithName(ModelsLabel.Title);
             RuleFor(p => p.Content).NotEmpty().WithName(ModelsLabel.Post_Content);
-            RuleFor(p => p.CategoryGuid).NotEmpty().WithName(ModelsLabel.Post_Category);
+            RuleFor(p => p.CategoryGuid).NotEmpty().WithName(ModelsLabel.Category);
         }
     }
 }

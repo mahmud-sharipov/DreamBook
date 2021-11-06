@@ -13,7 +13,7 @@ namespace DreamBook.Application.Interpretations
 
             RuleForEach(p => p.Translations)
                 .SetValidator(new InterpretationTranslationRequestModelValidator(appLanguageManager))
-                .WithName(ModelsLabel.Interpretation_Translations);
+                .WithName(ModelsLabel.Translations);
         }
     }
 }

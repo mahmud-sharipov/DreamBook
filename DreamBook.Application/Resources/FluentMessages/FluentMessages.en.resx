@@ -117,25 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DreatemTypeCanNotBeDeletedReason" xml:space="preserve">
-    <value>it is used on several dreams</value>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>'{0:property}' must not be empty.</value>
   </data>
-  <data name="EntityCanNotBeDeleted" xml:space="preserve">
-    <value>{0:EntityName} ({1:EntityId}) cannot be deleted because {2:Reason}.</value>
-  </data>
-  <data name="EntityWasNotSavedToDB" xml:space="preserve">
-    <value>{0:EntityName} was not created with an unknown reason.</value>
-  </data>
-  <data name="LanguageDoesNotSupport" xml:space="preserve">
-    <value>That {0:laguage} language does not support.</value>
-  </data>
-  <data name="LanguageWithProvidedCodeAlreadyExist" xml:space="preserve">
-    <value>Language with {0:LanguageCode} code already exist.</value>
-  </data>
-  <data name="InterpretationCanNotBeDeletedReason" xml:space="preserve">
-    <value>it is used on several dreams</value>
-  </data>
-  <data name="PostCategoryCanNotBeDeletedReason" xml:space="preserve">
-    <value>there are several post this this category</value>
+  <data name="NotNull" xml:space="preserve">
+    <value>'{0:property}' must not be null.</value>
   </data>
 </root>

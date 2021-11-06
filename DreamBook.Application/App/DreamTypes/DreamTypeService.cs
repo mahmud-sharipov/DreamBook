@@ -24,7 +24,7 @@ namespace DreamBook.Application.DreamTypes
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(DreamType entity)
         {
             if (Context.Count<Dream>(d => d.TypeGuid == entity.Guid) > 0)
-                return (false, Messages.DreatemTypeCanNotBeDeletedReason);
+                return (false, ExceptionMessages.DreatemTypeCanNotBeDeletedReason);
 
             return base.CanEntityBeDeleted(entity);
         }

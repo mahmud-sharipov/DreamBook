@@ -25,7 +25,7 @@ namespace DreamBook.Application.PostCategories
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(PostCategory entity)
         {
             if (entity.Posts.Any())
-                return (false, Messages.DreatemTypeCanNotBeDeletedReason);
+                return (false, ExceptionMessages.DreatemTypeCanNotBeDeletedReason);
 
             return base.CanEntityBeDeleted(entity);
         }

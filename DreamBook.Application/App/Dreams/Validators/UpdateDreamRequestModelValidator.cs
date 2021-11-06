@@ -7,11 +7,11 @@ namespace DreamBook.Application.Dreams
     {
         public UpdateDreamRequestModelValidator() : base()
         {
-            RuleFor(p => p.Guid).NotEmpty().WithName(ModelsLabel.Entity_Guid);
+            RuleFor(p => p.Guid).NotEmpty().WithName(ModelsLabel.EntityGuid);
 
-            RuleFor(p => p.Title).NotEmpty().WithName(ModelsLabel.Post_Title);
+            RuleFor(p => p.Title).NotEmpty().WithName(ModelsLabel.Title);
             RuleFor(p => p.DateTime).NotEmpty().WithName(ModelsLabel.Post_Content);
-            RuleFor(p => p.TypeGuid).NotEmpty().WithName(ModelsLabel.Post_Category);
+            RuleFor(p => p.TypeGuid).NotEmpty().WithName(ModelsLabel.Category);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace DreamBook.Application.Users
 
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(User entity)
         {
-            return (false, Messages.EntityCanNotBeDeleted);
+            return (false, ExceptionMessages.EntityCanNotBeDeleted);
         }
 
         protected override string GetDefaultSearchPropertyName() => nameof(User.FullName);

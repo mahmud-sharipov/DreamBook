@@ -10,7 +10,7 @@ namespace DreamBook.Application.Words
         {
             RuleForEach(p => p.Translations)
                 .SetValidator(new WordTranslaionRequestModelValidator(appLanguageManager))
-                .WithName(ModelsLabel.Word_Translations);
+                .WithName(ModelsLabel.Translations);
         }
     }
 }

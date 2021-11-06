@@ -10,13 +10,13 @@ namespace DreamBook.Application.Ads
     {
         public AdTranslationRequestModelValidator(AppLanguageManager appLanguageManager) : base()
         {
-            RuleFor(p => p.Title).NotEmpty().WithName(ModelsLabel.AdTranslation_Title);
+            RuleFor(p => p.Title).NotEmpty().WithName(ModelsLabel.Title);
 
             RuleFor(p => p.LanguageGuid)
                 .NotEmpty()
-                .Must(code => appLanguageManager.SupportLanguageGuid.Contains(code))
-                .WithMessage(type => Messages.LanguageDoesNotSupport.Format(type.LanguageGuid))
-                .WithName(ModelsLabel.AdTranslation_Language);
+                .Must(code => appLanguageManager.SupportLanguagesGuid.Contains(code))
+                .WithMessage(type => ExceptionMessages.LanguageNotFound.Format(type.LanguageGuid))
+                .WithName(ModelsLabel.Language);
         }
     }
 }

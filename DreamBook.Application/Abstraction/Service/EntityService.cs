@@ -54,7 +54,7 @@ namespace DreamBook.Application.Abstraction.Service
             await Context.AddAsync(entity);
             var result = await Context.SaveChangesAsync();
             if (result == 0)
-                throw new Exception(Messages.EntityWasNotSavedToDB.Format(typeof(TEntity).Name));
+                throw new Exception(ExceptionMessages.EntityWasNotSavedToDB.Format(typeof(TEntity).Name));
 
             return Mapper.Map<TEntity, TResponse>(entity);
         }

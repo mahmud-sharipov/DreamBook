@@ -10,13 +10,12 @@ namespace DreamBook.Application.Books
     {
         public BookTranslaionRequestModelValidator(AppLanguageManager appLanguageManager)
         {
-            RuleFor(p => p.Name).NotEmpty().WithName(ModelsLabel.Book_Name);
+            RuleFor(p => p.Name).NotEmpty().WithMessage(FluentMessages.NotEmpty.Format(ModelsLabel.Name)); ;
 
             RuleFor(p => p.LanguageGuid)
-                .NotEmpty()
-                .Must(code => appLanguageManager.SupportLanguageGuid.Contains(code))
-                .WithMessage(type => Messages.LanguageDoesNotSupport.Format(type.LanguageGuid))
-                .WithName(ModelsLabel.PostCategoryTranslation_Language);
+                .NotEmpty().WithMessage(ModelsLabel.Language)
+                .Must(languageGuid => appLanguageManager.SupportLanguagesGuid.Contains(languageGuid))
+                .WithMessage(type => ExceptionMessages.LanguageNotFound.Format(type.LanguageGuid));
         }
     }
 }

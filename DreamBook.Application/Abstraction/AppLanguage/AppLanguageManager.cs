@@ -25,7 +25,7 @@ namespace DreamBook.Application.Abstraction
 
         public static IReadOnlyList<IAppLanguage> AppSupportLanguages { get; private set; }
 
-        public IEnumerable<Guid> SupportLanguageGuid => SupportLanguages?.Select(l => l.Guid) ?? Enumerable.Empty<Guid>();
+        public IEnumerable<Guid> SupportLanguagesGuid => SupportLanguages?.Select(l => l.Guid) ?? Enumerable.Empty<Guid>();
 
         IAppLanguage _currentLanguage = null;
         public IAppLanguage CurrentLanguage

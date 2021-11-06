@@ -19,17 +19,17 @@ namespace DreamBook.Application.LanguageResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Messages {
+    public class ExceptionMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Messages() {
+        internal ExceptionMessages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DreamBook.Application.LanguageResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DreamBook.Application.Resources.Messages.Messages", typeof(Messages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DreamBook.Application.Resources.ExceptionMessages.ExceptionMessages", typeof(ExceptionMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -97,20 +97,11 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to That {0:laguage} language does not support..
+        ///   Looks up a localized string similar to Language with &quot;{0:laguage}&quot; id does not exist..
         /// </summary>
-        public static string LanguageDoesNotSupport {
+        public static string LanguageNotFound {
             get {
-                return ResourceManager.GetString("LanguageDoesNotSupport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language with {0:LanguageCode} code already exist..
-        /// </summary>
-        public static string LanguageWithProvidedCodeAlreadyExist {
-            get {
-                return ResourceManager.GetString("LanguageWithProvidedCodeAlreadyExist", resourceCulture);
+                return ResourceManager.GetString("LanguageNotFound", resourceCulture);
             }
         }
         

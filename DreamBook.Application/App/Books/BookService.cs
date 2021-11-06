@@ -24,7 +24,7 @@ namespace DreamBook.Application.Books
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(Book entity)
         {
             if (Context.Count<Interpretation>(d => d.BookGuid == entity.Guid) > 0)
-                return (false, Messages.DreatemTypeCanNotBeDeletedReason);
+                return (false, ExceptionMessages.DreatemTypeCanNotBeDeletedReason);
 
             return base.CanEntityBeDeleted(entity);
         }
