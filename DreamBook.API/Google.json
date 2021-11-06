@@ -1,0 +1,11 @@
+{
+	"web": {
+		"client_id": "462142162932-kdij8sactn88po2cdvs3d7dal2j8dqin.apps.googleusercontent.com",
+		"project_id": "dream-book-326419",
+		"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+		"token_uri": "https://oauth2.googleapis.com/token",
+		"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+		"client_secret": "M7hzR88nwPPRgW6R3ix7Zrg4",
+		"redirect_uris": [ "https://localhost:5001/signin-google" ]
+	}
+}

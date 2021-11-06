@@ -1,0 +1,1 @@
+﻿ Add-Migration InitAuth -context IdentityDreamBookContext

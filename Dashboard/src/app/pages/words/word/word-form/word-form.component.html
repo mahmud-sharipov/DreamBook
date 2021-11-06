@@ -1,0 +1,13 @@
+<form (ngSubmit)="onChangeSubmit($event)">
+    <div class="form-group" *ngFor='let wordTranslation of wordEntity.translations'>
+        <label for="{{wordTranslation.language.name}}.name">Название ({{wordTranslation.language.name}})</label>
+        <input type="text" class="form-control" [(ngModel)]='wordTranslation.name'
+            name="{{wordTranslation.language.name}}.name" placeholder="Название...">
+    </div>
+    <button class="btn btn-default float-right" type="button" (click)='onChangeCancel($event)'>
+        <i class="fas fa-times"></i> Отмена
+    </button>
+    <button type="submit" class="btn btn-success float-right mr-3">
+        <i class="fas fa-save"></i> Сохранть
+    </button>
+</form>

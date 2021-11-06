@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="App\Languages\RequestModels\**" />
+    <Compile Remove="App\Languages\Validators\**" />
+    <Compile Remove="Language\**" />
+    <EmbeddedResource Remove="App\Languages\RequestModels\**" />
+    <EmbeddedResource Remove="App\Languages\Validators\**" />
+    <EmbeddedResource Remove="Language\**" />
+    <None Remove="App\Languages\RequestModels\**" />
+    <None Remove="App\Languages\Validators\**" />
+    <None Remove="Language\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation" Version="10.3.3" />
+    <PackageReference Include="Json.Net" Version="1.0.33" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="5.0.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DreamBook.Domain\DreamBook.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Messages\Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Model\ModelsLabel.Designer.cs">
+      <DependentUpon>ModelsLabel.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Messages\Messages.en.resx">
+      <CustomToolNamespace>DreamBook.AppLanguageResources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Messages\Messages.resx">
+      <CustomToolNamespace>DreamBook.Application.LanguageResources</CustomToolNamespace>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Model\ModelsLabel.en.resx">
+      <CustomToolNamespace>DreamBook.AppLanguageResources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Model\ModelsLabel.resx">
+      <CustomToolNamespace>DreamBook.Application.LanguageResources</CustomToolNamespace>
+      <LastGenOutput>ModelsLabel.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,55 @@
+<div class="card ">
+    <div class="card-header">
+        <h3 class="card-title">
+            {{wordNames}}
+        </h3>
+        <div class="card-tools">
+            <button type="button" *ngIf='!isEditing' (click)='onEditBtnClick()' class="btn btn-primary float-right"><i
+                    class="fas fa-pen"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="card" *ngIf="isEditing">
+            <div class="card-body">
+                <app-word-form [wordEntity]='word' (changeSubmitted)='onWordChangeSubmitted($event)'
+                    (changeCanceled)="onWordChangeCanceled($event)">
+                </app-word-form>
+            </div>
+        </div>
+
+        <div *ngIf='!isEditing'>
+            <div class="row mb-2">
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i>
+                        Добавить новое толкование
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div id="accordion">
+                        <div class="card" *ngFor='let inter of interpretations;let indexOfElement=index;'>
+                            <div class="card-header" id="heading_{{indexOfElement}}">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse"
+                                        [attr.data-target]="'#collapse_'+indexOfElement" aria-expanded="true"
+                                        [attr.aria-controls]="'collapse_'+indexOfElement">
+                                        {{inter.book}}
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse_{{indexOfElement}}" class="collapse"
+                                [attr.aria-labelledby]="'heading_'+indexOfElement" data-parent="#accordion">
+                                <div class="card-body">
+                                    {{inter.description}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

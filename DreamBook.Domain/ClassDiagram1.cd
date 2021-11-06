@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DreamBook.Domain.Entities.Ad">
+    <Position X="2.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAACECAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Ad.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.AdTranslation">
+    <Position X="5.5" Y="11.5" Width="1.5" />
+    <AssociationLine Name="Language" Type="DreamBook.Domain.Entities.Language" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.109" Y="11.5" />
+        <Point X="6.109" Y="9.688" />
+        <Point X="8.5" Y="9.688" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAACACgAEAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\AdTranslation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Language" />
+      <Property Name="Ad" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.Book">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Book.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.BookTranslation">
+    <Position X="5.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAgAARAAAAAAAQAAAAAIAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\BookTranslation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Book" />
+      <Property Name="Language" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.Dream">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAEAAgCIAAAAAAAACABQwAQAAAQAgAAA=</HashCode>
+      <FileName>Entities\Dream.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Author" />
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.DreamWord">
+    <Position X="5.5" Y="0.5" Width="1.75" />
+    <AssociationLine Name="Word" Type="DreamBook.Domain.Entities.Word" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="1.437" />
+        <Point X="12.75" Y="1.437" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAQAAAQAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DreamWord.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Dream" />
+      <Property Name="Word" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.DreamType">
+    <Position X="1.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAEAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Entities\DreamType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.DreamTypeTranslation">
+    <Position X="2.25" Y="8.5" Width="2" />
+    <AssociationLine Name="Language" Type="DreamBook.Domain.Entities.Language" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="9.188" />
+        <Point X="8.5" Y="9.188" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAACAAgAAAAAAAAAAQAAAAACAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DreamTypeTranslation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DreamType" />
+      <Property Name="Language" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.Interpretation">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <AssociationLine Name="Word" Type="DreamBook.Domain.Entities.Word" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.223" Y="5.5" />
+        <Point X="12.223" Y="3.694" />
+        <Point X="13.188" Y="3.694" />
+        <Point X="13.188" Y="3.319" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Book" Type="DreamBook.Domain.Entities.Book">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.11" Y="0.06" Height="0.182" Width="0.728" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAARCAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Interpretation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Word" />
+      <Property Name="Book" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.InterpretationTranslation">
+    <Position X="8.25" Y="5.5" Width="2" />
+    <AssociationLine Name="Language" Type="DreamBook.Domain.Entities.Language">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.623" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Word" Type="DreamBook.Domain.Entities.WordTranslation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="7.211" />
+        <Point X="10.625" Y="7.211" />
+        <Point X="10.625" Y="8.125" />
+        <Point X="12" Y="8.125" />
+        <Point X="12" Y="8.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEgAAAACAAgAARAAAAAAAAQAAAAIAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\InterpretationTranslation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Interpretation" />
+      <Property Name="Language" />
+      <Property Name="Word" />
+      <Property Name="Book" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.Language" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Language.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.Post">
+    <Position X="14.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAiAAAEAAECAAAAAAAAAAABAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\Post.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.PostCategory">
+    <Position X="11.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PostCategory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.PostCategoryTranslation">
+    <Position X="8.5" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCAgAAEAAAAAAAQAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PostCategoryTranslation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Language" />
+      <Property Name="PostCategory" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.User" BaseTypeListCollapsed="true">
+    <Position X="1" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAICAAAAAAAAAAEAIAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.Word">
+    <Position X="12.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAEAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Word.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DreamBook.Domain.Entities.WordTranslation">
+    <Position X="11.5" Y="8.5" Width="1.5" />
+    <AssociationLine Name="Word" Type="DreamBook.Domain.Entities.Word" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13" Y="9.059" />
+        <Point X="14.625" Y="9.059" />
+        <Point X="14.625" Y="2.5" />
+        <Point X="14.25" Y="2.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAACAAAAAAAAAAAAAQQAAAAIAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WordTranslation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Word" />
+      <Property Name="Language" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

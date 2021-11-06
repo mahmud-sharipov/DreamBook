@@ -1,0 +1,26 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="m-0">Слова</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-5 col-sm-6 ">
+                <app-paged-list [page]='words' [canAdd]='true' [canSelect]='true' [displayPropertyName]="'name'"
+                    [isBlocked]='isListBlocked' (onPageNumberChange)='OnPageChanged($event)'
+                    (onSearchTextChange)='onSearchTextChanged($event)' (onAdd)='onAdd()'
+                    (onSelectedItemChange)='OnWordSelectionChanged($event)'>
+                </app-paged-list>
+            </div>
+            <div *ngIf='selectedWord.guid' class="col-lg-8 col-md-6 col-sm-5">
+                <app-word [wordGuid]="selectedWord.guid" (onWordChanged)='onWordEdited($event)'
+                    (onDisplayModeChanged)='onDisplayModeChanged($event)'></app-word>
+            </div>
+        </div>
+    </div>
+</div>

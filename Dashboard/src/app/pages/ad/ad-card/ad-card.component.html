@@ -1,0 +1,25 @@
+<div class="card box-shadow content">
+    <div *ngIf='ad.isActive' class="ribbon-wrapper ribbon-lg">
+        <div class="ribbon bg-success text-lg">
+            Новый
+        </div>
+    </div>
+    <div *ngIf='!ad.isActive' class="ribbon-wrapper ribbon-xl">
+        <div class="ribbon bg-warning text-lg">
+            Неактивный
+        </div>
+    </div>
+    <img src="{{imageApiUrl+'?fileName='+ad.image}}" alt="">
+    <div class="card-body py-2">
+        <div class="py-1">
+            <h5> <a routerLink="{{ad.guid}}" class="text-dark">{{ad.title}}</a></h5>
+        </div>
+        <p class="card-text">{{ad.description | slice:0:120}} ...</p>
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-between align-items-center">
+            <span class="text-muted"><i class="far fa-calendar-alt mr-2"></i>{{ ad.createdAt }}</span>
+            <a routerLink="{{ad.guid}}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
+        </div>
+    </div>
+</div>

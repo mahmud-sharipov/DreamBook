@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">
+        <div class="input-group">
+            <input type="search" [formControl]="searchTextInput" class="form-control form-control-md"
+                [attr.disabled]="isBlocked ? 'disabled' : null" placeholder="Поиск...">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-md btn-default" [ngClass]="{disabled: isBlocked}">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <button *ngIf='canAdd' type="button" (click)='onAddClick($event)' class="btn btn-primary float-right"
+                [ngClass]="{disabled: isBlocked}" style="margin-left: 10px;"><i class="fas fa-plus"></i>
+                Добавить</button>
+        </div>
+    </div>
+    <div class="card-body p-1">
+        <div class="list-group" style="overflow: auto;">
+            <div *ngIf='canSelect'>
+                <button
+                    *ngFor="let item of page.items | paginate: { itemsPerPage: page.pageSize, currentPage: page.pageIndex, totalItems: page.totalCount}"
+                    class="list-group-item list-group-item-action"
+                    [ngClass]="{active: selectedItem && item[idPropertyName] === selectedItem[idPropertyName]}"
+                    [ngClass]="{disabled: isBlocked}" (click)="onItemSelectionChanged(item)">
+                    {{item[displayPropertyName]}}
+                </button>
+            </div>
+            <div *ngIf='!canSelect'>
+                <div *ngFor="let item of page.items | paginate: { itemsPerPage: page.pageSize, currentPage: page.pageIndex, totalItems: page.totalCount}"
+                    class="list-group-item">
+                    {{item[displayPropertyName]}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <pagination-controls *ngIf='page.totalPages>1' (pageChange)="onPageChanged($event)" previousLabel="Назад"
+            nextLabel="Далее">
+        </pagination-controls>
+    </div>
+</div>

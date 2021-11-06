@@ -1,0 +1,27 @@
+  
+  h1 {
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+  
+  .content h3 {
+    margin-top: 0px;
+    font-weight: 300;
+  }
+   
+  .content {
+    height: 100%;
+  }
+  
+  .btn-custom{
+    color: #1eafed;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  

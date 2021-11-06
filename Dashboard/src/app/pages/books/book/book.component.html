@@ -1,0 +1,33 @@
+<div class="card ">
+    <div class="card-header">
+        <h3 class="card-title">
+            {{bookNames}}
+        </h3>
+        <div class="card-tools">
+            <button type="button" *ngIf='!isEditing' (click)='onEditBtnClick()' class="btn btn-primary float-right"><i
+                    class="fas fa-pen"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="card" *ngIf="isEditing">
+            <div class="card-body">
+                <app-book-form [bookEntity]='book' (changeSubmitted)='onBookChangeSubmitted($event)'
+                    (changeCanceled)="onBookChangeCanceled($event)">
+                </app-book-form>
+            </div>
+        </div>
+
+        <div *ngIf='!isEditing'>
+            <ul>
+                <li *ngFor='let bookTranslation of book.translations'>
+                    <b>Описание ({{bookTranslation.language.name}})</b>
+                    <p>
+                        <i *ngIf='!bookTranslation.description' class="text-warning">(нет описания)</i>
+                        {{bookTranslation.description}}
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
