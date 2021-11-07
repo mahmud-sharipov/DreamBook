@@ -1,8 +1,6 @@
 ﻿using DreamBook.Application.Abstraction.Response;
-using DreamBook.Application.LanguageResources;
 using DreamBook.Application.Languages;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace DreamBook.Application.Interpretations
 {

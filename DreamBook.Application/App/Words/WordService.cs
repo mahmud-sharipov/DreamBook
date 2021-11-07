@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DreamBook.Application.Abstraction;
 using DreamBook.Application.Abstraction.Service;
+using DreamBook.Application.Exceptions;
 using DreamBook.Application.LanguageResources;
 using DreamBook.Domain.Entities;
 using Newtonsoft.Json;
@@ -14,11 +15,6 @@ namespace DreamBook.Application.Words
     {
         public WordService(IContext context, IMapper mapper, AppLanguageManager appLanguageManager) : base(context, mapper, appLanguageManager) { }
 
-        public async Task<WordWithTranslationsResponseModel> Create(CreateWordRequestModel requestModel)
-        {
-            return await Create<WordTranslationRequestModel>(requestModel);
-        }
-
         public virtual async Task<string> GetAllByLanguageInJson(Guid languageGuid)
         {
             var entities = (await Context.GetAllAsync<WordTranslation>(w => w.LanguageGuid == languageGuid))
@@ -30,22 +26,41 @@ namespace DreamBook.Application.Words
             return JsonConvert.SerializeObject(entities);
         }
 
+        public async Task<WordWithTranslationsResponseModel> Create(CreateWordRequestModel requestModel)
+        {
+            await ValidateWordName(requestModel);
+            return await Create<WordTranslationRequestModel>(requestModel);
+        }
+
         public async Task Update(UpdateWordRequestModel requestModel)
         {
+            await ValidateWordName(requestModel, requestModel.Guid);
             await Update(requestModel, requestModel.Guid);
+        }
+
+        private async Task ValidateWordName(CreateWordRequestModel requestModel, Guid? entityId = null)
+        {
+            var names = requestModel.Translations.Select(x => x.Name.ToLower() + x.LanguageGuid).ToArray();
+            var wordId = entityId ?? Guid.Empty;
+            var wordsWithSameName = await Context
+                .GetAllAsync<WordTranslation>(wt => wt.WordGuid != wordId && names.Contains(wt.Name.ToLower() + wt.LanguageGuid));
+            if (wordsWithSameName.Any())
+            {
+                var similarNames = string.Join(", ", wordsWithSameName.Select(b => b.Name));
+                throw new BusinessLogicException(ExceptionMessages.WordWithSameNameExist.Format(similarNames));
+            }
         }
 
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(Word entity)
         {
             if (Context.Count<DreamWord>(dw => dw.WordGuid == entity.Guid) > 0)
-                return (false, ExceptionMessages.DreatemTypeCanNotBeDeletedReason);
+                return (false, ExceptionMessages.WordCanNotBeDeletedReason);
 
             return base.CanEntityBeDeleted(entity);
         }
 
         protected override string GetDefaultSearchPropertyName() => nameof(WordTranslation.Name);
-
         protected override string GetDefaultPropertyNameToOrderBy() => nameof(WordTranslation.Name);
+        protected override string GetEntityLabel() => ModelsLabel.Word;
     }
 }
-

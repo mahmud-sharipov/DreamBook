@@ -61,6 +61,24 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to it has interpretation for several words. First remove all interpretations and then try again..
+        /// </summary>
+        public static string BookCanNotBeDeletedReason {
+            get {
+                return ResourceManager.GetString("BookCanNotBeDeletedReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book with &apos;{0}&apos; name already exist..
+        /// </summary>
+        public static string BookWithSameNameExist {
+            get {
+                return ResourceManager.GetString("BookWithSameNameExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to it is used on several dreams.
         /// </summary>
         public static string DreatemTypeCanNotBeDeletedReason {
@@ -70,7 +88,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:EntityName} ({1:EntityId}) cannot be deleted because {2:Reason}..
+        ///   Looks up a localized string similar to {0} ({1}) cannot be deleted because {2}..
         /// </summary>
         public static string EntityCanNotBeDeleted {
             get {
@@ -79,7 +97,16 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:EntityName} was not created with an unknown reason..
+        ///   Looks up a localized string similar to {0} with {1} is does not exist..
+        /// </summary>
+        public static string EntityNotFound {
+            get {
+                return ResourceManager.GetString("EntityNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was not created with an unknown reason..
         /// </summary>
         public static string EntityWasNotSavedToDB {
             get {
@@ -97,7 +124,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language with &quot;{0:laguage}&quot; id does not exist..
+        ///   Looks up a localized string similar to Language with &apos;{0}&apos; id does not exist..
         /// </summary>
         public static string LanguageNotFound {
             get {
@@ -111,6 +138,24 @@ namespace DreamBook.Application.LanguageResources {
         public static string PostCategoryCanNotBeDeletedReason {
             get {
                 return ResourceManager.GetString("PostCategoryCanNotBeDeletedReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to it is used in severs dreams. First remove this word from dreams and then try again..
+        /// </summary>
+        public static string WordCanNotBeDeletedReason {
+            get {
+                return ResourceManager.GetString("WordCanNotBeDeletedReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; word  already exist..
+        /// </summary>
+        public static string WordWithSameNameExist {
+            get {
+                return ResourceManager.GetString("WordWithSameNameExist", resourceCulture);
             }
         }
     }

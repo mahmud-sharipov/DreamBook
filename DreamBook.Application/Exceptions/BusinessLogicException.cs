@@ -2,10 +2,8 @@
 
 namespace DreamBook.Application.Exceptions
 {
-    public class BusinessLogicException : Exception
+    public class BusinessLogicException : Exception, IValidaionException
     {
-        public BusinessLogicException() { }
-
         public BusinessLogicException(string message) : base(message) { }
 
         public BusinessLogicException(string message, Exception inner) : base(message, inner) { }

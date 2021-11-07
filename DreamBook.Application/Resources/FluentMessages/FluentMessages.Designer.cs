@@ -61,7 +61,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0:property}&apos; не должно быть пустым..
+        ///   Looks up a localized string similar to &apos;{0}&apos; не должно быть пустым..
         /// </summary>
         public static string NotEmpty {
             get {
@@ -70,7 +70,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0:property}&apos; не должно быть нулевым..
+        ///   Looks up a localized string similar to &apos;{0}&apos; не должно быть нулевым..
         /// </summary>
         public static string NotNull {
             get {

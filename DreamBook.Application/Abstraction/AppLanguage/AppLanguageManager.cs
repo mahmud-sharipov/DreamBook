@@ -9,6 +9,8 @@ namespace DreamBook.Application.Abstraction
 {
     public class AppLanguageManager
     {
+        public static readonly string[] SupportedLanguages = { "ru", "en" };
+
         public AppLanguageManager(IContext context)
         {
             Context = context;

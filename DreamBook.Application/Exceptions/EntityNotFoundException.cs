@@ -1,13 +1,12 @@
-﻿using System;
+﻿using DreamBook.Application.LanguageResources;
+using System;
 
 namespace DreamBook.Application.Exceptions
 {
-    public class EntityNotFoundException : BusinessLogicException
+    public class EntityNotFoundException : Exception, IValidaionException
     {
-        public EntityNotFoundException() { }
+        public EntityNotFoundException(string entityLabel, Guid entityId) : this(entityLabel, entityId.ToString()) { }
 
-        public EntityNotFoundException(Guid entityId) : base(entityId.ToString()) { }
-
-        public EntityNotFoundException(string entityId) : base(entityId) { }
+        public EntityNotFoundException(string entityLabel, string entityId) : base(ExceptionMessages.EntityNotFound.Format(entityLabel, entityId)) { }
     }
 }

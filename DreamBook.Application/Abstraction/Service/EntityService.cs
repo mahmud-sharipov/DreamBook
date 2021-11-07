@@ -42,7 +42,7 @@ namespace DreamBook.Application.Abstraction.Service
         {
             var entity = await Context.GetByIdAsync<TEntity>(id);
             if (entity == null)
-                throw new EntityNotFoundException(id);
+                throw new EntityNotFoundException(GetEntityLabel(), id);
 
             return Mapper.Map<TResponse>(entity);
         }
@@ -63,7 +63,7 @@ namespace DreamBook.Application.Abstraction.Service
         {
             var entity = await Context.GetByIdAsync<TEntity>(id);
             if (entity == null)
-                throw new EntityNotFoundException(id);
+                throw new EntityNotFoundException(GetEntityLabel(), id);
 
             Mapper.Map(requestModel, entity);
             await Context.SaveChangesAsync();
@@ -74,11 +74,11 @@ namespace DreamBook.Application.Abstraction.Service
             var entity = await Context.GetByIdAsync<TEntity>(id);
 
             if (entity == null)
-                throw new EntityNotFoundException(id);
+                throw new EntityNotFoundException(GetEntityLabel(), id);
 
             var canDelete = CanEntityBeDeleted(entity);
             if (!canDelete.CanBeDeleted)
-                throw new EntityCanNotBeDeleted(entity, canDelete.Reason);
+                throw new EntityCanNotBeDeletedExxeption(GetEntityLabel(), entity.Guid, canDelete.Reason);
 
             Context.Delete(entity);
             await Context.SaveChangesAsync();
@@ -94,5 +94,7 @@ namespace DreamBook.Application.Abstraction.Service
         protected virtual string GetDefaultSearchPropertyName() => nameof(IEntity.Guid);
 
         protected virtual string GetDefaultPropertyNameToOrderBy() => nameof(IEntity.Guid);
+
+        protected virtual string GetEntityLabel() => typeof(TEntity).Name;
     }
 }

@@ -80,7 +80,7 @@ namespace DreamBook.Application.Dreams
         {
             var entity = await Context.GetByIdAsync<Dream>(id);
             if (entity == null)
-                throw new EntityNotFoundException(id);
+                throw new EntityNotFoundException(ModelsLabel.Dream, id);
 
             return MapEntity(entity);
         }
@@ -104,7 +104,7 @@ namespace DreamBook.Application.Dreams
         {
             var entity = await Context.GetByIdAsync<Dream>(requestModel.Guid);
             if (entity == null)
-                throw new EntityNotFoundException(requestModel.Guid);
+                throw new EntityNotFoundException(ModelsLabel.Dream, requestModel.Guid);
 
             Mapper.Map(requestModel, entity);
 

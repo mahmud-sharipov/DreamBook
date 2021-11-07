@@ -1,8 +1,6 @@
-﻿using DreamBook.Application.LanguageResources;
-using DreamBook.Application.Abstraction.Request;
+﻿using DreamBook.Application.Abstraction.Request;
 using DreamBook.Domain.Enums;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace DreamBook.Application.Users
 {

@@ -1,7 +1,5 @@
 ﻿using DreamBook.Application.Abstraction.Response;
-using DreamBook.Application.LanguageResources;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace DreamBook.Application.Posts
 {

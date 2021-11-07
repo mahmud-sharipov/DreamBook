@@ -1,6 +1,4 @@
-﻿using DreamBook.Application.LanguageResources;
-using DreamBook.Application.Languages;
-using System.ComponentModel.DataAnnotations;
+﻿using DreamBook.Application.Languages;
 
 namespace DreamBook.Application.PostCategories
 {

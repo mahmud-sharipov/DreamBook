@@ -20,7 +20,7 @@ namespace DreamBook.API.Infrastructure.Import
         {
             if (context.Count<Book>() > 0) return;
 
-            IEnumerable<InterpretationModel> interpretations = JsonConvert.DeserializeObject<IEnumerable<InterpretationModel>>(File.ReadAllText(@"Infrastructure/Import/sonnik.json"));
+            IEnumerable<InterpretationImportModel> interpretations = JsonConvert.DeserializeObject<IEnumerable<InterpretationImportModel>>(File.ReadAllText(@"Infrastructure/Import/sonnik.json"));
             Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)> books =
                 new Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)>();
 
@@ -92,7 +92,7 @@ namespace DreamBook.API.Infrastructure.Import
     }
 }
 
-class InterpretationModel
+class InterpretationImportModel
 {
     public string Id { get; set; }
 

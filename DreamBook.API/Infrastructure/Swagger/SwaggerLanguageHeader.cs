@@ -22,19 +22,20 @@ namespace DreamBook.API.Infrastructure.Swagger
         {
             operation.Parameters ??= new List<OpenApiParameter>();
 
+            var requestLocalizationOptions = (_serviceProvider.GetService(typeof(IOptions<RequestLocalizationOptions>)) as IOptions<RequestLocalizationOptions>)?
+                    .Value;
             operation.Parameters.Add(new OpenApiParameter
             {
                 Name = "Accept-Language",
                 Description = "Supported languages",
                 In = ParameterLocation.Header,
-                Required = false,
+                Required = true,
                 Schema = new OpenApiSchema
                 {
                     Type = "string",
-                    Enum = (_serviceProvider.GetService(typeof(IOptions<RequestLocalizationOptions>)) as IOptions<RequestLocalizationOptions>)?
-                        .Value?
-                        .SupportedCultures?.Select(c => new OpenApiString(c.TwoLetterISOLanguageName)).ToList<IOpenApiAny>(),
-                }
+                    Enum = requestLocalizationOptions?.SupportedCultures?.Select(c => new OpenApiString(c.TwoLetterISOLanguageName)).ToList<IOpenApiAny>(),
+                    Default = new OpenApiString(requestLocalizationOptions?.DefaultRequestCulture.Culture.TwoLetterISOLanguageName ?? ""),
+                },
             });
         }
     }

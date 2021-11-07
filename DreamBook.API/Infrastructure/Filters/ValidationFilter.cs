@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace DreamBook.API.Infrastructure.Filters
@@ -12,7 +13,7 @@ namespace DreamBook.API.Infrastructure.Filters
         {
             if (context.ModelState.IsValid)
             {
-                await next();//Execute controller
+                await next();
             }
             else
             {
@@ -22,8 +23,8 @@ namespace DreamBook.API.Infrastructure.Filters
 
                 var errorResponse = new ErrorResponse()
                 {
-                    ShortDescription = "One or more validation errors occurred",
-                    Status = 400
+                    Title = "One or more validation errors occurred",
+                    Status = (int)HttpStatusCode.BadRequest
                 };
 
                 foreach (var error in errorInModelState)
@@ -34,7 +35,7 @@ namespace DreamBook.API.Infrastructure.Filters
                     foreach (var message in error.Value)
                         propertiValidations.Messages.Add(message);
 
-                    errorResponse.Errors.Add(propertiValidations);
+                    errorResponse.PropertyValidations.Add(propertiValidations);
                 }
 
                 context.Result = new BadRequestObjectResult(errorResponse);

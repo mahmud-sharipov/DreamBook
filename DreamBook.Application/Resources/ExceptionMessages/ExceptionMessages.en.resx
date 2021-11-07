@@ -121,18 +121,33 @@
     <value>it is used on several dreams</value>
   </data>
   <data name="EntityCanNotBeDeleted" xml:space="preserve">
-    <value>{0:EntityName} ({1:EntityId}) cannot be deleted because {2:Reason}.</value>
+    <value>{0} ({1}) cannot be deleted because {2}.</value>
   </data>
   <data name="EntityWasNotSavedToDB" xml:space="preserve">
-    <value>{0:EntityName} was not created with an unknown reason.</value>
+    <value>{0} was not created with an unknown reason.</value>
   </data>
   <data name="LanguageNotFound" xml:space="preserve">
-    <value>That {0:laguage} language does not support.</value>
+    <value>Language with '{0}' id does not exist.</value>
   </data>
   <data name="InterpretationCanNotBeDeletedReason" xml:space="preserve">
     <value>it is used on several dreams</value>
   </data>
   <data name="PostCategoryCanNotBeDeletedReason" xml:space="preserve">
     <value>there are several post this this category</value>
+  </data>
+  <data name="EntityNotFound" xml:space="preserve">
+    <value>{0} with {1} is does not exist.</value>
+  </data>
+  <data name="BookCanNotBeDeletedReason" xml:space="preserve">
+    <value>it has interpretation for several words. First remove all interpretations and then try again.</value>
+  </data>
+  <data name="BookWithSameNameExist" xml:space="preserve">
+    <value>Book with '{0}'' name already exist.</value>
+  </data>
+  <data name="WordWithSameNameExist" xml:space="preserve">
+    <value>'{0}' word  already exist.</value>
+  </data>
+  <data name="WordCanNotBeDeletedReason" xml:space="preserve">
+    <value>it is used in severs dreams. First remove this word from dreams and then try again.</value>
   </data>
 </root>

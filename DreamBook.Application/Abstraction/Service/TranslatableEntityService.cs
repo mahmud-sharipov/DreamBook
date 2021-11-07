@@ -4,7 +4,6 @@ using DreamBook.Application.Abstraction.Request;
 using DreamBook.Application.Abstraction.Response;
 using DreamBook.Application.Exceptions;
 using DreamBook.Application.LanguageResources;
-using DreamBook.Domain.Entities;
 using DreamBook.Domain.Interfaces;
 using DreamBook.Persistence.Paging;
 using System;
@@ -45,7 +44,7 @@ namespace DreamBook.Application.Abstraction.Service
         {
             var entity = (await Context.GetByIdAsync<TEntity>(id))?.Translations.SingleOrDefault(LanguagePredicate.Compile());
             if (entity == null)
-                throw new EntityNotFoundException(id);
+                throw new EntityNotFoundException(GetEntityLabel(), id);
 
             return Mapper.Map<TResponse>(entity);
         }
@@ -67,7 +66,7 @@ namespace DreamBook.Application.Abstraction.Service
         {
             var entity = await Context.GetByIdAsync<TEntity>(id);
             if (entity == null)
-                throw new EntityNotFoundException(id);
+                throw new EntityNotFoundException(GetEntityLabel(), id);
 
             return Mapper.Map<TResponseWithTranslation>(entity);
         }
@@ -92,7 +91,7 @@ namespace DreamBook.Application.Abstraction.Service
         {
             var entity = await Context.GetByIdAsync<TEntity>(id);
             if (entity == null)
-                throw new EntityNotFoundException(id);
+                throw new EntityNotFoundException(GetEntityLabel(),id);
 
             Mapper.Map(requestModel, entity);
             foreach (var translationRequest in requestModel.Translations)
@@ -100,7 +99,7 @@ namespace DreamBook.Application.Abstraction.Service
                 var translationEntity = entity.Translations.SingleOrDefault(e => e.LanguageGuid == translationRequest.LanguageGuid);
                 if (translationEntity == null)
                 {
-                    throw new EntityNotFoundException(translationRequest.LanguageGuid);
+                    throw new EntityNotFoundException(GetEntityLabel(), translationRequest.LanguageGuid);
                 }
                 Mapper.Map(translationRequest, translationEntity);
             }
@@ -115,11 +114,11 @@ namespace DreamBook.Application.Abstraction.Service
             var entity = await Context.GetByIdAsync<TEntity>(id);
 
             if (entity == null)
-                throw new EntityNotFoundException(id);
+                throw new EntityNotFoundException(GetEntityLabel(),id);
 
             var canDelete = CanEntityBeDeleted(entity);
             if (!canDelete.CanBeDeleted)
-                throw new EntityCanNotBeDeleted(entity, canDelete.Reason);
+                throw new EntityCanNotBeDeletedExxeption(GetEntityLabel(), entity.Guid, canDelete.Reason);
 
             Context.Delete(entity);
             await Context.SaveChangesAsync();
@@ -135,5 +134,7 @@ namespace DreamBook.Application.Abstraction.Service
         protected virtual string GetDefaultSearchPropertyName() => nameof(IEntity.Guid);
 
         protected virtual string GetDefaultPropertyNameToOrderBy() => nameof(IEntity.Guid);
+
+        protected virtual string GetEntityLabel() => typeof(TEntity).Name;
     }
 }
