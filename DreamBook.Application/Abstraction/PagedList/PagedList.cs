@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DreamBook.Persistence.Paging
+namespace DreamBook.Application.Abstraction.PagedList
 {
     public class PagedList<T> : IPagedList<T> where T : IEntity
     {

@@ -106,6 +106,15 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Создано в.
+        /// </summary>
+        public static string CreatedAt {
+            get {
+                return ResourceManager.GetString("CreatedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата и время.
         /// </summary>
         public static string DateTime {
@@ -264,6 +273,15 @@ namespace DreamBook.Application.LanguageResources {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         

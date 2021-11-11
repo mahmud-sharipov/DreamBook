@@ -117,12 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NotEmpty" xml:space="preserve">
-    <value>'{0}' не должно быть пустым.</value>
-    <comment>0-Property</comment>
+  <data name="LanguageNotFound" xml:space="preserve">
+    <value>Язык с идентификатором '{0}' не существует.</value>
   </data>
-  <data name="NotNull" xml:space="preserve">
-    <value>'{0}' не должно быть нулевым.</value>
-    <comment>0-Property</comment>
+  <data name="DuplicateTranslations" xml:space="preserve">
+    <value>{0} несколько переводов на один язык.</value>
+    <comment>0-collection name</comment>
+  </data>
+  <data name="TranslationForAllLanguagesNotExist" xml:space="preserve">
+    <value>Добавьте перевод для всех поддерживаемых языков.</value>
   </data>
 </root>

@@ -12,7 +12,7 @@ namespace DreamBook.Domain.Entities
             Translations = new Collection<AdTranslation>();
         }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string Image { get; set; }
         public string Source { get; set; }
         public bool IsActive { get; set; }

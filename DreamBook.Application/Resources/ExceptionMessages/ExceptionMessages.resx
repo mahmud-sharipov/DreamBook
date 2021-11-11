@@ -118,42 +118,56 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DreatemTypeCanNotBeDeletedReason" xml:space="preserve">
-    <value>it is used on several dreams</value>
+    <value>он используется в нескольких снах</value>
   </data>
   <data name="EntityCanNotBeDeleted" xml:space="preserve">
-    <value>{0} ({1}) cannot be deleted because {2}.</value>
+    <value>{0} ({1}) не может быть удален, потому что, {2}.</value>
     <comment>0-EntityName, 1-EntityId, 2-Reason</comment>
   </data>
   <data name="EntityWasNotSavedToDB" xml:space="preserve">
-    <value>{0} was not created with an unknown reason.</value>
+    <value>{0} не был создан по неизвестной причине.</value>
     <comment>0-EntityName</comment>
   </data>
-  <data name="LanguageNotFound" xml:space="preserve">
-    <value>Language with '{0}' id does not exist.</value>
-    <comment>0-laguage</comment>
-  </data>
-  <data name="InterpretationCanNotBeDeletedReason" xml:space="preserve">
-    <value>it is used on several dreams</value>
-  </data>
   <data name="PostCategoryCanNotBeDeletedReason" xml:space="preserve">
-    <value>there are several post this this category</value>
+    <value>есть несколько постов с этой категорией</value>
   </data>
   <data name="EntityNotFound" xml:space="preserve">
-    <value>{0} with {1} is does not exist.</value>
+    <value>{0} с {1} не существует.</value>
     <comment>0-entity label, 1-entity id</comment>
   </data>
   <data name="BookCanNotBeDeletedReason" xml:space="preserve">
-    <value>it has interpretation for several words. First remove all interpretations and then try again.</value>
+    <value>он содержит толкование нескольких слов</value>
   </data>
   <data name="BookWithSameNameExist" xml:space="preserve">
-    <value>Book with '{0}' name already exist.</value>
+    <value>Книга с названием '{0}' уже существует.</value>
     <comment>0-name</comment>
   </data>
   <data name="WordWithSameNameExist" xml:space="preserve">
-    <value>'{0}' word  already exist.</value>
+    <value>Слово "{0}" уже существует.</value>
     <comment>0-name</comment>
   </data>
   <data name="WordCanNotBeDeletedReason" xml:space="preserve">
-    <value>it is used in severs dreams. First remove this word from dreams and then try again.</value>
+    <value>он используется в нескольких снах</value>
+  </data>
+  <data name="BookAlreadyHasInterpretationForWord" xml:space="preserve">
+    <value>В книге {0} уже есть толкование для {1}.</value>
+    <comment>0-book, 1-word</comment>
+  </data>
+  <data name="CategoryWithSameNameExist" xml:space="preserve">
+    <value>Категория "{0}" уже существует.</value>
+    <comment>0-name</comment>
+  </data>
+  <data name="DreamTypeWithSameNameExist" xml:space="preserve">
+    <value>Тип '{0}' уже существует.</value>
+    <comment>0-name</comment>
+  </data>
+  <data name="UserCannotBeDeleted" xml:space="preserve">
+    <value>Учетная запись пользователя не может быть удалена. Только владелец может удалить эту учетную запись.</value>
+  </data>
+  <data name="UserWithTheSameEmailAlreadyExist" xml:space="preserve">
+    <value>{0} уже используется другим пользователем.</value>
+  </data>
+  <data name="UserWithTheSameUserNameAlreadyExist" xml:space="preserve">
+    <value>Пользователь с ником '{0}' уже существует.</value>
   </data>
 </root>

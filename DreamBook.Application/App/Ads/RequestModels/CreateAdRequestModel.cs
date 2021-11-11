@@ -7,6 +7,7 @@ namespace DreamBook.Application.Ads
     {
         public string Image { get; set; }
         public string Source { get; set; }
+        public bool IsActive { get; set; }
         public List<AdTranslationRequestModel> Translations { get; set; }
     }
 }

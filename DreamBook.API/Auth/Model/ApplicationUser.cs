@@ -5,14 +5,14 @@ using System.Collections.ObjectModel;
 
 namespace DreamBook.API.Auth.Model
 {
-    public class ApplicationUser : IdentityUser, IUser
+    public class ApplicationUser : IdentityUser<Guid>, IUser
     {
         public ApplicationUser()
         {
             RefreshTokens = new Collection<RefreshToken>();
         }
 
-        public Guid Guid => new(Id);
+        public Guid Guid => Id;
 
         public virtual Collection<RefreshToken> RefreshTokens { get; set; }
     }

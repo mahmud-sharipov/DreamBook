@@ -225,4 +225,10 @@
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
   </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>Создано в</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
 </root>

@@ -1,6 +1,5 @@
 ﻿using DreamBook.Application.Abstraction.PagedList;
 using DreamBook.Application.Dreams;
-using DreamBook.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IPagedList<DreamResponseModel>>> GetPagedList([FromQuery] PagedListRequestModel<Dream> requestModel)
+        public async Task<ActionResult<IPagedList<DreamResponseModel>>> GetPagedList([FromQuery] DreamPagedListRequestModel requestModel)
         {
             return Ok(await Service.GetPagedList(requestModel));
         }
@@ -38,6 +37,38 @@ namespace DreamBook.API.Controllers
             return Ok(await Service.GetById(id));
         }
 
+        [HttpGet("shared")]
+        public async Task<ActionResult<IPagedList<DreamResponseModel>>> GetAllShared([FromQuery] DreamPagedListRequestModel requestModel)
+        {
+            return Ok(await Service.GetAllShared(requestModel));
+        }
+
+        [HttpGet("shared/{id}")]
+        public async Task<ActionResult<DreamResponseModel>> GetSharedById([FromRoute] Guid id)
+        {
+            return Ok(await Service.GetSharedById(id));
+        }
+
+        [HttpGet("recycle-bin")]
+        public async Task<ActionResult<IEnumerable<DreamResponseModel>>> GetAllFromRecycleBin()
+        {
+            return Ok(await Service.GetAllFromRecycleBin());
+        }
+
+        [HttpDelete("recycle-bin/{id}")]
+        public async Task<IActionResult> RestoreFromRecycleBin([FromRoute] Guid id)
+        {
+            await Service.RestoreFromRecycleBin(id);
+            return Ok();
+        }
+
+        [HttpPut("recycle-bin/{id}")]
+        public async Task<IActionResult> MoveToRecycleBin([FromRoute] Guid id)
+        {
+            await Service.MoveToRecycleBin(id);
+            return Ok();
+        }
+
         [HttpPost]
         public async Task<ActionResult<DreamResponseModel>> Create([FromBody] CreateDreamRequestModel model)
         {
@@ -49,6 +80,20 @@ namespace DreamBook.API.Controllers
         public async Task<IActionResult> Update([FromBody] UpdateDreamRequestModel model)
         {
             await Service.Update(model);
+            return NoContent();
+        }
+
+        [HttpPut("{id}/words")]
+        public async Task<IActionResult> AddWords([FromRoute] Guid id, [FromBody] IEnumerable<Guid> wordGuids)
+        {
+            await Service.AddWords(id, wordGuids);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}/words")]
+        public async Task<IActionResult> RemoveWords([FromRoute] Guid id, [FromBody] IEnumerable<Guid> wordGuids)
+        {
+            await Service.RemoveWords(id, wordGuids);
             return NoContent();
         }
 

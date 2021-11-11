@@ -2,13 +2,18 @@
 using DreamBook.API.Auth.Requests;
 using DreamBook.API.Auth.Responses;
 using DreamBook.API.Persistence;
+using DreamBook.Application.Abstraction;
 using DreamBook.Application.Users;
+using DreamBook.Domain.Entities;
+using DreamBook.Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace DreamBook.API.Auth
@@ -23,17 +28,18 @@ namespace DreamBook.API.Auth
         Task Logout();
     }
 
-    public class AuthService : IAuthService
+    public class AuthService : IAuthService, IUserIdentityService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly IUserService _userService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly DreamBookIdentityContext _dbContext;
+        private readonly IContext _appContext;
         private readonly TokenService _tokenService;
 
-        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IUserService userService, IHttpContextAccessor httpContextAccessor, DreamBookIdentityContext dbContext)
+        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration, IUserService userService, IHttpContextAccessor httpContextAccessor, DreamBookIdentityContext dbContext, IContext appContext)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -41,6 +47,7 @@ namespace DreamBook.API.Auth
             _userService = userService;
             _httpContextAccessor = httpContextAccessor;
             _dbContext = dbContext;
+            _appContext = appContext;
             _tokenService = new TokenService(configuration, userManager, dbContext, httpContextAccessor);
         }
 
@@ -51,15 +58,14 @@ namespace DreamBook.API.Auth
             ApplicationUser authUser = new ApplicationUser()
             {
                 Email = model.Email,
-                SecurityStamp = user.ToString(),
-                UserName = model.Username,
-                Id = user.Guid.ToString()
+                UserName = model.UserName,
+                Id = user.Guid
             };
-            var result = await _userManager.CreateAsync(authUser, model.Password);
 
+            var result = await _userManager.CreateAsync(authUser, model.Password);
             if (!result.Succeeded)
             {
-                await _userService.Delete(user.Guid);
+                await _userService.DeleteFull(user.Guid);
                 throw new BadHttpRequestException("User creation failed! Please check user details and try again.");
             }
 
@@ -72,7 +78,6 @@ namespace DreamBook.API.Auth
         public async Task Logout()
         {
             var userId = _httpContextAccessor.HttpContext.User.Identity.Name;
-            // Revoke Refresh Token 
             await _tokenService.RevokeRefreshToken("", null);
         }
 
@@ -80,9 +85,35 @@ namespace DreamBook.API.Auth
         {
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-                return new AuthSucceededResponce(await _tokenService.GenerateTokens(user), user);
+            {
+                var userResponseModel = await _userService.GetById(user.Id);
+                return new AuthSucceededResponce(await _tokenService.GenerateTokens(user), userResponseModel);
+            }
 
             return null;
+        }
+
+        public async Task<JwtTokenResponse> RefreshToken(string token)
+        {
+            var identityUser = _dbContext.Users.Include(x => x.RefreshTokens)
+                .FirstOrDefault(x => x.RefreshTokens.Any(y => y.Token == token));
+            return await _tokenService.RefreshToken(token, identityUser);
+        }
+
+        public async Task<bool> RevokeRefreshToken(string token)
+        {
+            var user = _dbContext.Users.Include(x => x.RefreshTokens)
+                .FirstOrDefault(x => x.RefreshTokens.Any(y => y.Token == token));
+            if (user == null) return false;
+
+            await _tokenService.RevokeRefreshToken(token, user);
+            return true;
+        }
+
+        public IUser GetCurrentUser()
+        {
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _appContext.GetFirstOrDefault<User>(u => u.UserName == userId);
         }
 
         public async Task<AuthSucceededResponce> GoogleAuthentication(GoogleAuthRequest googleAuth)
@@ -91,37 +122,62 @@ namespace DreamBook.API.Auth
             if (googlePayload == null)
                 return null;
 
-            var info = new UserLoginInfo(googleAuth.Provider, googlePayload.Subject, googleAuth.Provider);
+            var info = new UserLoginInfo("google", googlePayload.Subject, "google");
             var user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
             if (user == null)
             {
                 user = await _userManager.FindByEmailAsync(googlePayload.Email);
                 if (user == null)
-                    user = await Register(new UserRegisterModel() { Email = googlePayload.Email, Username = googlePayload.Email }, UserRoles.User);
+                    user = await Register(new UserRegisterModel()
+                    {
+                        Gender = Domain.Enums.Gender.None,
+                        FullName = googlePayload.Name,
+                        Email = googlePayload.Email,
+                        UserName = googlePayload.Email,
+                        Password = RandonPassword(),
+                        AvatarImage = ""
+                    }, UserRoles.User);
 
                 await _userManager.AddLoginAsync(user, info);
             }
 
-            return new AuthSucceededResponce(await _tokenService.GenerateTokens(user), user);
+            var userResponseModel = await _userService.GetById(user.Id);
+            return new AuthSucceededResponce(await _tokenService.GenerateTokens(user), userResponseModel);
         }
 
-        public async Task<JwtTokenResponse> RefreshToken(string token)
+        string RandonPassword()
         {
-            var identityUser = _dbContext.Users.Include(x => x.RefreshTokens)
-                .FirstOrDefault(x => x.RefreshTokens.Any(y => y.Token == token && y.UserId == x.Id));
-            return await _tokenService.RefreshToken(token, identityUser);
-        }
+            string[] randomChars = new[]
+            {
+                "ABCDEFGHJKLMNOPQRSTUVWXYZ",
+                "abcdefghijkmnopqrstuvwxyz",
+                "0123456789",
+                "!@$?_-"
+            };
 
-        public async Task<bool> RevokeRefreshToken(string token)
-        {
-            var user = _dbContext.Users.Include(x => x.RefreshTokens)
-                .FirstOrDefault(x => x.RefreshTokens.Any(y => y.Token == token && y.UserId == x.Id));
+            Random rand = new Random(Environment.TickCount);
+            List<char> chars = new List<char>();
 
-            if (user == null) return false;
+            chars.Insert(rand.Next(0, chars.Count),
+                randomChars[0][rand.Next(0, randomChars[0].Length)]);
 
-            // Revoke Refresh token
-            await _tokenService.RevokeRefreshToken(token, user);
-            return true;
+            chars.Insert(rand.Next(0, chars.Count),
+                randomChars[1][rand.Next(0, randomChars[1].Length)]);
+
+            chars.Insert(rand.Next(0, chars.Count),
+                randomChars[2][rand.Next(0, randomChars[2].Length)]);
+
+            chars.Insert(rand.Next(0, chars.Count),
+                randomChars[3][rand.Next(0, randomChars[3].Length)]);
+
+            for (int i = chars.Count; i < 8; i++)
+            {
+                string rcs = randomChars[rand.Next(0, randomChars.Length)];
+                chars.Insert(rand.Next(0, chars.Count),
+                    rcs[rand.Next(0, rcs.Length)]);
+            }
+
+            return new string(chars.ToArray());
         }
     }
 }

@@ -25,7 +25,7 @@ namespace DreamBook.Application.Words
         public WordTransltaionRequestModelValidator(AppLanguageManager appLanguageManager) :
             base(appLanguageManager)
         {
-            RuleFor(p => p.Name).NotEmpty().WithMessage(FluentMessages.NotEmpty.Format(ModelsLabel.Name));
+            RuleFor(p => p.Name).NotEmpty().WithName(ModelsLabel.Name);
         }
     }
 }

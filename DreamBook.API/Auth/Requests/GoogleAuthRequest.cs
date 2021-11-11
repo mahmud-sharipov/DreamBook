@@ -2,7 +2,6 @@
 {
     public class GoogleAuthRequest
     {
-        public string Provider { get; set; }
         public string IdToken { get; set; }
     }
 }

@@ -39,6 +39,7 @@ import { PostCategoryFormComponent } from './pages/post-categories/post-category
 import { PostCategoryComponent } from './pages/post-categories/post-category/post-category.component';
 import { AdViewComponent } from './pages/ad/ad-view/ad-view.component';
 import { AdCardComponent } from './pages/ad/ad-card/ad-card.component';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -80,12 +81,27 @@ import { AdCardComponent } from './pages/ad/ad-card/ad-card.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    ColorPickerModule
+    ColorPickerModule,
+    SocialLoginModule
   ],
   providers: [
     AuthGuard,
     { provide: API_BASE_URL, useFactory: getBaseApiUrl },
-    headerInterceptorProviders
+    headerInterceptorProviders,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '462142162932-lpkot8mggdreee42591oil47808n4gg9.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })

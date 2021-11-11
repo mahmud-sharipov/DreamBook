@@ -61,7 +61,16 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to it has interpretation for several words. First remove all interpretations and then try again..
+        ///   Looks up a localized string similar to В книге {0} уже есть толкование для {1}..
+        /// </summary>
+        public static string BookAlreadyHasInterpretationForWord {
+            get {
+                return ResourceManager.GetString("BookAlreadyHasInterpretationForWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to он содержит толкование нескольких слов.
         /// </summary>
         public static string BookCanNotBeDeletedReason {
             get {
@@ -70,7 +79,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Book with &apos;{0}&apos; name already exist..
+        ///   Looks up a localized string similar to Книга с названием &apos;{0}&apos; уже существует..
         /// </summary>
         public static string BookWithSameNameExist {
             get {
@@ -79,7 +88,25 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to it is used on several dreams.
+        ///   Looks up a localized string similar to Категория &quot;{0}&quot; уже существует..
+        /// </summary>
+        public static string CategoryWithSameNameExist {
+            get {
+                return ResourceManager.GetString("CategoryWithSameNameExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тип &apos;{0}&apos; уже существует..
+        /// </summary>
+        public static string DreamTypeWithSameNameExist {
+            get {
+                return ResourceManager.GetString("DreamTypeWithSameNameExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to он используется в нескольких снах.
         /// </summary>
         public static string DreatemTypeCanNotBeDeletedReason {
             get {
@@ -88,7 +115,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} ({1}) cannot be deleted because {2}..
+        ///   Looks up a localized string similar to {0} ({1}) не может быть удален, потому что, {2}..
         /// </summary>
         public static string EntityCanNotBeDeleted {
             get {
@@ -97,7 +124,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} with {1} is does not exist..
+        ///   Looks up a localized string similar to {0} с {1} не существует..
         /// </summary>
         public static string EntityNotFound {
             get {
@@ -106,7 +133,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} was not created with an unknown reason..
+        ///   Looks up a localized string similar to {0} не был создан по неизвестной причине..
         /// </summary>
         public static string EntityWasNotSavedToDB {
             get {
@@ -115,25 +142,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to it is used on several dreams.
-        /// </summary>
-        public static string InterpretationCanNotBeDeletedReason {
-            get {
-                return ResourceManager.GetString("InterpretationCanNotBeDeletedReason", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language with &apos;{0}&apos; id does not exist..
-        /// </summary>
-        public static string LanguageNotFound {
-            get {
-                return ResourceManager.GetString("LanguageNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to there are several post this this category.
+        ///   Looks up a localized string similar to есть несколько постов с этой категорией.
         /// </summary>
         public static string PostCategoryCanNotBeDeletedReason {
             get {
@@ -142,7 +151,34 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to it is used in severs dreams. First remove this word from dreams and then try again..
+        ///   Looks up a localized string similar to Учетная запись пользователя не может быть удалена. Только владелец может удалить эту учетную запись..
+        /// </summary>
+        public static string UserCannotBeDeleted {
+            get {
+                return ResourceManager.GetString("UserCannotBeDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} уже используется другим пользователем..
+        /// </summary>
+        public static string UserWithTheSameEmailAlreadyExist {
+            get {
+                return ResourceManager.GetString("UserWithTheSameEmailAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пользователь с ником &apos;{0}&apos; уже существует..
+        /// </summary>
+        public static string UserWithTheSameUserNameAlreadyExist {
+            get {
+                return ResourceManager.GetString("UserWithTheSameUserNameAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to он используется в нескольких снах.
         /// </summary>
         public static string WordCanNotBeDeletedReason {
             get {
@@ -151,7 +187,7 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; word  already exist..
+        ///   Looks up a localized string similar to Слово &quot;{0}&quot; уже существует..
         /// </summary>
         public static string WordWithSameNameExist {
             get {

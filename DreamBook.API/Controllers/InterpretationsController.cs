@@ -21,7 +21,7 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IPagedList<InterpretationResponseModel>>> GetPagedList([FromQuery] PagedListRequestModel<InterpretationTranslation> requestModel)
+        public async Task<ActionResult<IPagedList<InterpretationResponseModel>>> GetPagedList([FromQuery] InterpretationPagedListRequestModel requestModel)
         {
             return Ok(await Service.GetPagedList(requestModel));
         }

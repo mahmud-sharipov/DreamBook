@@ -42,7 +42,7 @@ namespace DreamBook.API.Infrastructure.Middleware
                 Status = ex switch
                 {
                     EntityNotFoundException => (int)HttpStatusCode.NotFound,
-                    EntityCanNotBeDeletedExxeption => (int)HttpStatusCode.Locked,
+                    EntityCanNotBeDeletedExxeption => (int)HttpStatusCode.BadRequest,
                     BusinessLogicException => (int)HttpStatusCode.BadRequest,
                     _ => (int)HttpStatusCode.InternalServerError
                 },

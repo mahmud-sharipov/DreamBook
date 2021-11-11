@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DreamBook.Application.Dreams
 {
-    public class CreateDreamRequestModel : IRequestModel
+    public class DreamRequestModel : IRequestModel
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -14,6 +14,10 @@ namespace DreamBook.Application.Dreams
         public string Image { get; set; }
         public bool CanBeShared { get; set; }
         public Guid TypeGuid { get; set; }
+    }
+
+    public class CreateDreamRequestModel : DreamRequestModel
+    {
         public List<Guid> Words { get; set; }
     }
 }

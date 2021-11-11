@@ -2,7 +2,7 @@
 
 namespace DreamBook.Application.Dreams
 {
-    public class UpdateDreamRequestModel : CreateDreamRequestModel
+    public class UpdateDreamRequestModel : DreamRequestModel
     {
         public Guid Guid { get; set; }
     }

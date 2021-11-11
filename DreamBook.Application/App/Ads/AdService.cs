@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DreamBook.Application.Abstraction;
 using DreamBook.Application.Abstraction.Service;
+using DreamBook.Application.LanguageResources;
 using DreamBook.Domain.Entities;
 using System.Threading.Tasks;
 
@@ -23,5 +24,6 @@ namespace DreamBook.Application.Ads
         protected override string GetDefaultSearchPropertyName() => nameof(AdTranslation.Title);
 
         protected override string GetDefaultPropertyNameToOrderBy() => $"{nameof(AdTranslation.Ad)}.{nameof(Ad.CreatedAt)}";
+        protected override string GetEntityLabel() => ModelsLabel.Ad;
     }
 }

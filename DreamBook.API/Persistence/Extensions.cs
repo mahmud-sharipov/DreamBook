@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace DreamBook.API.Persistence
 {
@@ -15,7 +16,7 @@ namespace DreamBook.API.Persistence
             string connectionString = configuration["ConnectionStrings:DreamBookConnection"];
             services.AddDbContext<DreamBookIdentityContext>(options =>
                 options.UseSqlServer(connectionString));
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<DreamBookIdentityContext>();
 
             return services;

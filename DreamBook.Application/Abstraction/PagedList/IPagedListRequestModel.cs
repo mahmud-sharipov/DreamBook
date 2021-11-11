@@ -8,8 +8,6 @@ namespace DreamBook.Application.Abstraction.PagedList
     {
         int PageNumber { get; set; }
         int PageSize { get; set; }
-        //string[] OrderBy { get; set; }
-        string SearchText { get; set; }
 
         IQueryable<TEntity> Filter(IQueryable<TEntity> source, string searchFiled, string orderBy);
     }

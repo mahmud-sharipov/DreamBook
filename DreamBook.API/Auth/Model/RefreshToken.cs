@@ -10,7 +10,7 @@ namespace DreamBook.API.Auth.Model
 
         public string Token { get; set; }
 
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public DateTime ExpiryOn { get; set; }
 

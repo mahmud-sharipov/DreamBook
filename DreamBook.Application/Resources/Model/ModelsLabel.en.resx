@@ -225,4 +225,10 @@
   <data name="Word" xml:space="preserve">
     <value>Word</value>
   </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>Created at</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
 </root>

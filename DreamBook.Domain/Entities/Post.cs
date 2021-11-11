@@ -6,7 +6,7 @@ namespace DreamBook.Domain.Entities
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string Image { get; set; }
         public bool IsActive { get; set; }
 

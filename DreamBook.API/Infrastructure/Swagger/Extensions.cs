@@ -61,6 +61,7 @@ namespace DreamBook.API.Infrastructure.Swagger
             app.UseSwaggerUI(options =>
             {
                 options.RoutePrefix = "api/docs";
+                options.InjectStylesheet("/swagger-ui/SwaggerDark.css");
                 foreach (var description in versionProvider.ApiVersionDescriptions)
                     options.SwaggerEndpoint($"/api/docs/{description.GroupName}/docs.json", description.GroupName.ToUpperInvariant());
             });

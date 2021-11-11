@@ -79,10 +79,11 @@ namespace DreamBook.API.Auth
         {
             var userRoles = await _userManager.GetRolesAsync(user);
             var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                };
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UserName),
+                new Claim(ClaimTypes.Sid,user.SecurityStamp),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
 
             foreach (var userRole in userRoles)
             {
@@ -94,14 +95,14 @@ namespace DreamBook.API.Auth
             var token = new JwtSecurityToken(
                 issuer: _jwtSettings["Issuer"],
                 audience: _jwtSettings["Issuer"],
-                expires: DateTime.Now.Add(_accessTokenexparationTime),
+                expires: DateTime.UtcNow.Add(_accessTokenexparationTime),
                 claims: authClaims,
                 signingCredentials: credentials
             );
             return (new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo);
         }
 
-        private RefreshToken GenerateRefreshToken(string userId)
+        private RefreshToken GenerateRefreshToken(Guid userId)
         {
             using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())
             {
@@ -132,7 +133,7 @@ namespace DreamBook.API.Auth
             return true;
         }
 
-        public DateTime GetValidToDate(DateTime? from = null) => (from ?? DateTime.Now).Add(_accessTokenexparationTime);
+        public DateTime GetValidToDate(DateTime? from = null) => (from ?? DateTime.UtcNow).Add(_accessTokenexparationTime);
 
         public RefreshToken GetValidRefreshToken(string token, ApplicationUser identityUser)
         {

@@ -1,4 +1,5 @@
 ﻿using DreamBook.Application.Abstraction.PagedList;
+using DreamBook.Application.App.Posts.RequestModels;
 using DreamBook.Application.Posts;
 using DreamBook.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,7 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IPagedList<PostResponseModel>>> GetPagedList([FromQuery] PagedListRequestModel<Post> requestModel)
+        public async Task<ActionResult<IPagedList<PostResponseModel>>> GetPagedList([FromQuery] PostPagedListRequestModel requestModel)
         {
             return Ok(await Service.GetPagedList(requestModel));
         }

@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NotEmpty" xml:space="preserve">
-    <value>'{0}' must not be empty.</value>
+  <data name="LanguageNotFound" xml:space="preserve">
+    <value>Language with '{0}' id does not exist.</value>
   </data>
-  <data name="NotNull" xml:space="preserve">
-    <value>'{0}' must not be null.</value>
+  <data name="DuplicateTranslations" xml:space="preserve">
+    <value>{0} multiple translation single language.</value>
+  </data>
+  <data name="TranslationForAllLanguagesNotExist" xml:space="preserve">
+    <value>Add translation for all supported languages.</value>
   </data>
 </root>

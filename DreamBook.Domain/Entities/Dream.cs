@@ -20,6 +20,7 @@ namespace DreamBook.Domain.Entities
         public string Image { get; set; }
         public int NumberOfViews { get; set; }
         public bool CanBeShared { get; set; }
+        public bool MovedToRecycleBin { get; set; }
 
         public Guid AuthorGuid { get; set; }
         public virtual User Author { get; set; }

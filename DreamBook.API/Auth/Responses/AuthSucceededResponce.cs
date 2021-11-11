@@ -1,10 +1,11 @@
 ﻿using DreamBook.API.Auth.Model;
+using DreamBook.Application.Users;
 
 namespace DreamBook.API.Auth.Responses
 {
     public class AuthSucceededResponce
     {
-        public AuthSucceededResponce(JwtTokenResponse token, ApplicationUser user)
+        public AuthSucceededResponce(JwtTokenResponse token, UserResponseModel user)
         {
             TokenInfo = token;
             User = user;
@@ -12,6 +13,6 @@ namespace DreamBook.API.Auth.Responses
 
         public JwtTokenResponse TokenInfo { get; }
 
-        public ApplicationUser User { get; }
+        public UserResponseModel User { get; }
     }
 }

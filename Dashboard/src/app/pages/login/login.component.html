@@ -1,1 +1,62 @@
-Login
+<div class="container" style="max-width: 550px">
+    <h2 class="text-center mb-5">Angular Login with Google</h2>
+
+    <div *ngIf="isLoggedin === false">
+        <div>
+            <button type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>
+        </div>
+    </div>
+
+    <div *ngIf="isLoggedin === true">
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" [value]="socialUser?.firstName" id="firstname" readonly>
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" [value]="socialUser?.lastName" id="lastname" readonly>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" [value]="socialUser?.email" id="email" readonly>
+        </div>
+        <div class="form-group">
+            <label>provider</label>
+            <input type="text" class="form-control" [value]="socialUser?.provider" id="provider" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>id</label>
+            <input type="text" class="form-control" [value]="socialUser?.id" id="id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>photoUrl</label>
+            <input type="text" class="form-control" [value]="socialUser?.photoUrl" id="photoUrl" readonly>
+            <img [src]="socialUser?.photoUrl">
+        </div>
+
+        <div class="form-group">
+            <label>authToken</label>
+            <input type="text" class="form-control" [value]="socialUser?.authToken" id="authToken" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>idToken</label>
+            <input type="text" class="form-control" [value]="socialUser?.idToken" id="idToken" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>authorizationCode</label>
+            <input type="text" class="form-control" [value]="socialUser?.authorizationCode" id="authorizationCode"
+                readonly>
+        </div>
+
+        <div class="form-group">
+            <label>response</label>
+            <input type="text" class="form-control" [value]="socialUser?.response" id="response" readonly>
+        </div>
+
+        <button type="button" (click)="logOut()" class="btn btn-primary">Log Out</button>
+    </div>
+</div>

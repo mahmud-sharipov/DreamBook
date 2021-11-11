@@ -61,20 +61,29 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; не должно быть пустым..
+        ///   Looks up a localized string similar to {0} несколько переводов на один язык..
         /// </summary>
-        public static string NotEmpty {
+        public static string DuplicateTranslations {
             get {
-                return ResourceManager.GetString("NotEmpty", resourceCulture);
+                return ResourceManager.GetString("DuplicateTranslations", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; не должно быть нулевым..
+        ///   Looks up a localized string similar to Язык с идентификатором &apos;{0}&apos; не существует..
         /// </summary>
-        public static string NotNull {
+        public static string LanguageNotFound {
             get {
-                return ResourceManager.GetString("NotNull", resourceCulture);
+                return ResourceManager.GetString("LanguageNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавьте перевод для всех поддерживаемых языков..
+        /// </summary>
+        public static string TranslationForAllLanguagesNotExist {
+            get {
+                return ResourceManager.GetString("TranslationForAllLanguagesNotExist", resourceCulture);
             }
         }
     }

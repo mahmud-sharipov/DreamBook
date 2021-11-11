@@ -27,7 +27,7 @@ namespace DreamBook.API.Persistence
 
                 CreateDreamTypes(context);
                 CreatePostCategories(context);
-                await CreateUserRoles(serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>());
+                await CreateUserRoles(serviceScope.ServiceProvider.GetService<RoleManager<ApplicationRole>>());
                 await CreateUser(serviceScope.ServiceProvider.GetService<UserManager<ApplicationUser>>(), context);
             }
         }
@@ -293,12 +293,12 @@ namespace DreamBook.API.Persistence
             context.SaveChanges();
         }
 
-        static async Task CreateUserRoles(RoleManager<IdentityRole> roleManager)
+        static async Task CreateUserRoles(RoleManager<ApplicationRole> roleManager)
         {
             if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-                await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.Admin });
             if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.User });
         }
 
         static async Task CreateUser(UserManager<ApplicationUser> userManager, IContext context)
@@ -317,7 +317,7 @@ namespace DreamBook.API.Persistence
 
                 ApplicationUser appUser = new ApplicationUser()
                 {
-                    Id = user.Guid.ToString(),
+                    Id = user.Guid,
                     Email = user.Email,
                     UserName = user.UserName
                 };

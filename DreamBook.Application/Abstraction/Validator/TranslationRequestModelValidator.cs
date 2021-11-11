@@ -12,9 +12,14 @@ namespace DreamBook.Application.Abstraction
         public TranslationRequestModelValidator(AppLanguageManager appLanguageManager)
         {
             RuleFor(p => p.LanguageGuid)
-                .NotEmpty().WithMessage(FluentMessages.NotEmpty.Format(ModelsLabel.Language))
+                .NotEmpty().WithName(ModelsLabel.Language);
+
+            When(t => t.LanguageGuid != Guid.Empty, () =>
+            {
+                RuleFor(p => p.LanguageGuid)
                 .Must(languageGuid => appLanguageManager.SupportLanguagesGuid.Contains(languageGuid))
-                .WithMessage(type => ExceptionMessages.LanguageNotFound.Format(type.LanguageGuid));
+                .WithMessage(type => FluentMessages.LanguageNotFound.Format(type.LanguageGuid));
+            });
         }
     }
 }

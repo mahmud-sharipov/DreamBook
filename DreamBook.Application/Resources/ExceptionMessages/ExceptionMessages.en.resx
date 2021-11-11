@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DreatemTypeCanNotBeDeletedReason" xml:space="preserve">
-    <value>it is used on several dreams</value>
+    <value>it is used in several dreams</value>
   </data>
   <data name="EntityCanNotBeDeleted" xml:space="preserve">
     <value>{0} ({1}) cannot be deleted because {2}.</value>
@@ -126,20 +126,14 @@
   <data name="EntityWasNotSavedToDB" xml:space="preserve">
     <value>{0} was not created with an unknown reason.</value>
   </data>
-  <data name="LanguageNotFound" xml:space="preserve">
-    <value>Language with '{0}' id does not exist.</value>
-  </data>
-  <data name="InterpretationCanNotBeDeletedReason" xml:space="preserve">
-    <value>it is used on several dreams</value>
-  </data>
   <data name="PostCategoryCanNotBeDeletedReason" xml:space="preserve">
-    <value>there are several post this this category</value>
+    <value>there are several post with this category</value>
   </data>
   <data name="EntityNotFound" xml:space="preserve">
     <value>{0} with {1} is does not exist.</value>
   </data>
   <data name="BookCanNotBeDeletedReason" xml:space="preserve">
-    <value>it has interpretation for several words. First remove all interpretations and then try again.</value>
+    <value>it contains interpretation for several words</value>
   </data>
   <data name="BookWithSameNameExist" xml:space="preserve">
     <value>Book with '{0}'' name already exist.</value>
@@ -148,6 +142,24 @@
     <value>'{0}' word  already exist.</value>
   </data>
   <data name="WordCanNotBeDeletedReason" xml:space="preserve">
-    <value>it is used in severs dreams. First remove this word from dreams and then try again.</value>
+    <value>it is used in several dreams</value>
+  </data>
+  <data name="BookAlreadyHasInterpretationForWord" xml:space="preserve">
+    <value>The {0} book already has interpretation for {1}.</value>
+  </data>
+  <data name="DreamTypeWithSameNameExist" xml:space="preserve">
+    <value>'{0}' type already exist.</value>
+  </data>
+  <data name="CategoryWithSameNameExist" xml:space="preserve">
+    <value>'{0}' category already exist.</value>
+  </data>
+  <data name="UserCannotBeDeleted" xml:space="preserve">
+    <value> User account cannot be deleted. Only the owner can  delete this account.</value>
+  </data>
+  <data name="UserWithTheSameUserNameAlreadyExist" xml:space="preserve">
+    <value>User with '{0}' username already exist.</value>
+  </data>
+  <data name="UserWithTheSameEmailAlreadyExist" xml:space="preserve">
+    <value>{0} email already used by another user.</value>
   </data>
 </root>

@@ -134,6 +134,9 @@ namespace DreamBook.Persistence.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("MovedToRecycleBin")
+                        .HasColumnType("bit");
+
                     b.Property<int>("NumberOfViews")
                         .HasColumnType("int");
 
@@ -371,6 +374,9 @@ namespace DreamBook.Persistence.Migrations
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AvatarImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");

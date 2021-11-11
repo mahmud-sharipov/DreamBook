@@ -53,10 +53,9 @@ namespace DreamBook.API.Controllers
 
         [HttpPost]
         [Route("revoke-token")]
-        public async Task<IActionResult> RevokeToken()
+        public async Task<IActionResult> RevokeToken([FromBody] string refreshToken)
         {
-            string token = "";
-            if (await _authService.RevokeRefreshToken(token))
+            if (await _authService.RevokeRefreshToken(refreshToken))
             {
                 return Ok(new { Message = "Success" });
             }
@@ -66,8 +65,8 @@ namespace DreamBook.API.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("refresh-token/{refreshToken}")]
-        public async Task<IActionResult> RefreshToken([FromRoute] string refreshToken)
+        [Route("refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromBody] string refreshToken)
         {
             return Ok(await _authService.RefreshToken(refreshToken));
         }
@@ -77,7 +76,7 @@ namespace DreamBook.API.Controllers
         public async Task<IActionResult> Logout()
         {
             await _authService.Logout();
-            return Ok("Logged Out");
+            return Ok();
         }
     }
 }
