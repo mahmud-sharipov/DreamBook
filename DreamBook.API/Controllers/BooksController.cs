@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DreamBook.API.Controllers
 {
-    
+    [Authorize]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
@@ -28,6 +28,7 @@ namespace DreamBook.API.Controllers
             return Ok(await Service.GetPagedList(requestModel));
         }
 
+        [RequireAdmin]
         [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<BookResponseModel>>> GetAll()
         {
@@ -47,6 +48,7 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpPost]
+        [RequireModerator]
         public async Task<ActionResult<BookResponseModel>> Create([FromBody] CreateBookRequestModel model)
         {
             var responce = await Service.Create(model);
@@ -54,12 +56,14 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpPut]
+        [RequireModerator]
         public async Task<IActionResult> Update([FromBody] UpdateBookRequestModel model)
         {
             await Service.Update(model);
             return NoContent();
         }
 
+        [RequireModerator]
         [HttpDelete("{id}")]
         public async virtual Task<IActionResult> Delete(Guid id)
         {

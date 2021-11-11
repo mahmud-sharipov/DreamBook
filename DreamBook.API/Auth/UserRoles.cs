@@ -4,7 +4,8 @@ namespace DreamBook.API.Auth
 {
     public static class UserRoles
     {
-        public static readonly string Admin = nameof(UserType.Admin);
-        public static readonly string User = nameof(UserType.User);
+        public const string Admin = nameof(UserType.Admin);
+        public const string Moderator = nameof(UserType.Admin);
+        public const string User = nameof(UserType.User);
     }
 }

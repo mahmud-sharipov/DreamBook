@@ -26,9 +26,9 @@ namespace DreamBook.API.Auth
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateActor = true,
-                        NameClaimType = "name",
                         ValidateLifetime = true,
                         ValidateTokenReplay = true,
+                        NameClaimType = "name",
                         ValidIssuer = configuration["Jwt:Issuer"],
                         ValidAudience = configuration["Jwt:Issuer"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]))

@@ -142,6 +142,15 @@ namespace DreamBook.Application.LanguageResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Внутренняя Ошибка Сервера..
+        /// </summary>
+        public static string InternalServerError {
+            get {
+                return ResourceManager.GetString("InternalServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to есть несколько постов с этой категорией.
         /// </summary>
         public static string PostCategoryCanNotBeDeletedReason {
@@ -174,6 +183,15 @@ namespace DreamBook.Application.LanguageResources {
         public static string UserWithTheSameUserNameAlreadyExist {
             get {
                 return ResourceManager.GetString("UserWithTheSameUserNameAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Произошла одна или несколько ошибок проверки!.
+        /// </summary>
+        public static string ValidationErrorOccurred {
+            get {
+                return ResourceManager.GetString("ValidationErrorOccurred", resourceCulture);
             }
         }
         

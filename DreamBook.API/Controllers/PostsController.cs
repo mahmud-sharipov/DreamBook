@@ -1,7 +1,7 @@
 ﻿using DreamBook.Application.Abstraction.PagedList;
 using DreamBook.Application.App.Posts.RequestModels;
 using DreamBook.Application.Posts;
-using DreamBook.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DreamBook.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
@@ -40,6 +41,7 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpPost]
+        [RequireModerator]
         public async Task<ActionResult<PostResponseModel>> Create([FromBody] CreatePostRequestModel model)
         {
             var responce = await Service.Create(model);
@@ -47,12 +49,14 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpPut]
+        [RequireModerator]
         public async Task<IActionResult> Update([FromBody] UpdatePostRequestModel model)
         {
             await Service.Update(model);
             return NoContent();
         }
 
+        [RequireModerator]
         [HttpDelete("{id}")]
         public async virtual Task<IActionResult> Delete(Guid id)
         {

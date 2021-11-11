@@ -170,4 +170,10 @@
   <data name="UserWithTheSameUserNameAlreadyExist" xml:space="preserve">
     <value>Пользователь с ником '{0}' уже существует.</value>
   </data>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Внутренняя Ошибка Сервера.</value>
+  </data>
+  <data name="ValidationErrorOccurred" xml:space="preserve">
+    <value>Произошла одна или несколько ошибок проверки!</value>
+  </data>
 </root>

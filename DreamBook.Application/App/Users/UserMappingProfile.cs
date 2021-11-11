@@ -8,6 +8,7 @@ namespace DreamBook.Application.Users
         public UserMappingProfile()
         {
             //Requests
+            CreateMap<UserRequestModel, User>();
             CreateMap<CreateUserRequestModel, User>();
             CreateMap<UpdateUserRequestModel, User>();
 

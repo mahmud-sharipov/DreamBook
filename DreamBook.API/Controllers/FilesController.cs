@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -33,7 +34,8 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetPagedList(IFormFile file)
+        [Authorize]
+        public ActionResult AddFile(IFormFile file)
         {
             if (file == null)
                 return BadRequest();
@@ -48,7 +50,7 @@ namespace DreamBook.API.Controllers
             using (var fileStream = new FileStream(filePath, FileMode.Create))
                 file.CopyTo(fileStream);
 
-            return Ok(uniqueFileName);
-        }
+            return Ok(uniqueFileName);
+}
     }
 }

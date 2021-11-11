@@ -1,6 +1,7 @@
 ﻿using DreamBook.Application.Abstraction.PagedList;
 using DreamBook.Application.PostCategories;
 using DreamBook.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DreamBook.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
@@ -45,6 +47,7 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpPost]
+        [RequireModerator]
         public async Task<ActionResult<PostCategoryResponseModel>> Create([FromBody] CreatePostCategoryRequestModel model)
         {
             var responce = await Service.Create(model);
@@ -52,6 +55,7 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpPut]
+        [RequireModerator]
         public async Task<IActionResult> Update([FromBody] UpdatePostCategoryRequestModel model)
         {
             await Service.Update(model);
@@ -59,6 +63,7 @@ namespace DreamBook.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [RequireModerator]
         public async virtual Task<IActionResult> Delete(Guid id)
         {
             await Service.Delete(id);

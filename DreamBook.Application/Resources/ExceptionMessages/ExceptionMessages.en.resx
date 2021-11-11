@@ -154,12 +154,18 @@
     <value>'{0}' category already exist.</value>
   </data>
   <data name="UserCannotBeDeleted" xml:space="preserve">
-    <value> User account cannot be deleted. Only the owner can  delete this account.</value>
+    <value>User account cannot be deleted. Only the owner can  delete this account.</value>
   </data>
   <data name="UserWithTheSameUserNameAlreadyExist" xml:space="preserve">
     <value>User with '{0}' username already exist.</value>
   </data>
   <data name="UserWithTheSameEmailAlreadyExist" xml:space="preserve">
     <value>{0} email already used by another user.</value>
+  </data>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Internal Server Error.</value>
+  </data>
+  <data name="ValidationErrorOccurred" xml:space="preserve">
+    <value>One or more validation errors have occurred!</value>
   </data>
 </root>

@@ -42,6 +42,11 @@ namespace DreamBook.Application.Users
             await Update(requestModel, requestModel.Guid);
         }
 
+        public async Task Update(Guid userId, UserRequestModel requestModel)
+        {
+            await Update(requestModel, userId);
+        }
+
         public async Task UpdateUsername(UpdateUserUsernameRequestModel requestModel)
         {
             var user = await Context.GetByIdAsync<User>(requestModel.Guid);

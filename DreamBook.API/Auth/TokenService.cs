@@ -122,11 +122,9 @@ namespace DreamBook.API.Auth
 
         public bool IsRefreshTokenValid(RefreshToken existingToken)
         {
-            // Is token already revoked, then return false
             if (existingToken.RevokedByIp != null && existingToken.RevokedOn != DateTime.MinValue)
                 return false;
 
-            // Token already expired, then return false
             if (existingToken.ExpiryOn <= DateTime.UtcNow)
                 return false;
 
@@ -164,6 +162,23 @@ namespace DreamBook.API.Auth
             existingToken.RevokedOn = DateTime.UtcNow;
             _dbContext.Update(user);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task RevokeRefreshToken(string userName)
+        {
+            var user = _dbContext.Users.Find(userName);
+            if (user != null)
+            {
+                var ipAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+               var tokens= user.RefreshTokens.Where(t => string.IsNullOrEmpty(t.RevokedByIp) && t.ExpiryOn > DateTime.UtcNow && t.CreatedByIp == ipAddress);
+                foreach (var token in tokens)
+                {
+                    token.RevokedByIp = ipAddress;
+                    token.RevokedOn = DateTime.UtcNow;
+                }
+                _dbContext.Update(user);
+                await _dbContext.SaveChangesAsync();
+            }
         }
     }
 }

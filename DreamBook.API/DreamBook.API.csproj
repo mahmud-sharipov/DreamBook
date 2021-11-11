@@ -35,8 +35,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Migrations\" />
-	  <Folder Include="Persistence\Migrations\" />
 	  <Folder Include="wwwroot\Images\" />
 	  <Folder Include="wwwroot\swagger-ui\" />
 	</ItemGroup>

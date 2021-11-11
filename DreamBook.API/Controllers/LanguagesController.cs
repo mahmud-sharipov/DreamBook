@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DreamBook.Application.Abstraction;
 using DreamBook.Application.Languages;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DreamBook.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/[controller]")]

@@ -1,5 +1,6 @@
 ﻿using DreamBook.Application.Abstraction.PagedList;
 using DreamBook.Application.Dreams;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DreamBook.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
@@ -37,12 +39,14 @@ namespace DreamBook.API.Controllers
             return Ok(await Service.GetById(id));
         }
 
+        [AllowAnonymous]
         [HttpGet("shared")]
         public async Task<ActionResult<IPagedList<DreamResponseModel>>> GetAllShared([FromQuery] DreamPagedListRequestModel requestModel)
         {
             return Ok(await Service.GetAllShared(requestModel));
         }
 
+        [AllowAnonymous]
         [HttpGet("shared/{id}")]
         public async Task<ActionResult<DreamResponseModel>> GetSharedById([FromRoute] Guid id)
         {

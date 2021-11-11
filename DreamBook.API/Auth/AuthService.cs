@@ -3,6 +3,7 @@ using DreamBook.API.Auth.Requests;
 using DreamBook.API.Auth.Responses;
 using DreamBook.API.Persistence;
 using DreamBook.Application.Abstraction;
+using DreamBook.Application.Exceptions;
 using DreamBook.Application.Users;
 using DreamBook.Domain.Entities;
 using DreamBook.Domain.Interfaces;
@@ -18,32 +19,18 @@ using System.Threading.Tasks;
 
 namespace DreamBook.API.Auth
 {
-    public interface IAuthService
-    {
-        Task<ApplicationUser> Register(UserRegisterModel model, params string[] roles);
-        Task<AuthSucceededResponce> Authenticate(LoginModel model);
-        Task<AuthSucceededResponce> GoogleAuthentication(GoogleAuthRequest googleAuth);
-        Task<bool> RevokeRefreshToken(string token);
-        Task<JwtTokenResponse> RefreshToken(string token);
-        Task Logout();
-    }
-
     public class AuthService : IAuthService, IUserIdentityService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<ApplicationRole> _roleManager;
-        private readonly IConfiguration _configuration;
         private readonly IUserService _userService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly DreamBookIdentityContext _dbContext;
         private readonly IContext _appContext;
         private readonly TokenService _tokenService;
 
-        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration, IUserService userService, IHttpContextAccessor httpContextAccessor, DreamBookIdentityContext dbContext, IContext appContext)
+        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration, IUserService userService, IHttpContextAccessor httpContextAccessor, DreamBookIdentityContext dbContext, IContext appContext)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
-            _configuration = configuration;
             _userService = userService;
             _httpContextAccessor = httpContextAccessor;
             _dbContext = dbContext;
@@ -51,7 +38,7 @@ namespace DreamBook.API.Auth
             _tokenService = new TokenService(configuration, userManager, dbContext, httpContextAccessor);
         }
 
-        public async Task<ApplicationUser> Register(UserRegisterModel model, params string[] roles)
+        public async Task<(ApplicationUser User, UserResponseModel ResponseModel)> Register(UserRegisterModel model, params string[] roles)
         {
             var user = await _userService.Create(model);
 
@@ -66,19 +53,13 @@ namespace DreamBook.API.Auth
             if (!result.Succeeded)
             {
                 await _userService.DeleteFull(user.Guid);
-                throw new BadHttpRequestException("User creation failed! Please check user details and try again.");
+                throw new BusinessLogicException("User creation failed! Please check user details and try again.");
             }
 
             foreach (var role in roles)
                 await _userManager.AddToRoleAsync(authUser, role);
 
-            return authUser;
-        }
-
-        public async Task Logout()
-        {
-            var userId = _httpContextAccessor.HttpContext.User.Identity.Name;
-            await _tokenService.RevokeRefreshToken("", null);
+            return (authUser, user);
         }
 
         public async Task<AuthSucceededResponce> Authenticate(LoginModel model)
@@ -91,6 +72,40 @@ namespace DreamBook.API.Auth
             }
 
             return null;
+        }
+
+        public async Task<AuthSucceededResponce> GoogleAuthentication(GoogleAuthRequest googleAuth)
+        {
+            var googlePayload = await _tokenService.VerifyGoogleToken(googleAuth);
+            if (googlePayload == null)
+                return null;
+
+            var info = new UserLoginInfo("google", googlePayload.Subject, "google");
+            var user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
+            UserResponseModel userResponseModel = null;
+            if (user == null)
+            {
+                user = await _userManager.FindByEmailAsync(googlePayload.Email);
+                if (user == null)
+                {
+                    var registrationResult = await Register(new UserRegisterModel()
+                    {
+                        Gender = Domain.Enums.Gender.None,
+                        FullName = googlePayload.Name,
+                        Email = googlePayload.Email,
+                        UserName = googlePayload.Email,
+                        Password = RandonPassword(),
+                        AvatarImage = ""
+                    }, UserRoles.User);
+                    user = registrationResult.User;
+                    userResponseModel = registrationResult.ResponseModel;
+                }
+                await _userManager.AddLoginAsync(user, info);
+            }
+
+            if (userResponseModel == null)
+                userResponseModel = await _userService.GetById(user.Id);
+            return new AuthSucceededResponce(await _tokenService.GenerateTokens(user), userResponseModel);
         }
 
         public async Task<JwtTokenResponse> RefreshToken(string token)
@@ -116,36 +131,7 @@ namespace DreamBook.API.Auth
             return _appContext.GetFirstOrDefault<User>(u => u.UserName == userId);
         }
 
-        public async Task<AuthSucceededResponce> GoogleAuthentication(GoogleAuthRequest googleAuth)
-        {
-            var googlePayload = await _tokenService.VerifyGoogleToken(googleAuth);
-            if (googlePayload == null)
-                return null;
-
-            var info = new UserLoginInfo("google", googlePayload.Subject, "google");
-            var user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
-            if (user == null)
-            {
-                user = await _userManager.FindByEmailAsync(googlePayload.Email);
-                if (user == null)
-                    user = await Register(new UserRegisterModel()
-                    {
-                        Gender = Domain.Enums.Gender.None,
-                        FullName = googlePayload.Name,
-                        Email = googlePayload.Email,
-                        UserName = googlePayload.Email,
-                        Password = RandonPassword(),
-                        AvatarImage = ""
-                    }, UserRoles.User);
-
-                await _userManager.AddLoginAsync(user, info);
-            }
-
-            var userResponseModel = await _userService.GetById(user.Id);
-            return new AuthSucceededResponce(await _tokenService.GenerateTokens(user), userResponseModel);
-        }
-
-        string RandonPassword()
+        public string RandonPassword()
         {
             string[] randomChars = new[]
             {
