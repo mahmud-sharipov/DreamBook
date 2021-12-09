@@ -99,7 +99,8 @@ namespace DreamBook.Application.Dreams
 
         public async Task<IPagedList<DreamResponseModel>> GetAllShared(DreamPagedListRequestModel requestModel)
         {
-            var query = Context.GetAll<Dream>(d => d.MovedToRecycleBin && d.CanBeShared);
+            var user = IdentityService.GetCurrentUser();
+            var query = Context.GetAll<Dream>(d => !d.MovedToRecycleBin && d.CanBeShared && d.AuthorGuid != user.Guid);
             var entities = requestModel.Filter(query, nameof(Dream.Title), nameof(Dream.CreatedAt));
             var result = new PagedList<Dream, DreamResponseModel>(entities, l => MapEntities(l), requestModel.PageNumber, requestModel.PageSize);
             return await Task.FromResult(result);
@@ -113,7 +114,6 @@ namespace DreamBook.Application.Dreams
 
             return MapEntity(entity);
         }
-
 
         public async Task<DreamResponseModel> Create(CreateDreamRequestModel requestModel)
         {
