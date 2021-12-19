@@ -3,7 +3,6 @@ import { COLOR_PICKER_SCRIPT } from 'src/app/helpers/scrip-model';
 import { DreamCategoryRequestModel, DreamCategoryTranslationRequestModel } from 'src/app/Models/Requests/dream-caregory-request-models';
 import { DreamCategoryWithTranslationsResponseModel } from 'src/app/models/responses/dream-caregory-response-models';
 import { DreamCategoryService } from 'src/app/services/dream-category-service';
-import { ScriptService } from 'src/app/services/script.service';
 
 @Component({
   selector: 'app-dream-category-form',
@@ -34,7 +33,6 @@ export class DreamCategoryFormComponent implements OnInit {
     this.service.updateDreamCategory(requestModel).subscribe((response: any) => {
       this.changeSubmitted.emit();
     }, (error: any) => {
-      console.log(error);
     });
   }
 

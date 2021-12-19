@@ -9,8 +9,8 @@ namespace DreamBook.API.Auth
     public interface IAuthService
     {
         Task<(ApplicationUser User, UserResponseModel ResponseModel)> Register(UserRegisterModel model, params string[] roles);
-        Task<AuthSucceededResponce> Authenticate(LoginModel model);
-        Task<AuthSucceededResponce> GoogleAuthentication(GoogleAuthRequest googleAuth);
+        Task<AuthSucceededResponse> Authenticate(LoginModel model);
+        Task<AuthSucceededResponse> GoogleAuthentication(GoogleAuthRequest googleAuth);
         Task<bool> RevokeRefreshToken(string token);
         Task<JwtTokenResponse> RefreshToken(string token);
     }

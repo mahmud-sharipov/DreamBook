@@ -57,7 +57,6 @@ export class WordsComponent implements OnInit {
     this.wordService.getWords(this.pageNumber, this.searchText).subscribe((result: PagedListResponseModel<WordResponseModel>) => {
       this.words = result;
     }, (error: any) => {
-      console.log(error);
     });
   }
 }

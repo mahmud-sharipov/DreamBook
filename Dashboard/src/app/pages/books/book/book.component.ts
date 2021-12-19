@@ -52,7 +52,6 @@ export class BookComponent implements OnInit {
       this.book = result;
       this.bookNames = result.translations.map(t => t.name).join('/');
     }, (error: any) => {
-      console.log(error);
     });
   }
 }

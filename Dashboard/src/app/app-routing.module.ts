@@ -26,24 +26,24 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       {
         path: 'ads',
         children: [
-          { path: '', component: AdComponent, pathMatch: 'full' },
-          { path: ':id', component: AdViewComponent },
+          { path: '', component: AdComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+          { path: ':id', component: AdViewComponent, canActivate: [AuthGuard] },
         ]
       },
-      { path: 'ads', component: AdViewComponent },
-      { path: 'books', component: BooksComponent },
-      { path: 'dream-categories', component: DreamCategoriesComponent },
-      { path: 'pots', component: PostComponent },
-      { path: 'post-categories', component: PostCategoriesComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'statistics', component: StatisticsComponent },
-      { path: 'users', component: UserComponent },
-      { path: 'words', component: WordsComponent },
-      { path: '**', component: NotFoundComponent },
+      { path: 'ads', component: AdViewComponent, canActivate: [AuthGuard] },
+      { path: 'books', component: BooksComponent, canActivate: [AuthGuard] },
+      { path: 'dream-categories', component: DreamCategoriesComponent, canActivate: [AuthGuard] },
+      { path: 'pots', component: PostComponent, canActivate: [AuthGuard] },
+      { path: 'post-categories', component: PostCategoriesComponent, canActivate: [AuthGuard] },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+      { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },
+      { path: 'users', component: UserComponent, canActivate: [AuthGuard] },
+      { path: 'words', component: WordsComponent, canActivate: [AuthGuard] },
+      { path: '**', component: NotFoundComponent, canActivate: [AuthGuard] },
     ]
   },
 

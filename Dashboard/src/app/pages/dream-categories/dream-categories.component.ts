@@ -56,7 +56,6 @@ export class DreamCategoriesComponent implements OnInit {
     this.service.getDreamCategories(this.pageNumber, this.searchText).subscribe((result: PagedListResponseModel<DreamCategoryResponseModel>) => {
       this.page = result;
     }, (error: any) => {
-      console.log(error);
     });
   }
 

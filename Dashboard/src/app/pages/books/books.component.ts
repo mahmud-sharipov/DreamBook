@@ -55,7 +55,6 @@ export class BooksComponent implements OnInit {
     this.service.getBooks(this.pageNumber, this.searchText).subscribe((result: PagedListResponseModel<BookResponseModel>) => {
       this.books = result;
     }, (error: any) => {
-      console.log(error);
     });
   }
 

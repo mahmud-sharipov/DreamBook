@@ -62,19 +62,19 @@ namespace DreamBook.API.Auth
             return (authUser, user);
         }
 
-        public async Task<AuthSucceededResponce> Authenticate(LoginModel model)
+        public async Task<AuthSucceededResponse> Authenticate(LoginModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userResponseModel = await _userService.GetById(user.Id);
-                return new AuthSucceededResponce(await _tokenService.GenerateTokens(user), userResponseModel);
+                return new AuthSucceededResponse(await _tokenService.GenerateTokens(user), userResponseModel);
             }
 
             return null;
         }
 
-        public async Task<AuthSucceededResponce> GoogleAuthentication(GoogleAuthRequest googleAuth)
+        public async Task<AuthSucceededResponse> GoogleAuthentication(GoogleAuthRequest googleAuth)
         {
             var googlePayload = await _tokenService.VerifyGoogleToken(googleAuth);
             if (googlePayload == null)
@@ -105,7 +105,7 @@ namespace DreamBook.API.Auth
 
             if (userResponseModel == null)
                 userResponseModel = await _userService.GetById(user.Id);
-            return new AuthSucceededResponce(await _tokenService.GenerateTokens(user), userResponseModel);
+            return new AuthSucceededResponse(await _tokenService.GenerateTokens(user), userResponseModel);
         }
 
         public async Task<JwtTokenResponse> RefreshToken(string token)

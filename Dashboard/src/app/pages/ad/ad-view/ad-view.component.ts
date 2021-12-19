@@ -31,7 +31,6 @@ export class AdViewComponent implements OnInit {
         this.entity = data;
         this.title = data.translations.map(t => t.title).join('/')
       }, requestError => {
-        console.log(requestError.status);
         this.router.navigate(["not-fount"]);
       });
 

@@ -52,7 +52,6 @@ export class PostCategoryComponent implements OnInit {
       this.entity = result;
       this.names = result.translations.map(t => t.name).join('/');
     }, (error: any) => {
-      console.log(error);
     });
   }
 }

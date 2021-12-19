@@ -16,7 +16,7 @@ namespace DreamBook.Domain.Entities
         public string Location { get; set; }
         public string Weather { get; set; }
         public DateTime DateTime { get; set; }
-        public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
+        public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
         public string Image { get; set; }
         public int NumberOfViews { get; set; }
         public bool CanBeShared { get; set; }

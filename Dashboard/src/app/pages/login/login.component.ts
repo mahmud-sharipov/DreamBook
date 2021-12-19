@@ -1,33 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  loginForm?: FormGroup;
-  socialUser?: SocialUser;
-  isLoggedin: boolean = false;
+  loginForm!: FormGroup;
+  returnUrl: string = '';
+  loginInvalid: boolean = false;
+  loginSubscription!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
-    private socialAuthService: SocialAuthService
-  ) { }
+    private socialAuthService: SocialAuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private tokenService: TokenStorageService
+  ) {
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/home';
+  }
 
   ngOnInit() {
+    if (this.tokenService.getToken != null) {
+      this.router.navigate([this.returnUrl]);
+    }
+
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
 
-    this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.isLoggedin = (user != null);
-      console.log(this.socialUser);
+    this.loginSubscription = this.socialAuthService.authState.subscribe((user) => {
+      this.loginInvalid = user == null;
+      this.authService.loginWithGoogle(user.idToken).subscribe(l => {
+        this.tokenService.saveToken(l.tokenInfo);
+        this.router.navigate([this.returnUrl]);
+      }, ex => {
+        this.loginInvalid = true;
+      })
     });
   }
 
@@ -35,7 +54,22 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  logOut(): void {
-    this.socialAuthService.signOut();
+  onSubmit(): void {
+    this.loginInvalid = false;
+    if (this.loginForm.valid) {
+      const username = this.loginForm.get('username')?.value;
+      const password = this.loginForm.get('password')?.value;
+      this.authService.login(username, password).subscribe(l => {
+        this.tokenService.saveToken(l.tokenInfo);
+
+        this.router.navigate([this.returnUrl]);
+      }, ex => {
+        this.loginInvalid = true;
+      })
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.loginSubscription.unsubscribe();
   }
 }

@@ -53,13 +53,11 @@ export class WordComponent implements OnInit {
       this.word = result;
       this.wordNames = result.translations.map(t => t.name).join('/');
     }, (error: any) => {
-      console.log(error);
     });
 
     this.wordService.getWordInterpretation(this.wordGuid).subscribe((result: WordInterpretationResponseModel[]) => {
       this.interpretations = result;
     }, (error: any) => {
-      console.log(error);
     });
   }
 

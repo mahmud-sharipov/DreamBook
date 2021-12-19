@@ -24,7 +24,6 @@ export class BookFormComponent implements OnInit {
     this.service.updateBook(requestModel).subscribe((response: any) => {
       this.changeSubmitted.emit();
     }, (error: any) => {
-      console.log(error);
     });
   }
 

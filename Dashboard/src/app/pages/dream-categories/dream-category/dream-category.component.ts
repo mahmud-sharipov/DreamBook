@@ -52,7 +52,6 @@ export class DreamCategoryComponent implements OnInit {
       this.entity = result;
       this.names = result.translations.map(t => t.name).join('/');
     }, (error: any) => {
-      console.log(error);
     });
   }
 

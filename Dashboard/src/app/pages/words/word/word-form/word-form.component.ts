@@ -25,7 +25,6 @@ export class WordFormComponent implements OnInit {
     this.service.updateWord(requestModel).subscribe((response: any) => {
       this.changeSubmitted.emit();
     }, (error: any) => {
-      console.log(error);
     });
   }
 

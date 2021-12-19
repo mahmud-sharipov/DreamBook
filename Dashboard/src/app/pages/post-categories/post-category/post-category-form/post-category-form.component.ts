@@ -32,7 +32,6 @@ export class PostCategoryFormComponent implements OnInit {
     this.service.updatePostCategory(requestModel).subscribe((response: any) => {
       this.changeSubmitted.emit();
     }, (error: any) => {
-      console.log(error);
     });
   }
 

@@ -56,7 +56,6 @@ export class PostCategoriesComponent implements OnInit {
     this.service.getPostCategories(this.pageNumber, this.searchText).subscribe((result: PagedListResponseModel<PostCategoryResponseModel>) => {
       this.page = result;
     }, (error: any) => {
-      console.log(error);
     });
   }
 

@@ -49,7 +49,7 @@ namespace DreamBook.API.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
-        public async Task<ActionResult<AuthSucceededResponce>> Login([FromBody] LoginModel model)
+        public async Task<ActionResult<AuthSucceededResponse>> Login([FromBody] LoginModel model)
         {
             var user = await _authService.Authenticate(model);
             return user == null ? Unauthorized() : Ok(user);

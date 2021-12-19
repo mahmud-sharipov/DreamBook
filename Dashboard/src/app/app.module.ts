@@ -40,6 +40,7 @@ import { PostCategoryComponent } from './pages/post-categories/post-category/pos
 import { AdViewComponent } from './pages/ad/ad-view/ad-view.component';
 import { AdCardComponent } from './pages/ad/ad-card/ad-card.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { authInterceptorProviders } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -85,9 +86,10 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     SocialLoginModule
   ],
   providers: [
-    AuthGuard,
     { provide: API_BASE_URL, useFactory: getBaseApiUrl },
+    AuthGuard,
     headerInterceptorProviders,
+    authInterceptorProviders,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
