@@ -36,11 +36,11 @@ namespace DreamBook.API.Infrastructure.Import
                 foreach (var interpretationData in wordInterpretations)
                 {
                     (Book book, BookTranslation bookRu, BookTranslation bookEn) bookData;
-                    if(books.ContainsKey(interpretationData.Book))
-                        bookData= books[interpretationData.Book];
+                    if (books.ContainsKey(interpretationData.Book))
+                        bookData = books[interpretationData.Book];
                     else
                     {
-                        bookData= CreateBook(context, interpretationData.Book);
+                        bookData = CreateBook(context, interpretationData.Book);
                         books.Add(interpretationData.Book, bookData);
                     }
 
@@ -65,8 +65,9 @@ namespace DreamBook.API.Infrastructure.Import
                         LanguageGuid = EnGuid
                     });
                 }
+
+                context.SaveChanges();
             }
-            context.SaveChanges();
         }
 
         static (Book book, BookTranslation bookRu, BookTranslation bookEn) CreateBook(IContext context, string name)

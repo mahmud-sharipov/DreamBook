@@ -299,6 +299,8 @@ namespace DreamBook.API.Persistence
                 await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.Admin });
             if (!await roleManager.RoleExistsAsync(UserRoles.User))
                 await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.User });
+            if (!await roleManager.RoleExistsAsync(UserRoles.Moderator))
+                await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.Moderator });
         }
 
         static async Task CreateUser(UserManager<ApplicationUser> userManager, IContext context)
@@ -326,6 +328,8 @@ namespace DreamBook.API.Persistence
                     throw new Exception("Error on creating default user");
 
                 await userManager.AddToRoleAsync(appUser, UserRoles.Admin);
+                await userManager.AddToRoleAsync(appUser, UserRoles.Moderator);
+                await userManager.AddToRoleAsync(appUser, UserRoles.User);
             }
         }
     }

@@ -3,8 +3,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Subscription } from 'rxjs';
+import { AuthSucceededResponse } from 'src/app/models/responses/auth-response-models';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-login',
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm!: FormGroup;
   returnUrl: string = '';
   loginInvalid: boolean = false;
+  errorMessage: string = '';
   loginSubscription!: Subscription;
 
   constructor(
@@ -42,8 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSubscription = this.socialAuthService.authState.subscribe((user) => {
       this.loginInvalid = user == null;
       this.authService.loginWithGoogle(user.idToken).subscribe(l => {
-        this.tokenService.saveToken(l.tokenInfo);
-        this.router.navigate([this.returnUrl]);
+        this.afterLogin(l);
       }, ex => {
         this.loginInvalid = true;
       })
@@ -60,12 +62,27 @@ export class LoginComponent implements OnInit, OnDestroy {
       const username = this.loginForm.get('username')?.value;
       const password = this.loginForm.get('password')?.value;
       this.authService.login(username, password).subscribe(l => {
-        this.tokenService.saveToken(l.tokenInfo);
-
-        this.router.navigate([this.returnUrl]);
+        this.afterLogin(l);
       }, ex => {
         this.loginInvalid = true;
       })
+    }
+  }
+
+  afterLogin(result: AuthSucceededResponse): void {
+    const jwtHelper = new JwtHelperService();
+    const decodedToken = jwtHelper.decodeToken(result.tokenInfo.accessToken);
+    console.log(decodedToken);
+
+    var role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    var roles = <[]>role;
+    if ((Array.isArray(roles) && roles.some(e => e === 'Admin')) || role === 'Admin') {
+      this.tokenService.saveToken(result.tokenInfo);
+      this.router.navigate([this.returnUrl]);
+    }
+    else {
+      this.loginInvalid = true;
+      this.errorMessage = "User is not admin."
     }
   }
 

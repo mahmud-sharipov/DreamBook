@@ -16,11 +16,11 @@ export class AuthService {
   }
 
   loginWithGoogle(token: string): Observable<AuthSucceededResponse> {
-    return this.http.post<AuthSucceededResponse>(this.hostUrl + 'auth/login/external/google', { token });
+    return this.http.post<AuthSucceededResponse>(this.hostUrl + 'auth/login/external/google', { idToken: token });
   }
 
   refreshToken(token: string): Observable<JwtTokenResponse> {
-    return this.http.post<JwtTokenResponse>(this.hostUrl + 'auth/refresh-token', token);
+    return this.http.post<JwtTokenResponse>(this.hostUrl + 'auth/refresh-token', '"' + token + '"');
   }
 
   getUserDate(token: string): Observable<UserResponseModel> {

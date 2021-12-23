@@ -42,13 +42,13 @@ namespace DreamBook.API.Infrastructure.Middleware
                 Status = ex switch
                 {
                     EntityNotFoundException => (int)HttpStatusCode.NotFound,
-                    EntityCanNotBeDeletedExxeption => (int)HttpStatusCode.BadRequest,
-                    BusinessLogicException => (int)HttpStatusCode.BadRequest,
+                    BusinessLogicException or EntityCanNotBeDeletedExxeption or BadHttpRequestException => (int)HttpStatusCode.BadRequest,
                     _ => (int)HttpStatusCode.InternalServerError
                 },
                 Title = ex switch
                 {
                     IValidaionException => "One or more validation errors occurred.",
+                    BadHttpRequestException => "Bad request",
                     _ => "Internal Server Error."
                 }
             };

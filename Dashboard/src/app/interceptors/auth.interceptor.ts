@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { TokenStorageService } from '../services/token-storage.service';
 import { AuthService } from '../services/auth.service';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 
@@ -13,9 +14,12 @@ export class AuthInterceptor implements HttpInterceptor {
     private isRefreshing = false;
     private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-    constructor(private tokenService: TokenStorageService, private authService: AuthService) { }
+    constructor(private tokenService: TokenStorageService,
+        private authService: AuthService,
+        private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
+
         let authReq = req;
         const token = this.tokenService.getToken();
         if (token != null) {
@@ -45,12 +49,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
                         this.tokenService.saveToken(token);
                         this.refreshTokenSubject.next(token.accessToken);
-
                         return next.handle(this.addTokenHeader(request, token.accessToken));
                     }),
                     catchError((err) => {
                         this.isRefreshing = false;
                         this.tokenService.signOut();
+                        this.router.navigate(['/login']);
+
                         return throwError(err);
                     })
                 );

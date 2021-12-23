@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamBook.Persistence.Migrations
 {
     [DbContext(typeof(DreamBookContext))]
-    [Migration("20211107175907_SafeDeleteForDream")]
-    partial class SafeDeleteForDream
+    [Migration("20211223090336_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -376,6 +376,9 @@ namespace DreamBook.Persistence.Migrations
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AvatarImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");

@@ -47,7 +47,7 @@ namespace DreamBook.API.Auth
             {
                 var settings = new GoogleJsonWebSignature.ValidationSettings()
                 {
-                    Audience = new[] { "462142162932-kdij8sactn88po2cdvs3d7dal2j8dqin.apps.googleusercontent.com" }
+                    Audience = new[] { "33115024297-3frqcmhigpghgap5g8262lb49d6t530b.apps.googleusercontent.com" }
                 };
                 var payload = await GoogleJsonWebSignature.ValidateAsync(externalAuth.IdToken, settings);
                 return payload;

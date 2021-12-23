@@ -87,9 +87,9 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
   ],
   providers: [
     { provide: API_BASE_URL, useFactory: getBaseApiUrl },
-    AuthGuard,
     headerInterceptorProviders,
     authInterceptorProviders,
+    AuthGuard,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -98,7 +98,7 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '462142162932-kdij8sactn88po2cdvs3d7dal2j8dqin.apps.googleusercontent.com'
+              '33115024297-3frqcmhigpghgap5g8262lb49d6t530b.apps.googleusercontent.com'
             )
           }
         ]

@@ -79,7 +79,8 @@ namespace DreamBook.Persistence.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AvatarImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -242,6 +243,7 @@ namespace DreamBook.Persistence.Migrations
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumberOfViews = table.Column<int>(type: "int", nullable: false),
                     CanBeShared = table.Column<bool>(type: "bit", nullable: false),
+                    MovedToRecycleBin = table.Column<bool>(type: "bit", nullable: false),
                     AuthorGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TypeGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
