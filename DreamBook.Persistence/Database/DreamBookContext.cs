@@ -3,7 +3,6 @@ using DreamBook.Domain.Entities;
 using DreamBook.Domain.Interfaces;
 using DreamBook.Persistence.TableConfigurations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace DreamBook.Persistence.Database
 {
     public class DreamBookContext : DbContext, IContext
     {
-        public DreamBookContext() { }
+        DreamBookContext() { }
 
         public DreamBookContext(DbContextOptions<DreamBookContext> dbContextOptions) : base(dbContextOptions)
         {
@@ -28,14 +27,6 @@ namespace DreamBook.Persistence.Database
         {
             modelBuilder.Ignore<EntityBase>();
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-            string connectionString = configuration["ConnectionStrings:DreamBookConnection"];
-            optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseSqlServer(connectionString);
         }
 
         public int? CommandTimeout

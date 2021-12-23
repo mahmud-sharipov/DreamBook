@@ -4,8 +4,8 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<StartupObject>DreamBook.API.Program</StartupObject>
 		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
-		<UserSecretsId>0aa62e0a-880e-4aaa-9b3f-316d21b0f40b</UserSecretsId>
-	</PropertyGroup>
+	  <UserSecretsId>2cae0e0d-b8e8-45c8-a92e-c65a2e3ce221</UserSecretsId>
+  </PropertyGroup>
 
 	<ItemGroup>
 	  <None Include="wwwroot\Images\03EC81D9-09D8-4419-9968-5F42FF03A7D8.jpg" />

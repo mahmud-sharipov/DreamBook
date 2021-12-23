@@ -1,11 +1,9 @@
 ﻿using DreamBook.API.Auth.Model;
 using DreamBook.Persistence.Database;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace DreamBook.API.Persistence
 {
@@ -13,11 +11,16 @@ namespace DreamBook.API.Persistence
     {
         public static IServiceCollection AddUserIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration["ConnectionStrings:DreamBookConnection"];
             services.AddDbContext<DreamBookIdentityContext>(options =>
-                options.UseSqlServer(connectionString));
-            services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<DreamBookIdentityContext>();
+            {
+                options.UseLazyLoadingProxies();
+                options.UseSqlServer(configuration.GetDBConnectionString());
+            });
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+            }).AddEntityFrameworkStores<DreamBookIdentityContext>();
 
             return services;
         }

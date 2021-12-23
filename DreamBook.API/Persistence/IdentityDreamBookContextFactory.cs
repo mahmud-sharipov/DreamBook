@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using DreamBook.Persistence.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace DreamBook.API.Persistence
 {
-    public class IdentityDreamBookContextFactory : IDesignTimeDbContextFactory<DreamBookIdentityContext>
+    public class IdentityDreamBookContextFactory : DreamBookContextFactoryBase<DreamBookIdentityContext>
     {
-        public DreamBookIdentityContext CreateDbContext(string[] args) =>
-            new DreamBookIdentityContext(new DbContextOptionsBuilder<DreamBookIdentityContext>().Options);
+        protected override DreamBookIdentityContext CreateInstance(DbContextOptions<DreamBookIdentityContext> contextOptionsBuilder) =>
+            new DreamBookIdentityContext(contextOptionsBuilder);
     }
 }

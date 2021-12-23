@@ -70,7 +70,7 @@ Global
 		{4FAEBFAE-D77A-4973-92F3-1CE3A26B81F3} = {69F47980-6F8B-4B28-A67C-8F5776BB1E62}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_NeutralResourcesLanguage = ru-RU
 		SolutionGuid = {58EC2CB7-3414-4BEC-989E-9CF02174D6BB}
+		RESX_NeutralResourcesLanguage = ru-RU
 	EndGlobalSection
 EndGlobal

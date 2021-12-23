@@ -1,6 +1,7 @@
 ﻿using DreamBook.Application.Abstraction;
 using DreamBook.Domain.Entities;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,9 +24,13 @@ namespace DreamBook.API.Infrastructure.Import
             IEnumerable<InterpretationImportModel> interpretations = JsonConvert.DeserializeObject<IEnumerable<InterpretationImportModel>>(File.ReadAllText(@"Infrastructure/Import/sonnik.json"));
             Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)> books =
                 new Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)>();
-
-            foreach (var wordInterpretations in interpretations.GroupBy(i => i.Word))
+            Console.WriteLine("Started importing words/books/interpretations");
+            var index = 1;
+            var interpretationsByWord = interpretations.GroupBy(i => i.Word);
+            var totalcount = interpretationsByWord.Count();
+            foreach (var wordInterpretations in interpretationsByWord)
             {
+                Console.WriteLine($"Imported {index++} of {totalcount}");
                 var word = new Word();
                 context.Add(word);
                 var wordRu = new WordTranslation() { Name = wordInterpretations.Key, LanguageGuid = RuGuid };
@@ -65,9 +70,9 @@ namespace DreamBook.API.Infrastructure.Import
                         LanguageGuid = EnGuid
                     });
                 }
-
-                context.SaveChanges();
             }
+            Console.WriteLine("Finished import!");
+            context.SaveChanges();
         }
 
         static (Book book, BookTranslation bookRu, BookTranslation bookEn) CreateBook(IContext context, string name)

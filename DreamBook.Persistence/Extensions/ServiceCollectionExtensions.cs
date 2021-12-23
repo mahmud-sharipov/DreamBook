@@ -11,11 +11,10 @@ namespace DreamBook.Persistence.Extensions
         public static IServiceCollection AddPersistence(this IServiceCollection service, IConfiguration configuration)
         {
             service.AddScoped<IContext, DreamBookContext>();
-            string connectionString = configuration["ConnectionStrings:DreamBookConnection"];
             service.AddDbContext<DreamBookContext>(options =>
             {
-                options.UseSqlServer(connectionString);
                 options.UseLazyLoadingProxies();
+                options.UseSqlServer(configuration.GetDBConnectionString());
             }, ServiceLifetime.Scoped);
 
             return service;

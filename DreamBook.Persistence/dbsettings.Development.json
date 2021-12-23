@@ -1,0 +1,5 @@
+{
+	"ConnectionStrings": {
+		"DreamBookConnectionSqlSqlServer": "data source=localhost; initial catalog=DreamBook; integrated security=true; persist security info=true;"
+	}
+}
