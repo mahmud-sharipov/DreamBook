@@ -12,16 +12,11 @@ using System.Threading.Tasks;
 
 namespace DreamBook.Persistence.Database
 {
-    public class DreamBookContext : DbContext, IContext
+    public abstract class DreamBookBaseContext : DbContext, IContext
     {
-        DreamBookContext() { }
+        DreamBookBaseContext() { }
 
-        public DreamBookContext(DbContextOptions<DreamBookContext> dbContextOptions) : base(dbContextOptions)
-        {
-            OptionBuilder = dbContextOptions;
-        }
-
-        public DbContextOptions OptionBuilder { get; }
+        public DreamBookBaseContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

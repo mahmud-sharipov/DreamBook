@@ -5,9 +5,9 @@ using System;
 
 namespace DreamBook.API.Persistence
 {
-    public class DreamBookIdentityContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+    public abstract class DreamBookIdentityBaseContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
-        public DreamBookIdentityContext(DbContextOptions<DreamBookIdentityContext> options) : base(options)
+        public DreamBookIdentityBaseContext(DbContextOptions options) : base(options)
         {
         }
     }

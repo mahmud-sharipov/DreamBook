@@ -86,7 +86,6 @@ namespace DreamBook.API.Infrastructure.Import
             return (book, bookRu, bookEn);
         }
 
-
         static void CreateAds(IContext context)
         {
             if (context.Count<Ad>() > 0) return;

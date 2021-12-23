@@ -16,7 +16,8 @@ namespace DreamBook.API
                      var env = hostingContext.HostingEnvironment;
 
                      config.AddJsonFile("appsettings.json", optional: true)
-                         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                         .AddJsonFile($"dbsettings.Development.json", optional: true);
 
                      config.AddEnvironmentVariables();
                  })

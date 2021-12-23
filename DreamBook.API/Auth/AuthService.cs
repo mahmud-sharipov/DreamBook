@@ -24,11 +24,11 @@ namespace DreamBook.API.Auth
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserService _userService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly DreamBookIdentityContext _dbContext;
+        private readonly DreamBookIdentityBaseContext _dbContext;
         private readonly IContext _appContext;
         private readonly TokenService _tokenService;
 
-        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration, IUserService userService, IHttpContextAccessor httpContextAccessor, DreamBookIdentityContext dbContext, IContext appContext)
+        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration, IUserService userService, IHttpContextAccessor httpContextAccessor, DreamBookIdentityBaseContext dbContext, IContext appContext)
         {
             _userManager = userManager;
             _userService = userService;

@@ -24,12 +24,12 @@ namespace DreamBook.API.Auth
         private readonly IConfigurationSection _jwtSettings;
         private readonly IConfigurationSection _goolgeSettings;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly DreamBookIdentityContext _dbContext;
+        private readonly DreamBookIdentityBaseContext _dbContext;
         private readonly TimeSpan _accessTokenexparationTime;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly TimeSpan _refreshTokenexparationTime;
 
-        public TokenService(IConfiguration configuration, UserManager<ApplicationUser> userManager, DreamBookIdentityContext dbContext, IHttpContextAccessor httpContextAccessor)
+        public TokenService(IConfiguration configuration, UserManager<ApplicationUser> userManager, DreamBookIdentityBaseContext dbContext, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _dbContext = dbContext;
@@ -47,14 +47,13 @@ namespace DreamBook.API.Auth
             {
                 var settings = new GoogleJsonWebSignature.ValidationSettings()
                 {
-                    Audience = new[] { "33115024297-3frqcmhigpghgap5g8262lb49d6t530b.apps.googleusercontent.com" }
+                    Audience = new[] { _goolgeSettings["ClientId"] }
                 };
                 var payload = await GoogleJsonWebSignature.ValidateAsync(externalAuth.IdToken, settings);
                 return payload;
             }
             catch (Exception)
             {
-                //log an exception
                 return null;
             }
         }

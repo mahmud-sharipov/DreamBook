@@ -1,11 +1,30 @@
 ﻿using DreamBook.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace DreamBook.API.Persistence
 {
-    public class IdentityDreamBookContextFactory : DreamBookContextFactoryBase<DreamBookIdentityContext>
+    public class IdentityDreamBookSqlServerContextFactory : DreamBookContextFactoryBase<DreamBookIdentitySqlServerContext>, IDesignTimeDbContextFactory<DreamBookIdentitySqlServerContext>
     {
-        protected override DreamBookIdentityContext CreateInstance(DbContextOptions<DreamBookIdentityContext> contextOptionsBuilder) =>
-            new DreamBookIdentityContext(contextOptionsBuilder);
+        protected override DreamBookIdentitySqlServerContext CreateInstance(IConfiguration configuration)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<DreamBookIdentitySqlServerContext>();
+            optionsBuilder.UseLazyLoadingProxies();
+            optionsBuilder.UseSqlServer(configuration.GetDBConnectionString(DBProvider.SqlServer));
+            return new DreamBookIdentitySqlServerContext(optionsBuilder.Options);
+        }
+    }
+
+    public class IdentityDreamBookMySqlContexFactory : DreamBookContextFactoryBase<DreamBookIdentityMySqlContext>, IDesignTimeDbContextFactory<DreamBookIdentityMySqlContext>
+    {
+        protected override DreamBookIdentityMySqlContext CreateInstance(IConfiguration configuration)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<DreamBookIdentityMySqlContext>();
+            optionsBuilder.UseLazyLoadingProxies();
+            var connnectionString = configuration.GetDBConnectionString(DBProvider.MySql);
+            optionsBuilder.UseMySql(connnectionString, ServerVersion.AutoDetect(connnectionString));
+            return new DreamBookIdentityMySqlContext(optionsBuilder.Options);
+        }
     }
 }

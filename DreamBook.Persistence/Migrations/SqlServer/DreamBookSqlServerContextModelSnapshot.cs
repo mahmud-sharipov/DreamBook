@@ -4,16 +4,14 @@ using DreamBook.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DreamBook.Persistence.Migrations
+namespace DreamBook.Persistence.Migrations.SqlServer
 {
-    [DbContext(typeof(DreamBookContext))]
-    [Migration("20211223090336_Initial")]
-    partial class Initial
+    [DbContext(typeof(DreamBookSqlServerContext))]
+    partial class DreamBookSqlServerContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
