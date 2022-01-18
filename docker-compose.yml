@@ -9,7 +9,7 @@ services:
     ports:
       - "1433:1433"
   dreambook.api:
-    image: ${DOCKER_REGISTRY-}dreambookapi
+    image: mahmudsharipov/dreambookapi
     build:
       context: .
       dockerfile: DreamBook.API/Dockerfile
