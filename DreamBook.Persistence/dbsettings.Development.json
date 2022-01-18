@@ -1,7 +1,7 @@
 {
 	"DB": {
 		"ConnectionStrings": {
-			"SqlServer": "data source=localhost; initial catalog=DreamBook; integrated security=true; persist security info=true;",
+			"SqlServer": "data source=db; initial catalog=DreamBook; User=sa;Password=_6E7A34be_;",
 			"MySql": "server=localhost; database=DreamBook; user=root; password="
 		},
 		"Provider": "SqlServer"
