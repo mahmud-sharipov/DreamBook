@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace A_Test_EF_Core
 {
@@ -11,8 +6,7 @@ namespace A_Test_EF_Core
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLoggerFactory
-            optionsBuilder.SetupProviderOptions(_configuration);
+            optionsBuilder.UseSqlServer("data source=localhost; initial catalog=TesetDB; integrated security=true; persist security info=true;");
             base.OnConfiguring(optionsBuilder);
         }
 
