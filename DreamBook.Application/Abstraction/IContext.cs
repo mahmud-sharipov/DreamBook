@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DreamBook.Application.Abstraction
 {
-    public interface IContext
+    public interface IContext : IDisposable
     {
         int? CommandTimeout { get; set; }
 

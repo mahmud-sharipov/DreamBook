@@ -23,7 +23,7 @@ namespace DreamBook.API.Infrastructure.Import
 
             IEnumerable<InterpretationImportModel> interpretations = JsonConvert.DeserializeObject<IEnumerable<InterpretationImportModel>>(File.ReadAllText(@"Infrastructure/Import/sonnik.json"));
             Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)> books =
-                new Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)>();
+                    new Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)>();
             Console.WriteLine("Started importing words/books/interpretations");
             var index = 1;
             var interpretationsByWord = interpretations.GroupBy(i => i.Word);
@@ -33,11 +33,10 @@ namespace DreamBook.API.Infrastructure.Import
                 Console.WriteLine($"Imported {index++} of {totalcount}");
                 var word = new Word();
                 context.Add(word);
-                var wordRu = new WordTranslation() { Name = wordInterpretations.Key, LanguageGuid = RuGuid };
-                var wordEn = new WordTranslation() { Name = wordInterpretations.Key, LanguageGuid = EnGuid };
+                var wordRu = new WordTranslation() { WordGuid = word.Guid, Name = wordInterpretations.Key, LanguageGuid = RuGuid };
+                var wordEn = new WordTranslation() { WordGuid = word.Guid, Name = wordInterpretations.Key, LanguageGuid = EnGuid };
                 word.Translations.Add(wordRu);
                 word.Translations.Add(wordEn);
-
                 foreach (var interpretationData in wordInterpretations)
                 {
                     (Book book, BookTranslation bookRu, BookTranslation bookEn) bookData;
@@ -55,34 +54,38 @@ namespace DreamBook.API.Infrastructure.Import
                         Book = bookData.book
                     };
                     context.Add(interpretation);
-                    interpretation.Translations.Add(new InterpretationTranslation()
+                    context.Add(new InterpretationTranslation()
                     {
+                        InterpretationGuid = interpretation.Guid,
                         Book = bookData.bookRu,
                         Word = wordRu,
                         Description = interpretationData.Interpretation,
                         LanguageGuid = RuGuid
                     });
-                    interpretation.Translations.Add(new InterpretationTranslation()
+                    context.Add(new InterpretationTranslation()
                     {
+                        InterpretationGuid = interpretation.Guid,
                         Book = bookData.bookEn,
                         Word = wordEn,
                         Description = interpretationData.Interpretation,
                         LanguageGuid = EnGuid
                     });
                 }
+                context.SaveChanges();
             }
+            books.Clear();
+            interpretations = null;
             Console.WriteLine("Finished import!");
-            context.SaveChanges();
         }
 
         static (Book book, BookTranslation bookRu, BookTranslation bookEn) CreateBook(IContext context, string name)
         {
             var book = new Book();
-            var bookRu = new BookTranslation() { Name = name, LanguageGuid = RuGuid };
-            var bookEn = new BookTranslation() { Name = name, LanguageGuid = EnGuid };
-            book.Translations.Add(bookRu);
-            book.Translations.Add(bookEn);
+            var bookRu = new BookTranslation() { BookGuid = book.Guid, Name = name, LanguageGuid = RuGuid };
+            var bookEn = new BookTranslation() { BookGuid = book.Guid, Name = name, LanguageGuid = EnGuid };
             context.Add(book);
+            context.Add(bookRu);
+            context.Add(bookEn);
             return (book, bookRu, bookEn);
         }
 

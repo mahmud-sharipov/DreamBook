@@ -19,17 +19,15 @@ namespace DreamBook.API.Persistence
 
         public async static Task Seed(IApplicationBuilder app)
         {
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetService<IContext>();
-                CreateLanguages(context);
-                Importer.ImportAll(context);
+            using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            using var context = serviceScope.ServiceProvider.GetService<IContext>();
+            CreateLanguages(context);
+            Importer.ImportAll(context);
 
-                CreateDreamTypes(context);
-                CreatePostCategories(context);
-                await CreateUserRoles(serviceScope.ServiceProvider.GetService<RoleManager<ApplicationRole>>());
-                await CreateUser(serviceScope.ServiceProvider.GetService<UserManager<ApplicationUser>>(), context);
-            }
+            CreateDreamTypes(context);
+            CreatePostCategories(context);
+            await CreateUserRoles(serviceScope.ServiceProvider.GetService<RoleManager<ApplicationRole>>());
+            await CreateUser(serviceScope.ServiceProvider.GetService<UserManager<ApplicationUser>>(), context);
         }
 
         static void CreateLanguages(IContext context)
