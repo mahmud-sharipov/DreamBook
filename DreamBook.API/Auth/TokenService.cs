@@ -24,12 +24,12 @@ namespace DreamBook.API.Auth
         private readonly IConfigurationSection _jwtSettings;
         private readonly IConfigurationSection _goolgeSettings;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly DreamBookIdentityBaseContext _dbContext;
+        private readonly DreamBookIdentityContext _dbContext;
         private readonly TimeSpan _accessTokenexparationTime;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly TimeSpan _refreshTokenexparationTime;
 
-        public TokenService(IConfiguration configuration, UserManager<ApplicationUser> userManager, DreamBookIdentityBaseContext dbContext, IHttpContextAccessor httpContextAccessor)
+        public TokenService(IConfiguration configuration, UserManager<ApplicationUser> userManager, DreamBookIdentityContext dbContext, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _dbContext = dbContext;
@@ -103,10 +103,10 @@ namespace DreamBook.API.Auth
 
         private RefreshToken GenerateRefreshToken(Guid userId)
         {
-            using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())
+            using (var rngGenerator = RandomNumberGenerator.Create())
             {
                 var randomBytes = new byte[64];
-                rngCryptoServiceProvider.GetBytes(randomBytes);
+                rngGenerator.GetBytes(randomBytes);
                 var ipAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
                 return new RefreshToken
                 {
@@ -169,7 +169,7 @@ namespace DreamBook.API.Auth
             if (user != null)
             {
                 var ipAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
-               var tokens= user.RefreshTokens.Where(t => string.IsNullOrEmpty(t.RevokedByIp) && t.ExpiryOn > DateTime.UtcNow && t.CreatedByIp == ipAddress);
+                var tokens = user.RefreshTokens.Where(t => string.IsNullOrEmpty(t.RevokedByIp) && t.ExpiryOn > DateTime.UtcNow && t.CreatedByIp == ipAddress);
                 foreach (var token in tokens)
                 {
                     token.RevokedByIp = ipAddress;

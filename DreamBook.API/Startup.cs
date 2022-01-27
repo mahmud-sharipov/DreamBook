@@ -7,7 +7,6 @@ using DreamBook.API.Infrastructure.Swagger;
 using DreamBook.API.Persistence;
 using DreamBook.Application.Abstraction;
 using DreamBook.Application.Extensions;
-using DreamBook.Persistence.Extensions;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +42,6 @@ namespace DreamBook.API
                 option.EnableEndpointRouting = false;
                 option.Filters.Add<ValidationFilter>();
             })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddFluentValidation(options =>
                 {
                     options.RegisterValidatorsFromAssemblyContaining<ApplicationValidatorEntryPoint>();

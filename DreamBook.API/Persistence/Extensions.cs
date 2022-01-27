@@ -11,34 +11,11 @@ namespace DreamBook.API.Persistence
     {
         public static IServiceCollection AddUserIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            switch (configuration.GetDBProvider())
+            services.AddDbContext<DreamBookIdentityContext>(ServiceLifetime.Scoped);
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
             {
-                case DBProvider.SqlServer:
-                    services.AddScoped<DreamBookIdentityBaseContext, DreamBookIdentitySqlServerContext>();
-                    services.AddDbContext<DreamBookIdentitySqlServerContext>(options =>
-                    {
-                        options.UseLazyLoadingProxies();
-                        options.UseSqlServer(configuration.GetDBConnectionString(DBProvider.SqlServer));
-                    }, ServiceLifetime.Scoped);
-                    services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-                    {
-                        options.SignIn.RequireConfirmedAccount = true;
-                    }).AddEntityFrameworkStores<DreamBookIdentitySqlServerContext>();
-                    break;
-                default:
-                    services.AddScoped<DreamBookIdentityBaseContext, DreamBookIdentityMySqlContext>();
-                    services.AddDbContext<DreamBookIdentityMySqlContext>(options =>
-                    {
-                        options.UseLazyLoadingProxies();
-                        var connnectionString = configuration.GetDBConnectionString(DBProvider.MySql);
-                        options.UseMySql(connnectionString, ServerVersion.AutoDetect(connnectionString));
-                    }, ServiceLifetime.Scoped);
-                    services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-                    {
-                        options.SignIn.RequireConfirmedAccount = true;
-                    }).AddEntityFrameworkStores<DreamBookIdentityMySqlContext>();
-                    break;
-            }
+                options.SignIn.RequireConfirmedAccount = true;
+            }).AddEntityFrameworkStores<DreamBookIdentityContext>();
 
             return services;
         }
@@ -47,10 +24,10 @@ namespace DreamBook.API.Persistence
         {
             using (var serviceScope = builder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                using (var context = serviceScope.ServiceProvider.GetService<DreamBookIdentityBaseContext>())
+                using (var context = serviceScope.ServiceProvider.GetService<DreamBookIdentityContext>())
                     context.Database.Migrate();
 
-                using (var context = serviceScope.ServiceProvider.GetService<DreamBookBaseContext>())
+                using (var context = serviceScope.ServiceProvider.GetService<DreamBookContext>())
                     context.Database.Migrate();
             }
         }

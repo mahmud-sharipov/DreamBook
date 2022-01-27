@@ -9,7 +9,6 @@ namespace DreamBook.Domain.Entities
     {
         public Interpretation()
         {
-            Translations = new Collection<InterpretationTranslation>();
         }
 
         public Guid WordGuid { get; set; }

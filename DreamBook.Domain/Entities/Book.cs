@@ -8,8 +8,6 @@ namespace DreamBook.Domain.Entities
     {
         public Book()
         {
-            Translations = new Collection<BookTranslation>();
-            Interpretations = new Collection<Interpretation>();
         }
 
         public virtual ICollection<BookTranslation> Translations { get; set; }
