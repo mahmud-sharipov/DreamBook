@@ -25,7 +25,7 @@ namespace Test
                   .AddEnvironmentVariables()
                   .Build();
             using DreamBookContext context = new DreamBookContext(configuration);
-            context.Database.Migrate();
+            context.Database.EnsureCreated();
             ImportInterpretation(context);
         }
 
@@ -58,6 +58,7 @@ namespace Test
             var index = 1;
             var interpretationsByWord = interpretations.GroupBy(i => i.Word).ToList();
             var totalcount = interpretationsByWord.Count;
+            return;
             for (int i = 0; i < totalcount; i++)
             {
                 var wordInterpretations = interpretationsByWord[i];

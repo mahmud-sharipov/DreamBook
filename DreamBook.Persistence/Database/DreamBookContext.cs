@@ -19,7 +19,7 @@ namespace DreamBook.Persistence.Database
 
         public DreamBookContext() : base() { }
 
-        public DreamBookContext(IConfiguration configuration)
+        public DreamBookContext(IConfiguration configuration) : base()
         {
             _configuration = configuration;
         }

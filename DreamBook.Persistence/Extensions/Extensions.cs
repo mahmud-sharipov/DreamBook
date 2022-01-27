@@ -15,7 +15,6 @@ public static class Extensions
 
     public static void SetupProviderOptions(this DbContextOptionsBuilder optionsBuilder, IConfiguration configuration)
     {
-        optionsBuilder.UseLazyLoadingProxies();
         var provider = configuration.GetDBProvider();
         var connnectionString = configuration.GetDBConnectionString(provider);
 
