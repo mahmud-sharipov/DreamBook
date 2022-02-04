@@ -4,6 +4,7 @@ using System;
 public enum DBProvider
 {
     SqlServer,
+    Sqlite,
     MySql
 }
 

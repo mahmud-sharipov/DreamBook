@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<StartupObject>DreamBook.API.Program</StartupObject>
 		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
 		<UserSecretsId>0aa62e0a-880e-4aaa-9b3f-316d21b0f40b</UserSecretsId>
@@ -32,6 +32,7 @@
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.10" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.10" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
 	    <PrivateAssets>all</PrivateAssets>
@@ -51,5 +52,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Persistence\Migrations\" />
+	  <Folder Include="Persistence\Migrations\Sqlite\" />
 	</ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿dotnet ef migrations add Initial --context DreamBookSqlServerContext -o Migrations/SqlServer
 
 dotnet ef migrations add Initial --context DreamBookMySqlContext -o Migrations/MySql
+dotnet ef migrations add Initial --context DreamBookSqliteContext -o Migrations/Sqlite
 
 dotnet ef database update

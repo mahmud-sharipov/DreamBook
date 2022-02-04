@@ -57,7 +57,7 @@ namespace DreamBook.Persistence.Database
             return await GetQuery(predicate, orderBy).FirstOrDefaultAsync();
         }
 
-        public int Count<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity
+        public int Count<T>(Expression<Func<T, bool>> predicate = null) where T : class, IEntity
         {
             if (predicate == null)
                 return Set<T>().Count();
@@ -81,7 +81,7 @@ namespace DreamBook.Persistence.Database
 
         public void Delete<T>(T entity) where T : class, IEntity => Remove(entity);
 
-        public override int SaveChanges() => base.SaveChanges();
+        public override int SaveChanges() => base.SaveChanges(true);
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default) =>
           await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);

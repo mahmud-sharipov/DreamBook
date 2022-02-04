@@ -2,8 +2,9 @@
 	"DB": {
 		"ConnectionStrings": {
 			"SqlServer": "data source=localhost; initial catalog=DreamBook; integrated security=true; persist security info=true;",
-			"MySql": "server=localhost; database=DreamBook; user=root; password="
+			"MySql": "server=localhost; database=DreamBook; user=root; password=",
+			"Sqlite": "Data Source=DreamBook.db;"
 		},
-		"Provider": "SqlServer"
+		"Provider": "Sqlite"
 	}
 }
