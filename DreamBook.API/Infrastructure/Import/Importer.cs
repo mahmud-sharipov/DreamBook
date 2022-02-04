@@ -19,27 +19,22 @@ namespace DreamBook.API.Infrastructure.Import
             CreateAds(context);
         }
 
-        public static void ImportInterpretation(IContext gdffgfgdf)
+        public static void ImportInterpretation(IContext mainContext)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DreamBookSqlServerContext>();
-            optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseSqlServer("data source=localhost; initial catalog=DreamBook; integrated security=true; persist security info=true;");
+            if (mainContext.Count<Book>() > 0) return;
 
-            var context1 = new DreamBookSqlServerContext(optionsBuilder.Options);
-            context1.Dispose();
-            using var context = new DreamBookSqlServerContext(optionsBuilder.Options);
-
-            if (context.Count<Book>() > 0) return;
+            var factory = new DreamBookSqliteContextFactory();
 
             List<InterpretationImportModel> interpretations = JsonConvert.DeserializeObject<List<InterpretationImportModel>>(File.ReadAllText(@"Infrastructure/Import/sonnik.json"));
-            Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)> books =
-                new Dictionary<string, (Book book, BookTranslation bookRu, BookTranslation bookEn)>();
+            Dictionary<string, (Guid book, Guid bookRu, Guid bookEn)> books =
+                new Dictionary<string, (Guid book, Guid bookRu, Guid bookEn)>();
             Console.WriteLine("Started importing words/books/interpretations");
             var index = 1;
             var interpretationsByWord = interpretations.GroupBy(i => i.Word).ToList();
             var totalcount = interpretationsByWord.Count;
             for (int i = 0; i < totalcount; i++)
             {
+                using var context = factory.CreateDbContext(null);
                 var wordInterpretations = interpretationsByWord[i];
                 Console.WriteLine($"Imported {index++} of {totalcount}");
                 var word = new Word();
@@ -51,7 +46,7 @@ namespace DreamBook.API.Infrastructure.Import
 
                 foreach (var interpretationData in wordInterpretations)
                 {
-                    (Book book, BookTranslation bookRu, BookTranslation bookEn) bookData;
+                    (Guid book, Guid bookRu, Guid bookEn) bookData;
                     if (books.ContainsKey(interpretationData.Book))
                         bookData = books[interpretationData.Book];
                     else
@@ -63,7 +58,7 @@ namespace DreamBook.API.Infrastructure.Import
                     var interpretation = new Interpretation()
                     {
                         Word = word,
-                        Book = bookData.book
+                        BookGuid = bookData.book
                     };
 
 
@@ -71,7 +66,7 @@ namespace DreamBook.API.Infrastructure.Import
                     context.Add(new InterpretationTranslation()
                     {
                         InterpretationGuid = interpretation.Guid,
-                        Book = bookData.bookRu,
+                        BookGuid = bookData.bookRu,
                         Word = wordRu,
                         Description = interpretationData.Interpretation,
                         LanguageGuid = RuGuid
@@ -79,26 +74,17 @@ namespace DreamBook.API.Infrastructure.Import
                     context.Add(new InterpretationTranslation()
                     {
                         InterpretationGuid = interpretation.Guid,
-                        Book = bookData.bookEn,
+                        BookGuid = bookData.bookEn,
                         Word = wordEn,
                         Description = interpretationData.Interpretation,
                         LanguageGuid = EnGuid
                     });
                 }
-
-                if (i % 100 == 0)
-                    context.SaveChanges();
             }
             Console.WriteLine("Finished import!");
-            context.SaveChanges();
-            books.Clear();
-            interpretations.Clear();
-            books = null;
-            context.ChangeTracker.Clear();
-            interpretations = null;
         }
 
-        static (Book book, BookTranslation bookRu, BookTranslation bookEn) CreateBook(IContext context, string name)
+        static (Guid book, Guid bookRu, Guid bookEn) CreateBook(IContext context, string name)
         {
             var book = new Book();
             var bookRu = new BookTranslation() { BookGuid = book.Guid, Name = name, LanguageGuid = RuGuid };
@@ -106,7 +92,7 @@ namespace DreamBook.API.Infrastructure.Import
             context.Add(book);
             context.Add(bookRu);
             context.Add(bookEn);
-            return (book, bookRu, bookEn);
+            return (book.Guid, bookRu.Guid, bookEn.Guid);
         }
 
         static void CreateAds(IContext context)

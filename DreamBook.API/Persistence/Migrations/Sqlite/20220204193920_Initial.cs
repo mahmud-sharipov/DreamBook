@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace DreamBook.API.Persistence.Migrations.Sqlite
 {
     public partial class Initial : Migration
@@ -173,8 +175,7 @@ namespace DreamBook.API.Persistence.Migrations.Sqlite
                         name: "FK_RefreshToken_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

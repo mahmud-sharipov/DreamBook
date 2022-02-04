@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace DreamBook.Persistence.Migrations.Sqlite
 {
     [DbContext(typeof(DreamBookSqliteContext))]
@@ -13,8 +15,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.10");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Ad", b =>
                 {
@@ -36,7 +37,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasKey("Guid");
 
-                    b.ToTable("Ad");
+                    b.ToTable("Ad", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.AdTranslation", b =>
@@ -63,7 +64,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("LanguageGuid");
 
-                    b.ToTable("AdTranslation");
+                    b.ToTable("AdTranslation", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Book", b =>
@@ -74,7 +75,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasKey("Guid");
 
-                    b.ToTable("Book");
+                    b.ToTable("Book", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.BookTranslation", b =>
@@ -101,7 +102,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("LanguageGuid");
 
-                    b.ToTable("BookTranslation");
+                    b.ToTable("BookTranslation", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Dream", b =>
@@ -152,7 +153,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("TypeGuid");
 
-                    b.ToTable("Dream");
+                    b.ToTable("Dream", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamType", b =>
@@ -166,7 +167,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasKey("Guid");
 
-                    b.ToTable("DreamType");
+                    b.ToTable("DreamType", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamTypeTranslation", b =>
@@ -193,7 +194,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("LanguageGuid");
 
-                    b.ToTable("DreamTypeTranslation");
+                    b.ToTable("DreamTypeTranslation", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamWord", b =>
@@ -214,7 +215,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("WordGuid");
 
-                    b.ToTable("DreamWord");
+                    b.ToTable("DreamWord", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Interpretation", b =>
@@ -235,7 +236,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("WordGuid");
 
-                    b.ToTable("Interpretation");
+                    b.ToTable("Interpretation", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.InterpretationTranslation", b =>
@@ -274,7 +275,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("WordGuid");
 
-                    b.ToTable("InterpretationTranslation");
+                    b.ToTable("InterpretationTranslation", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Language", b =>
@@ -294,7 +295,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasKey("Guid");
 
-                    b.ToTable("Language");
+                    b.ToTable("Language", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Post", b =>
@@ -325,7 +326,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("CategoryGuid");
 
-                    b.ToTable("Post");
+                    b.ToTable("Post", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.PostCategory", b =>
@@ -336,7 +337,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasKey("Guid");
 
-                    b.ToTable("PostCategory");
+                    b.ToTable("PostCategory", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.PostCategoryTranslation", b =>
@@ -363,7 +364,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("LanguageGuid");
 
-                    b.ToTable("PostCategoryTranslation");
+                    b.ToTable("PostCategoryTranslation", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.User", b =>
@@ -392,7 +393,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasKey("Guid");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Word", b =>
@@ -403,7 +404,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasKey("Guid");
 
-                    b.ToTable("Word");
+                    b.ToTable("Word", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.WordTranslation", b =>
@@ -427,7 +428,7 @@ namespace DreamBook.Persistence.Migrations.Sqlite
 
                     b.HasIndex("WordGuid");
 
-                    b.ToTable("WordTranslation");
+                    b.ToTable("WordTranslation", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.AdTranslation", b =>

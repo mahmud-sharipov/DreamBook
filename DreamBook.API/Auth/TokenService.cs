@@ -103,20 +103,18 @@ namespace DreamBook.API.Auth
 
         private RefreshToken GenerateRefreshToken(Guid userId)
         {
-            using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())
+            using var rngCryptoServiceProvider = RandomNumberGenerator.Create();
+            var randomBytes = new byte[64];
+            rngCryptoServiceProvider.GetBytes(randomBytes);
+            var ipAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            return new RefreshToken
             {
-                var randomBytes = new byte[64];
-                rngCryptoServiceProvider.GetBytes(randomBytes);
-                var ipAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
-                return new RefreshToken
-                {
-                    Token = Convert.ToBase64String(randomBytes),
-                    ExpiryOn = DateTime.UtcNow.Add(_refreshTokenexparationTime),
-                    CreatedOn = DateTime.UtcNow,
-                    CreatedByIp = ipAddress,
-                    UserId = userId
-                };
-            }
+                Token = Convert.ToBase64String(randomBytes),
+                ExpiryOn = DateTime.UtcNow.Add(_refreshTokenexparationTime),
+                CreatedOn = DateTime.UtcNow,
+                CreatedByIp = ipAddress,
+                UserId = userId
+            };
         }
 
         public bool IsRefreshTokenValid(RefreshToken existingToken)
@@ -169,7 +167,7 @@ namespace DreamBook.API.Auth
             if (user != null)
             {
                 var ipAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
-               var tokens= user.RefreshTokens.Where(t => string.IsNullOrEmpty(t.RevokedByIp) && t.ExpiryOn > DateTime.UtcNow && t.CreatedByIp == ipAddress);
+                var tokens = user.RefreshTokens.Where(t => string.IsNullOrEmpty(t.RevokedByIp) && t.ExpiryOn > DateTime.UtcNow && t.CreatedByIp == ipAddress);
                 foreach (var token in tokens)
                 {
                     token.RevokedByIp = ipAddress;

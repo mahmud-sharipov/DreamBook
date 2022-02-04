@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DreamBook.Persistence.Migrations.SqlServer
+#nullable disable
+
+namespace DreamBook.Persistence.Migrations.Sqlite
 {
     public partial class Initial : Migration
     {
@@ -11,11 +13,11 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Ad",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Source = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Image = table.Column<string>(type: "TEXT", nullable: true),
+                    Source = table.Column<string>(type: "TEXT", nullable: true),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,7 +28,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Book",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,8 +39,8 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "DreamType",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Color = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,10 +51,10 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Language",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDefault = table.Column<bool>(type: "bit", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Code = table.Column<string>(type: "TEXT", nullable: true),
+                    IsDefault = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,7 +65,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "PostCategory",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,13 +76,13 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "User",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AvatarImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    UserName = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    FullName = table.Column<string>(type: "TEXT", nullable: true),
+                    Gender = table.Column<int>(type: "INTEGER", nullable: false),
+                    Birthday = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    AvatarImage = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,7 +93,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Word",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,11 +104,11 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "AdTranslation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AdGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    LanguageGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    AdGuid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -129,11 +131,11 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "BookTranslation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    BookGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LanguageGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -156,11 +158,11 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "DreamTypeTranslation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DreamTypeGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    DreamTypeGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LanguageGuid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -183,13 +185,13 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Post",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CategoryGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    Content = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Image = table.Column<string>(type: "TEXT", nullable: true),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CategoryGuid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,11 +208,11 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "PostCategoryTranslation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CategoryGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    LanguageGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CategoryGuid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -233,19 +235,19 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Dream",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Weather = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NumberOfViews = table.Column<int>(type: "int", nullable: false),
-                    CanBeShared = table.Column<bool>(type: "bit", nullable: false),
-                    MovedToRecycleBin = table.Column<bool>(type: "bit", nullable: false),
-                    AuthorGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TypeGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Location = table.Column<string>(type: "TEXT", nullable: true),
+                    Weather = table.Column<string>(type: "TEXT", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    Image = table.Column<string>(type: "TEXT", nullable: true),
+                    NumberOfViews = table.Column<int>(type: "INTEGER", nullable: false),
+                    CanBeShared = table.Column<bool>(type: "INTEGER", nullable: false),
+                    MovedToRecycleBin = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AuthorGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    TypeGuid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -268,9 +270,9 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Interpretation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    WordGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    WordGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    BookGuid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -293,10 +295,10 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "WordTranslation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    WordGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    WordGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LanguageGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -319,9 +321,9 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "DreamWord",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DreamGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    WordGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DreamGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    WordGuid = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -344,13 +346,13 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "InterpretationTranslation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    InterpretationGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WordGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookTranslationGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Guid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    InterpretationGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LanguageGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    WordGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    BookGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    BookTranslationGuid = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -365,8 +367,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                         name: "FK_InterpretationTranslation_BookTranslation_BookTranslationGuid",
                         column: x => x.BookTranslationGuid,
                         principalTable: "BookTranslation",
-                        principalColumn: "Guid",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Guid");
                     table.ForeignKey(
                         name: "FK_InterpretationTranslation_Interpretation_InterpretationGuid",
                         column: x => x.InterpretationGuid,
