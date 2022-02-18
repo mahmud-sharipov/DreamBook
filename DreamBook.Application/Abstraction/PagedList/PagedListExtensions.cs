@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.Abstraction.PagedList;
-using DreamBook.Domain.Interfaces;
-
-namespace DreamBook.Persistence.Paging
+﻿namespace DreamBook.Persistence.Paging
 {
     public static class PagedList
     {

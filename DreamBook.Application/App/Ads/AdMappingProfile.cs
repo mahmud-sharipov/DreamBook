@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Domain.Entities;
-
-namespace DreamBook.Application.Ads
+﻿namespace DreamBook.Application.Ads
 {
     public class AdMappingProfile : Profile
     {

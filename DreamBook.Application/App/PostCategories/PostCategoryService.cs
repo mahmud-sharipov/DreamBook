@@ -1,14 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Application.Abstraction;
-using DreamBook.Application.Abstraction.Service;
-using DreamBook.Application.Exceptions;
-using DreamBook.Application.LanguageResources;
-using DreamBook.Domain.Entities;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace DreamBook.Application.PostCategories
+﻿namespace DreamBook.Application.PostCategories
 {
     public class PostCategoryService : TranslatableEntityService<PostCategory, PostCategoryTranslation, PostCategoryResponseModel, PostCategoryWithTranslationsResponseModel>, IPostCategoryService
     {

@@ -5,8 +5,8 @@
         public void Configure(EntityTypeBuilder<DreamTypeTranslation> builder)
         {
             builder.ToTable(nameof(DreamTypeTranslation));
-            builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+            builder.HasKey(p => p.Guid);
+            builder.Property(p => p.Guid).ValueGeneratedOnAdd();
 
             builder.HasOne(p => p.DreamType)
                .WithMany(p => p.Translations)

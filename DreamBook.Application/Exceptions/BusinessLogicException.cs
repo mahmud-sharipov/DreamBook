@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DreamBook.Application.Exceptions
+﻿namespace DreamBook.Application.Exceptions
 {
     public class BusinessLogicException : Exception, IValidaionException
     {

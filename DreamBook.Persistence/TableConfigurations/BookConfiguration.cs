@@ -5,8 +5,8 @@
         public void Configure(EntityTypeBuilder<Book> builder)
         {
             builder.ToTable(nameof(Book));
-            builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+            builder.HasKey(p => p.Guid);
+            builder.Property(p => p.Guid).ValueGeneratedOnAdd();
 
             builder.HasMany(p => p.Translations)
                 .WithOne(p => p.Book)

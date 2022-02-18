@@ -1,9 +1,4 @@
-﻿using DreamBook.Application.Abstraction.PagedList;
-using DreamBook.Application.Abstraction.Response;
-using DreamBook.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DreamBook.Application.Abstraction
 {

@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Request;
-using System;
-
-namespace DreamBook.Application.Words
+﻿namespace DreamBook.Application.Words
 {
     public class WordTranslationRequestModel : ITranslationRequestModel
     {

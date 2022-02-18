@@ -1,8 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Request;
-using DreamBook.Application.LanguageResources;
-using FluentValidation;
-using System;
-using System.Linq;
+﻿using FluentValidation;
 
 namespace DreamBook.Application.Abstraction
 {

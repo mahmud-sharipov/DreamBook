@@ -1,9 +1,4 @@
-﻿using DreamBook.Application.Abstraction;
-using DreamBook.Domain.Entities;
-using System;
-using System.Threading.Tasks;
-
-namespace DreamBook.Application.Words
+﻿namespace DreamBook.Application.Words
 {
     public interface IWordService : ITranslatableEntityService<Word, WordTranslation, WordResponseModel, WordWithTranslationsResponseModel>
     {

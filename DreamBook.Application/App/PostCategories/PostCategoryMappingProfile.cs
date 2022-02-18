@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Domain.Entities;
-
-namespace DreamBook.Application.PostCategories
+﻿namespace DreamBook.Application.PostCategories
 {
     public class PostCategoryMappingProfile : Profile
     {

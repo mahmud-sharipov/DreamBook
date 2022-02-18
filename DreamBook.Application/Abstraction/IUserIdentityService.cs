@@ -1,6 +1,4 @@
-﻿using DreamBook.Domain.Interfaces;
-
-namespace DreamBook.Application.Abstraction
+﻿namespace DreamBook.Application.Abstraction
 {
     public interface IUserIdentityService
     {

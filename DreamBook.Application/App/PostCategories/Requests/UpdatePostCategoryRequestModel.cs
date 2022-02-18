@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DreamBook.Application.PostCategories
+﻿namespace DreamBook.Application.PostCategories
 {
     public class UpdatePostCategoryRequestModel : CreatePostCategoryRequestModel
     {

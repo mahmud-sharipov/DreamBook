@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DreamBook.Application.Ads
+﻿namespace DreamBook.Application.Ads
 {
     public class UpdateAdRequestModel : CreateAdRequestModel
     {

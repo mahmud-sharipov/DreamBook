@@ -1,8 +1,4 @@
-﻿using DreamBook.Application.Abstraction;
-using DreamBook.Domain.Entities;
-using System.Threading.Tasks;
-
-namespace DreamBook.Application.Posts
+﻿namespace DreamBook.Application.Posts
 {
     public interface IPostService : IEntityService<Post, PostResponseModel>
     {

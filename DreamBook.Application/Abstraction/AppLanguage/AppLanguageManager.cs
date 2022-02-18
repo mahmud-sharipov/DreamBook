@@ -1,8 +1,4 @@
-﻿using DreamBook.Domain.Entities;
-using DreamBook.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading;
 
 namespace DreamBook.Application.Abstraction
@@ -27,7 +23,7 @@ namespace DreamBook.Application.Abstraction
 
         public static IReadOnlyList<IAppLanguage> AppSupportLanguages { get; private set; }
 
-        public IEnumerable<Guid> SupportLanguagesGuid => SupportLanguages?.Select(l => l.Id) ?? Enumerable.Empty<Guid>();
+        public IEnumerable<Guid> SupportLanguagesGuid => SupportLanguages?.Select(l => l.Guid) ?? Enumerable.Empty<Guid>();
 
         IAppLanguage _currentLanguage = null;
         public IAppLanguage CurrentLanguage

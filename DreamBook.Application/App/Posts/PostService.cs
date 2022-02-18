@@ -1,12 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Application.Abstraction;
-using DreamBook.Application.Abstraction.Service;
-using DreamBook.Application.Exceptions;
-using DreamBook.Application.LanguageResources;
-using DreamBook.Domain.Entities;
-using System.Threading.Tasks;
-
-namespace DreamBook.Application.Posts
+﻿namespace DreamBook.Application.Posts
 {
     public class PostService : EntityService<Post, PostResponseModel>, IPostService
     {

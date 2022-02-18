@@ -33,7 +33,7 @@ public abstract class DreamBookBaseContext : IdentityDbContext<User, Role, Guid>
     }
 
     public async Task<T> GetByIdAsync<T>(Guid id, CancellationToken cancellationToken = default) where T : class, IEntity =>
-        await Set<T>().FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+        await Set<T>().FirstOrDefaultAsync(e => e.Guid == id, cancellationToken);
 
     public T GetById<T>(Guid guid) where T : class, IEntity => Find<T>(guid);
 

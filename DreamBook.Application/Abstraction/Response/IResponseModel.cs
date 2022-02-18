@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DreamBook.Application.Abstraction.Response
+﻿namespace DreamBook.Application.Abstraction.Response
 {
     public interface IResponseModel
     {

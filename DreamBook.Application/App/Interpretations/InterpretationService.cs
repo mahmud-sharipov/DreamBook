@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Application.Abstraction;
-using DreamBook.Application.Abstraction.Service;
-using DreamBook.Application.Exceptions;
-using DreamBook.Application.LanguageResources;
-using DreamBook.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DreamBook.Application.Interpretations
 {
@@ -49,7 +40,7 @@ namespace DreamBook.Application.Interpretations
         {
             var guid = entityId ?? Guid.Empty;
             var sameInterpretations = await Context
-                .GetAllAsync<Interpretation>(i => i.Id != guid && i.BookGuid == requestModel.BookGuid && i.WordGuid == requestModel.WordGuid);
+                .GetAllAsync<Interpretation>(i => i.Guid != guid && i.BookGuid == requestModel.BookGuid && i.WordGuid == requestModel.WordGuid);
             if (sameInterpretations.Any())
                 throw new BusinessLogicException(ExceptionMessages.BookAlreadyHasInterpretationForWord.Format(requestModel.BookGuid, requestModel.WordGuid));
             
@@ -63,8 +54,8 @@ namespace DreamBook.Application.Interpretations
 
             foreach (var translation in requestModel.Translations)
             {
-                translation.BookGuid = book.Translations.Single(t => t.LanguageGuid == translation.LanguageGuid).Id;
-                translation.WordGuid = word.Translations.Single(t => t.LanguageGuid == translation.LanguageGuid).Id;
+                translation.BookGuid = book.Translations.Single(t => t.LanguageGuid == translation.LanguageGuid).Guid;
+                translation.WordGuid = word.Translations.Single(t => t.LanguageGuid == translation.LanguageGuid).Guid;
             }
         }
 

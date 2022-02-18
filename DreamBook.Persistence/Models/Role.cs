@@ -1,4 +1,4 @@
-﻿namespace DreamBook.Persistence.Models;
+﻿namespace DreamBook.Persistence.Model;
 
 public class Role : IdentityRole<Guid>
 {

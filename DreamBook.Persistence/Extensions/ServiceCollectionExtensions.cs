@@ -1,4 +1,5 @@
 ﻿using DreamBook.Persistence.Services;
+using Microsoft.AspNetCore.Builder;
 
 namespace DreamBook.Persistence.Extensions;
 
@@ -14,7 +15,6 @@ public static class ServiceCollectionExtensions
         else if (dp == DBProvider.Sqlite)
             throw new NotSupportedException("Sqlite does bot support!");
 
-        services.AddScoped<IUserService, UserService>();
         services.AddAutoMapper(typeof(UserMappingProfile));
         return services;
     }
@@ -53,5 +53,14 @@ public static class ServiceCollectionExtensions
         {
             options.SignIn.RequireConfirmedAccount = true;
         }).AddEntityFrameworkStores<DreamBookSqlServerContext>();
+    }
+
+    public static void UpdateDatabase(this IApplicationBuilder builder)
+    {
+        using var serviceScope = builder.ApplicationServices
+            .GetRequiredService<IServiceScopeFactory>().CreateScope();
+
+        using var context = serviceScope.ServiceProvider.GetService<DreamBookBaseContext>();
+        context.Database.Migrate();
     }
 }

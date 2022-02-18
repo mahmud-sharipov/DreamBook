@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.LanguageResources;
-using System;
-
-namespace DreamBook.Application.Exceptions
+﻿namespace DreamBook.Application.Exceptions
 {
     public class EntityNotFoundException : Exception, IValidaionException
     {

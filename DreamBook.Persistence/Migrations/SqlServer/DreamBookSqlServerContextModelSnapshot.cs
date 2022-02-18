@@ -24,7 +24,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Ad", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -40,14 +40,14 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Source")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.ToTable("Ad", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.AdTranslation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -63,7 +63,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("AdGuid");
 
@@ -74,18 +74,18 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Book", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.ToTable("Book", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.BookTranslation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -101,7 +101,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("BookGuid");
 
@@ -112,7 +112,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Dream", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -152,7 +152,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Weather")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("AuthorGuid");
 
@@ -163,21 +163,21 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamType", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.ToTable("DreamType", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamTypeTranslation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -193,7 +193,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("DreamTypeGuid");
 
@@ -204,7 +204,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamWord", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -214,7 +214,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("WordGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("DreamGuid");
 
@@ -225,7 +225,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Interpretation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -235,7 +235,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("WordGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("BookGuid");
 
@@ -246,14 +246,14 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.InterpretationTranslation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BookGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BookTranslationId")
+                    b.Property<Guid?>("BookTranslationGuid")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -268,11 +268,11 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("WordGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("BookGuid");
 
-                    b.HasIndex("BookTranslationId");
+                    b.HasIndex("BookTranslationGuid");
 
                     b.HasIndex("InterpretationGuid");
 
@@ -285,7 +285,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Language", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -298,14 +298,14 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.ToTable("Language", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Post", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -327,7 +327,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("CategoryGuid");
 
@@ -336,18 +336,18 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.PostCategory", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.ToTable("PostCategory", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.PostCategoryTranslation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -363,7 +363,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("CategoryGuid");
 
@@ -374,18 +374,18 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Word", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.ToTable("Word", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.WordTranslation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -398,7 +398,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("WordGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("LanguageGuid");
 
@@ -409,7 +409,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Persistence.Models.RefreshToken", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -434,7 +434,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("UserGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("UserGuid");
 
@@ -766,7 +766,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
                     b.HasOne("DreamBook.Domain.Entities.BookTranslation", null)
                         .WithMany("Interpretations")
-                        .HasForeignKey("BookTranslationId");
+                        .HasForeignKey("BookTranslationGuid");
 
                     b.HasOne("DreamBook.Domain.Entities.Interpretation", "Interpretation")
                         .WithMany("Translations")

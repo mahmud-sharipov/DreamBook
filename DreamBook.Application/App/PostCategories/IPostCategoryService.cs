@@ -1,8 +1,4 @@
-﻿using DreamBook.Application.Abstraction;
-using DreamBook.Domain.Entities;
-using System.Threading.Tasks;
-
-namespace DreamBook.Application.PostCategories
+﻿namespace DreamBook.Application.PostCategories
 {
     public interface IPostCategoryService : ITranslatableEntityService<PostCategory, PostCategoryTranslation, PostCategoryResponseModel, PostCategoryWithTranslationsResponseModel>
     {

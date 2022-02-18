@@ -1,14 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Application.Abstraction.PagedList;
-using DreamBook.Application.Abstraction.Request;
-using DreamBook.Application.Abstraction.Response;
-using DreamBook.Application.Exceptions;
-using DreamBook.Application.LanguageResources;
-using DreamBook.Domain.Interfaces;
-using DreamBook.Persistence.Paging;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DreamBook.Application.Abstraction.Service
 {
@@ -78,7 +68,7 @@ namespace DreamBook.Application.Abstraction.Service
 
             var canDelete = CanEntityBeDeleted(entity);
             if (!canDelete.CanBeDeleted)
-                throw new EntityCanNotBeDeletedExxeption(GetEntityLabel(), entity.Id, canDelete.Reason);
+                throw new EntityCanNotBeDeletedExxeption(GetEntityLabel(), entity.Guid, canDelete.Reason);
 
             Context.Delete(entity);
             await Context.SaveChangesAsync();
@@ -91,9 +81,9 @@ namespace DreamBook.Application.Abstraction.Service
 
         protected virtual (bool CanBeDeleted, string Reason) CanEntityBeDeleted(TEntity entity) => (true, "");
 
-        protected virtual string GetDefaultSearchPropertyName() => nameof(IEntity.Id);
+        protected virtual string GetDefaultSearchPropertyName() => nameof(IEntity.Guid);
 
-        protected virtual string GetDefaultPropertyNameToOrderBy() => nameof(IEntity.Id);
+        protected virtual string GetDefaultPropertyNameToOrderBy() => nameof(IEntity.Guid);
 
         protected virtual string GetEntityLabel() => typeof(TEntity).Name;
     }

@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Application.Abstraction;
-using DreamBook.Application.Abstraction.Service;
-using DreamBook.Application.Exceptions;
-using DreamBook.Application.LanguageResources;
-using DreamBook.Domain.Entities;
-using Newtonsoft.Json;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace DreamBook.Application.Words
 {
@@ -53,7 +44,7 @@ namespace DreamBook.Application.Words
 
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(Word entity)
         {
-            if (Context.Count<DreamWord>(dw => dw.WordGuid == entity.Id) > 0)
+            if (Context.Count<DreamWord>(dw => dw.WordGuid == entity.Guid) > 0)
                 return (false, ExceptionMessages.WordCanNotBeDeletedReason);
 
             return base.CanEntityBeDeleted(entity);

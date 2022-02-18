@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DreamBook.API.Responses
+﻿namespace DreamBook.API.Responses
 {
     public class PropertyValidationErrorModel
     {

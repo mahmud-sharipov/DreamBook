@@ -1,5 +1,4 @@
-﻿using DreamBook.Application.LanguageResources;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace DreamBook.Application.Posts
 {

@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Request;
-using System;
-
-namespace DreamBook.Application.Posts
+﻿namespace DreamBook.Application.Posts
 {
     public class CreatePostRequestModel : IRequestModel
     {

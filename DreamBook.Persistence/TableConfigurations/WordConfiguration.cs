@@ -5,8 +5,8 @@
         public void Configure(EntityTypeBuilder<Word> builder)
         {
             builder.ToTable(nameof(Word));
-            builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+            builder.HasKey(p => p.Guid);
+            builder.Property(p => p.Guid).ValueGeneratedOnAdd();
 
             builder.HasMany(p => p.Translations)
                 .WithOne(p => p.Word)

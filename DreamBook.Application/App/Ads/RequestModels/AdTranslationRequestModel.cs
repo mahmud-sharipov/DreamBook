@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Request;
-using System;
-
-namespace DreamBook.Application.Ads
+﻿namespace DreamBook.Application.Ads
 {
     public class AdTranslationRequestModel : ITranslationRequestModel
     {

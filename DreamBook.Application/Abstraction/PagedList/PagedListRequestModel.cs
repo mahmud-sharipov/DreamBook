@@ -1,6 +1,4 @@
-﻿using DreamBook.Domain.Interfaces;
-using System.Linq;
-using System.Linq.Dynamic.Core;
+﻿using System.Linq.Dynamic.Core;
 
 namespace DreamBook.Application.Abstraction.PagedList
 {

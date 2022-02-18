@@ -1,56 +1,50 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
-namespace DreamBook.API.Controllers
+namespace DreamBook.API.Controllers;
+
+[ApiController]
+[ApiVersion("1.0")]
+[Route("api/[controller]")]
+public class FilesController : ControllerBase
 {
-    [ApiController]
-    [ApiVersion("1.0")]
-    [Route("api/[controller]")]
-    public class FilesController : ControllerBase
+    private readonly IWebHostEnvironment _webHostEnvironment;
+
+    public FilesController(IWebHostEnvironment webHostEnvironment)
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        _webHostEnvironment = webHostEnvironment;
+    }
 
-        public FilesController(IWebHostEnvironment webHostEnvironment)
+    [HttpGet]
+    public ActionResult GetFile([FromQuery] string fileName)
+    {
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "Images", fileName ?? "");
+        if (System.IO.File.Exists(path))
         {
-            _webHostEnvironment = webHostEnvironment;
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "application/octet-stream", fileName);
         }
 
-        [HttpGet]
-        public ActionResult GetFile([FromQuery] string fileName)
-        {
-            string path = Path.Combine(_webHostEnvironment.WebRootPath, "Images", fileName ?? "");
-            if (System.IO.File.Exists(path))
-            {
-                byte[] bytes = System.IO.File.ReadAllBytes(path);
-                return File(bytes, "application/octet-stream", fileName);
-            }
+        return NotFound();
+    }
 
-            return NotFound();
-        }
+    [HttpPost]
+    [Authorize]
+    public ActionResult AddFile(IFormFile file)
+    {
+        if (file == null)
+            return BadRequest();
 
-        [HttpPost]
-        [Authorize]
-        public ActionResult AddFile(IFormFile file)
-        {
-            if (file == null)
-                return BadRequest();
+        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
+        if (!Directory.Exists(uploadsFolder))
+            Directory.CreateDirectory(uploadsFolder);
 
-            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
-            if (!Directory.Exists(uploadsFolder))
-                Directory.CreateDirectory(uploadsFolder);
+        var uniqueFileName = Guid.NewGuid().ToString() + "." + file.FileName.Split(".").Last();
+        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-            var uniqueFileName = Guid.NewGuid().ToString() + "." + file.FileName.Split(".").Last();
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+        using (var fileStream = new FileStream(filePath, FileMode.Create))
+            file.CopyTo(fileStream);
 
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-                file.CopyTo(fileStream);
+        return Ok(uniqueFileName);
 
-            return Ok(uniqueFileName);
-}
     }
 }

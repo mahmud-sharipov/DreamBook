@@ -1,15 +1,5 @@
-﻿using AutoMapper;
-using DreamBook.Application.Abstraction;
-using DreamBook.Application.Abstraction.PagedList;
-using DreamBook.Application.DreamTypes;
-using DreamBook.Application.Exceptions;
-using DreamBook.Application.LanguageResources;
-using DreamBook.Domain.Entities;
-using DreamBook.Domain.Interfaces;
-using System;
+﻿using DreamBook.Application.DreamTypes;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DreamBook.Application.Dreams
 {
@@ -29,7 +19,7 @@ namespace DreamBook.Application.Dreams
             AppLanguageManager = appLanguageManager;
             IdentityService = identityService;
             CurrentUser = IdentityService.GetCurrentUser() ?? throw new ArgumentNullException("Unauthenticated user cannot access this service");
-            LanguagePredicate = dt => dt.LanguageGuid == AppLanguageManager.CurrentLanguage.Id;
+            LanguagePredicate = dt => dt.LanguageGuid == AppLanguageManager.CurrentLanguage.Guid;
         }
 
         #region Mapping
@@ -60,7 +50,7 @@ namespace DreamBook.Application.Dreams
         private async Task<Dream> GenEntity(Guid id, bool fromToRecycleBin = false)
         {
             var entity = await Context.GetByIdAsync<Dream>(id);
-            if (entity == null || entity.MovedToRecycleBin != fromToRecycleBin || entity.AuthorGuid != CurrentUser.Id)
+            if (entity == null || entity.MovedToRecycleBin != fromToRecycleBin || entity.AuthorGuid != CurrentUser.Guid)
                 throw new EntityNotFoundException(ModelsLabel.Dream, id);
             return entity;
         }
@@ -73,13 +63,13 @@ namespace DreamBook.Application.Dreams
 
         public async Task<IEnumerable<DreamResponseModel>> GetAll()
         {
-            var entities = await Context.GetAllAsync<Dream>(d => !d.MovedToRecycleBin && d.AuthorGuid == CurrentUser.Id);
+            var entities = await Context.GetAllAsync<Dream>(d => !d.MovedToRecycleBin && d.AuthorGuid == CurrentUser.Guid);
             return MapEntities(entities);
         }
 
         public async Task<IPagedList<DreamResponseModel>> GetPagedList(DreamPagedListRequestModel requestModel)
         {
-            var query = Context.GetAll<Dream>(d => !d.MovedToRecycleBin && d.AuthorGuid == CurrentUser.Id);
+            var query = Context.GetAll<Dream>(d => !d.MovedToRecycleBin && d.AuthorGuid == CurrentUser.Guid);
             var entities = requestModel.Filter(query, nameof(Dream.Title), nameof(Dream.CreatedAt));
             var result = new PagedList<Dream, DreamResponseModel>(entities, l => MapEntities(l), requestModel.PageNumber, requestModel.PageSize);
             return await Task.FromResult(result);
@@ -87,20 +77,20 @@ namespace DreamBook.Application.Dreams
 
         public async Task<IEnumerable<DreamShortInfoResponseModel>> GetAllShortInfo()
         {
-            var entities = await Context.GetAllAsync<Dream>(d => !d.MovedToRecycleBin && d.AuthorGuid == CurrentUser.Id);
+            var entities = await Context.GetAllAsync<Dream>(d => !d.MovedToRecycleBin && d.AuthorGuid == CurrentUser.Guid);
             return Mapper.Map<IEnumerable<DreamShortInfoResponseModel>>(entities);
         }
 
         public async Task<IEnumerable<DreamResponseModel>> GetAllFromRecycleBin()
         {
-            var entities = await Context.GetAllAsync<Dream>(d => d.MovedToRecycleBin && d.AuthorGuid == CurrentUser.Id);
+            var entities = await Context.GetAllAsync<Dream>(d => d.MovedToRecycleBin && d.AuthorGuid == CurrentUser.Guid);
             return MapEntities(entities);
         }
 
         public async Task<IPagedList<DreamResponseModel>> GetAllShared(DreamPagedListRequestModel requestModel)
         {
             var user = IdentityService.GetCurrentUser();
-            var query = Context.GetAll<Dream>(d => !d.MovedToRecycleBin && d.CanBeShared && d.AuthorGuid != user.Id);
+            var query = Context.GetAll<Dream>(d => !d.MovedToRecycleBin && d.CanBeShared && d.AuthorGuid != user.Guid);
             var entities = requestModel.Filter(query, nameof(Dream.Title), nameof(Dream.CreatedAt));
             var result = new PagedList<Dream, DreamResponseModel>(entities, l => MapEntities(l), requestModel.PageNumber, requestModel.PageSize);
             return await Task.FromResult(result);
@@ -108,7 +98,7 @@ namespace DreamBook.Application.Dreams
 
         public async Task<DreamResponseModel> GetSharedById(Guid guid)
         {
-            var entity = await Context.GetFirstOrDefaultAsync<Dream>(d => d.Id == guid && !d.MovedToRecycleBin && d.CanBeShared);
+            var entity = await Context.GetFirstOrDefaultAsync<Dream>(d => d.Guid == guid && !d.MovedToRecycleBin && d.CanBeShared);
             if (entity == null)
                 throw new EntityNotFoundException(ModelsLabel.Dream, guid);
 
@@ -120,7 +110,7 @@ namespace DreamBook.Application.Dreams
             ValidateType(requestModel);
 
             var entity = Mapper.Map<Dream>(requestModel);
-            entity.AuthorGuid = CurrentUser.Id;
+            entity.AuthorGuid = CurrentUser.Guid;
 
             foreach (var wordGuid in requestModel.Words)
             {
@@ -165,7 +155,7 @@ namespace DreamBook.Application.Dreams
             var entity = await GenEntity(guid);
             foreach (var wordGuid in wordGuids)
             {
-                if (entity.Words.Any(w => w.Id == wordGuid)) continue;
+                if (entity.Words.Any(w => w.Guid == wordGuid)) continue;
 
                 entity.Words.Add(new DreamWord() { Word = await GetWord(wordGuid) });
             }
@@ -175,7 +165,7 @@ namespace DreamBook.Application.Dreams
         public async Task RemoveWords(Guid guid, IEnumerable<Guid> wordGuids)
         {
             var entity = await GenEntity(guid);
-            var wordsToDelete = entity.Words.Where(w => wordGuids.Contains(w.Id)).ToList();
+            var wordsToDelete = entity.Words.Where(w => wordGuids.Contains(w.Guid)).ToList();
             await Context.SaveChangesAsync();
         }
 
@@ -196,7 +186,7 @@ namespace DreamBook.Application.Dreams
         public async Task Delete(Guid id)
         {
             var entity = await Context.GetByIdAsync<Dream>(id);
-            if (entity == null || entity.AuthorGuid != CurrentUser.Id)
+            if (entity == null || entity.AuthorGuid != CurrentUser.Guid)
                 throw new EntityNotFoundException(ModelsLabel.Dream, id);
             Context.Delete(entity);
             await Context.SaveChangesAsync();

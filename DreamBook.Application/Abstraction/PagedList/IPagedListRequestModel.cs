@@ -1,8 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Request;
-using DreamBook.Domain.Interfaces;
-using System.Linq;
-
-namespace DreamBook.Application.Abstraction.PagedList
+﻿namespace DreamBook.Application.Abstraction.PagedList
 {
     public interface IPagedListRequestModel<TEntity> : IRequestModel where TEntity : class, IEntity
     {

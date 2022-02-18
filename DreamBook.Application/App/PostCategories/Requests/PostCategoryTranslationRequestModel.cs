@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Request;
-using System;
-
-namespace DreamBook.Application.PostCategories
+﻿namespace DreamBook.Application.PostCategories
 {
     public class PostCategoryTranslationRequestModel : ITranslationRequestModel
     {

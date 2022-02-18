@@ -1,9 +1,4 @@
-﻿using DreamBook.Application.Abstraction.PagedList;
-using DreamBook.Domain.Entities;
-using System;
-using System.Linq;
-
-namespace DreamBook.Application.Dreams
+﻿namespace DreamBook.Application.Dreams
 {
     public class DreamPagedListRequestModel : PagedListRequestModel<Dream>
     {

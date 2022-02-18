@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DreamBook.Application.Interpretations
+﻿namespace DreamBook.Application.Interpretations
 {
     public class UpdateInterpretationRequestModel : CreateInterpretationRequestModel
     {

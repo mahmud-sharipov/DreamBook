@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Domain.Entities;
-
-namespace DreamBook.Application.Words
+﻿namespace DreamBook.Application.Words
 {
     public class WordMappingProfile : Profile
     {

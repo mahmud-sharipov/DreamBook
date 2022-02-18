@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Response;
-using System;
-
-namespace DreamBook.Application.Dreams
+﻿namespace DreamBook.Application.Dreams
 {
     public class DreamShortInfoResponseModel : IResponseModel
     {

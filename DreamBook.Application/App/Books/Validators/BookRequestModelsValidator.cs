@@ -1,6 +1,4 @@
-﻿using DreamBook.Application.Abstraction;
-using DreamBook.Application.LanguageResources;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace DreamBook.Application.Books
 {

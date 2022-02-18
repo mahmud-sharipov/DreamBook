@@ -5,8 +5,8 @@
         public void Configure(EntityTypeBuilder<Post> builder)
         {
             builder.ToTable(nameof(Post));
-            builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+            builder.HasKey(p => p.Guid);
+            builder.Property(p => p.Guid).ValueGeneratedOnAdd();
 
             builder.HasOne(p => p.Category)
                 .WithMany(p => p.Posts)

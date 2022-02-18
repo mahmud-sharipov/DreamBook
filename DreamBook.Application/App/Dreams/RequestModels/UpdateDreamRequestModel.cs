@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DreamBook.Application.Dreams
+﻿namespace DreamBook.Application.Dreams
 {
     public class UpdateDreamRequestModel : DreamRequestModel
     {

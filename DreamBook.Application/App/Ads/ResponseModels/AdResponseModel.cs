@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Response;
-using System;
-
-namespace DreamBook.Application.Ads
+﻿namespace DreamBook.Application.Ads
 {
     public class AdResponseModel : IResponseModel
     {

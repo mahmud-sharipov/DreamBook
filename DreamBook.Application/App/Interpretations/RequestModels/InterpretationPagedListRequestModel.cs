@@ -1,9 +1,4 @@
-﻿using DreamBook.Application.Abstraction.PagedList;
-using DreamBook.Domain.Entities;
-using System;
-using System.Linq;
-
-namespace DreamBook.Application.Interpretations
+﻿namespace DreamBook.Application.Interpretations
 {
     public class InterpretationPagedListRequestModel : SimplePagedListRequestModel<InterpretationTranslation>
     {

@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Domain.Entities;
-
-namespace DreamBook.Application.Languages
+﻿namespace DreamBook.Application.Languages
 {
     public class LanguageMappingProfile : Profile
     {

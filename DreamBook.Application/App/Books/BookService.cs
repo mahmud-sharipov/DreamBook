@@ -1,14 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Application.Abstraction;
-using DreamBook.Application.Abstraction.Service;
-using DreamBook.Application.LanguageResources;
-using DreamBook.Application.Exceptions;
-using DreamBook.Domain.Entities;
-using System.Linq;
-using System.Threading.Tasks;
-using System;
-
-namespace DreamBook.Application.Books
+﻿namespace DreamBook.Application.Books
 {
     public class BookService : TranslatableEntityService<Book, BookTranslation, BookResponseModel, BookWithTranslationsResponseModel>, IBookService
     {
@@ -41,7 +31,7 @@ namespace DreamBook.Application.Books
 
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(Book entity)
         {
-            if (Context.GetAll<Interpretation>(e => e.BookGuid == entity.Id).Any())
+            if (Context.GetAll<Interpretation>(e => e.BookGuid == entity.Guid).Any())
                 return (false, ExceptionMessages.BookCanNotBeDeletedReason);
 
             return base.CanEntityBeDeleted(entity);

@@ -1,6 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Response;
-using DreamBook.Application.Languages;
-using System;
+﻿using DreamBook.Application.Languages;
 
 namespace DreamBook.Application.Ads
 {

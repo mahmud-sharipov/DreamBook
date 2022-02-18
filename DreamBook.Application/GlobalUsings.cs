@@ -11,3 +11,4 @@ global using System.Threading.Tasks;
 global using DreamBook.Application.Abstraction.Request;
 global using DreamBook.Application.Abstraction.Response;
 global using DreamBook.Domain.Enums;
+global using DreamBook.Application.Abstraction.PagedList;

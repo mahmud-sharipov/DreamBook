@@ -1,11 +1,8 @@
-﻿using DreamBook.API.Auth;
-using Microsoft.AspNetCore.Authorization;
-
-namespace DreamBook.API.Controllers
+﻿namespace DreamBook.API.Controllers.Attributes
 {
     public class RequireAdminAttribute : AuthorizeAttribute
     {
-        public RequireAdminAttribute() 
+        public RequireAdminAttribute()
         {
             Roles = UserRoles.Admin;
         }

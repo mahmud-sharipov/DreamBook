@@ -11,7 +11,7 @@ global using System.Linq;
 global using System.Linq.Expressions;
 global using System.Threading;
 global using System.Threading.Tasks;
-global using DreamBook.Persistence.Models;
+global using DreamBook.Persistence.Model;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using DreamBook.Application.Users;

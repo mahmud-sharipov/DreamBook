@@ -1,9 +1,4 @@
-﻿using DreamBook.Application.Abstraction.PagedList;
-using DreamBook.Application.Abstraction.Response;
-using DreamBook.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace DreamBook.Application.Abstraction.PagedList
 {
@@ -32,7 +27,7 @@ namespace DreamBook.Application.Abstraction.PagedList
         internal PagedList() => Items = new T[0];
     }
 
-    internal class PagedList<TSource, TResult> : IPagedList<TResult>
+    public class PagedList<TSource, TResult> : IPagedList<TResult>
         where TResult : IResponseModel
         where TSource : IEntity
     {

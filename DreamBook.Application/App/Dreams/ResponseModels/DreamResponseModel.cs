@@ -1,6 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Response;
-using DreamBook.Application.DreamTypes;
-using System;
+﻿using DreamBook.Application.DreamTypes;
 using System.Collections.Generic;
 
 namespace DreamBook.Application.Dreams

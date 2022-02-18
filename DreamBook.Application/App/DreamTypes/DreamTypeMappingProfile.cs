@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Domain.Entities;
-
-namespace DreamBook.Application.DreamTypes
+﻿namespace DreamBook.Application.DreamTypes
 {
     public class DreamTypeMappingProfile : Profile
     {

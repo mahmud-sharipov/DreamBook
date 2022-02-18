@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DreamBook.Application.Books
+﻿namespace DreamBook.Application.Books
 {
     public class UpdateBookRequestModel : CreateBookRequestModel
     {

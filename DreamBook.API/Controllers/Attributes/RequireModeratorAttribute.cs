@@ -1,7 +1,4 @@
-﻿using DreamBook.API.Auth;
-using Microsoft.AspNetCore.Authorization;
-
-namespace DreamBook.API.Controllers
+﻿namespace DreamBook.API.Controllers.Attributes
 {
     public class RequireModeratorAttribute : AuthorizeAttribute
     {

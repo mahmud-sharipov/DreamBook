@@ -1,4 +1,4 @@
-﻿namespace DreamBook.Persistence.Models;
+﻿namespace DreamBook.Persistence.Model;
 
 public class User : IdentityUser<Guid>, IUser
 {
@@ -12,4 +12,6 @@ public class User : IdentityUser<Guid>, IUser
 
     public string FullName { get; set; }
     public string AvatarImage { get; set; }
+
+    public Guid Guid => Id;
 }

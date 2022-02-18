@@ -1,11 +1,4 @@
-﻿using AutoMapper;
-using DreamBook.Application.Abstraction;
-using DreamBook.Application.Abstraction.Service;
-using DreamBook.Application.LanguageResources;
-using DreamBook.Domain.Entities;
-using System.Threading.Tasks;
-
-namespace DreamBook.Application.Ads
+﻿namespace DreamBook.Application.Ads
 {
     public class AdService : TranslatableEntityService<Ad, AdTranslation, AdResponseModel, AdWithTranslationsResponseModel>, IAdService
     {

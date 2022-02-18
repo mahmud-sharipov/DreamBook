@@ -1,6 +1,4 @@
-﻿using DreamBook.Application.Abstraction.Request;
-using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace DreamBook.Application.Interpretations
 {
