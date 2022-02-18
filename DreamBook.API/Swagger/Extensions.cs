@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.IO;
 
 namespace DreamBook.API.Swagger
 {
@@ -56,8 +57,9 @@ namespace DreamBook.API.Swagger
             app.UseSwagger(options => { options.RouteTemplate = "api/docs/{documentName}/docs.json"; });
             app.UseSwaggerUI(options =>
             {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "swagger-ui", "SwaggerDark.css");
                 options.RoutePrefix = "api/docs";
-                options.InjectStylesheet("/swagger-ui/SwaggerDark.css");
+                options.InjectStylesheet(path);
                 foreach (var description in versionProvider.ApiVersionDescriptions)
                     options.SwaggerEndpoint($"/api/docs/{description.GroupName}/docs.json", description.GroupName.ToUpperInvariant());
             });

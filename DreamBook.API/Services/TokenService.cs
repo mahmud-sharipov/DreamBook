@@ -1,7 +1,6 @@
 ﻿using Google.Apis.Auth;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -63,20 +62,21 @@ namespace DreamBook.API.Services
             };
         }
 
+        internal const string UserIdClaim = "UserGuid";
+
         private async Task<(string Token, DateTime ValidTo)> GenerateAccessToken(User user)
         {
             var userRoles = await _userManager.GetRolesAsync(user);
             var authClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserName),
-                new Claim(ClaimTypes.Sid,user.SecurityStamp),
+                new Claim(UserIdClaim, user.Id.ToString()),
+                new Claim(ClaimTypes.Sid, user.SecurityStamp),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
             foreach (var userRole in userRoles)
-            {
                 authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-            }
 
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings["SecretKey"]));
             var credentials = new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256);

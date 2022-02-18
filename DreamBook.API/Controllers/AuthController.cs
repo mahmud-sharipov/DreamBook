@@ -7,33 +7,15 @@
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
-    private readonly IUserService _userService;
+    private readonly IUserService<User> _userService;
     private readonly IContext _appContext;
 
-    public AuthController(IAuthService authService, IUserService userService, IContext appContext)
+    public AuthController(IAuthService authService, IUserService<User> userService, IContext appContext)
     {
         _authService = authService;
         _userService = userService;
         _appContext = appContext;
     }
-
-    //[HttpPost]
-    //[AllowAnonymous]
-    //[Route("register")]
-    //public async Task<ActionResult<UserResponseModel>> Register([FromBody] UserRegisterModel model)
-    //{
-    //    var reqult = await _authService.Register(model, UserRoles.Basic);
-    //    return Ok(reqult.ResponseModel);
-    //}
-
-    //[HttpPost]
-    //[RequireAdmin]
-    //[Route("register-admin")]
-    //public async Task<ActionResult<UserResponseModel>> RegisterAdmin([FromBody] UserRegisterModel model)
-    //{
-    //    var reqult = await _authService.Register(model, UserRoles.Basic, UserRoles.Admin);
-    //    return Ok(reqult.ResponseModel);
-    //}
 
     [HttpPost]
     [AllowAnonymous]
@@ -54,7 +36,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost]
-    [Route("revoke-token")]
+    [Route("logout")]
     public async Task<IActionResult> RevokeToken([FromBody] string refreshToken)
     {
         if (await _authService.RevokeRefreshToken(refreshToken))
@@ -89,13 +71,14 @@ public class AuthController : ControllerBase
         return Ok();
     }
 
-    //[HttpPut]
-    //[Route("me/username")]
-    //public async Task<IActionResult> UpdateUserName([FromBody] string newUserName)
-    //{
-    //    var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-    //    var user = _appContext.GetFirstOrDefault<User>(u => u.UserName == userId);
-    //    await _userService.Update(user.Guid, requestModel);
-    //    return Ok();
-    //}
+    [HttpPut]
+    [Route("me/username")]
+    public async Task<IActionResult> UpdateUserName([FromBody] UpdateUserUsernameRequestModel requestModel)
+    {
+        var userId = HttpContext.User.FindFirst(TokenService.UserIdClaim).Value;
+        requestModel.Guid = Guid.Parse(userId);
+        await _userService.UpdateUsername(requestModel);
+        return Ok();
+    }
+
 }

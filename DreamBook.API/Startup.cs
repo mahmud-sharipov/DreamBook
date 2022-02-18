@@ -85,7 +85,6 @@ public class Startup
 
     void AddServices(IServiceCollection services)
     {
-        services.AddScoped<IUserService, UserService>();
-
+        services.AddScoped<IUserService<User>, UserService>();
     }
 }

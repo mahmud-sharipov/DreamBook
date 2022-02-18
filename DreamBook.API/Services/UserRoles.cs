@@ -2,7 +2,7 @@
 
 public static class UserRoles
 {
-    public const string Admin = nameof(UserType.Admin);
-    public const string Moderator = nameof(UserType.Moderator);
-    public const string Basic = nameof(UserType.Basic);
+    public const string Admin = nameof(UserRole.Admin);
+    public const string Moderator = nameof(UserRole.Moderator);
+    public const string Basic = nameof(UserRole.Basic);
 }

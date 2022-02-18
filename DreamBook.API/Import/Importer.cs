@@ -18,7 +18,7 @@ public static class Importer
         using var mainContext = factory.CreateDbContext();
         if (mainContext.Count<Book>() > 0) return;
 
-        List<InterpretationImportModel> interpretations = JsonConvert.DeserializeObject<List<InterpretationImportModel>>(File.ReadAllText(@"Infrastructure/Import/sonnik.json"));
+        List<InterpretationImportModel> interpretations = JsonConvert.DeserializeObject<List<InterpretationImportModel>>(File.ReadAllText(@"Import/sonnik.json"));
         Dictionary<string, (Guid book, Guid bookRu, Guid bookEn)> books =
             new Dictionary<string, (Guid book, Guid bookRu, Guid bookEn)>();
         Console.WriteLine("Started importing words/books/interpretations");
@@ -93,7 +93,7 @@ public static class Importer
     {
         if (context.Count<Ad>() > 0) return;
 
-        IEnumerable<Ad> ads = JsonConvert.DeserializeObject<IEnumerable<Ad>>(File.ReadAllText(@"Infrastructure/Import/ad.json"));
+        IEnumerable<Ad> ads = JsonConvert.DeserializeObject<IEnumerable<Ad>>(File.ReadAllText(@"Import/ad.json"));
         context.AddRange(ads);
         context.SaveChanges();
     }

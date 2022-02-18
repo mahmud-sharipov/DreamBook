@@ -293,23 +293,13 @@ public static class SeedDatabase
 
     static async Task CreateUser(UserManager<User> userManager, IContext context)
     {
-        var userExists = await userManager.FindByNameAsync("Admin");
+        var userExists = await userManager.FindByNameAsync("admin");
         if (userExists == null)
         {
-            var user = new User()
+            User appUser = new User()
             {
                 Email = "test@user.account",
                 UserName = "admin",
-
-            };
-            context.Add(user);
-            await context.SaveChangesAsync();
-
-            User appUser = new User()
-            {
-                Id = user.Guid,
-                Email = user.Email,
-                UserName = user.UserName
             };
             var result = await userManager.CreateAsync(appUser, "Test.1234");
             if (!result.Succeeded)
