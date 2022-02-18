@@ -1,9 +1,8 @@
-﻿namespace DreamBook.Domain.Enums
+﻿namespace DreamBook.Domain.Enums;
+
+public enum UserType
 {
-    public enum UserType
-    {
-        Admin,
-        Moderator,
-        Basic
-    }
+    Admin,
+    Moderator,
+    Basic
 }

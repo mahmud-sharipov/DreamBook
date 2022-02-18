@@ -1,11 +1,10 @@
-﻿namespace DreamBook.Domain.Interfaces
+﻿namespace DreamBook.Domain.Interfaces;
+
+public interface IAppLanguage : IEntity
 {
-    public interface IAppLanguage : IEntity
-    {
-        string Name { get; }
+    string Name { get; }
 
-        string Code { get; }
+    string Code { get; }
 
-        bool IsDefault { get; }
-    }
+    bool IsDefault { get; }
 }

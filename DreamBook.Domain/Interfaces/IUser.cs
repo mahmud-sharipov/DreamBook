@@ -1,8 +1,9 @@
-﻿namespace DreamBook.Domain.Interfaces
+﻿namespace DreamBook.Domain.Interfaces;
+
+public interface IUser : IEntity
 {
-    public interface IUser : IEntity
-    {
-        string UserName { get; }
-        string Email { get; }
-    }
+    string UserName { get; set; }
+    string Email { get; set; }
+    string FullName { get; set; }
+    string AvatarImage { get; set; }
 }

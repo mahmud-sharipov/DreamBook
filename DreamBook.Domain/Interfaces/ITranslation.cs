@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace DreamBook.Domain.Interfaces;
 
-namespace DreamBook.Domain.Interfaces
+public interface ITranslation : IEntity
 {
-    public interface ITranslation : IEntity
-    {
-        Guid LanguageGuid { get; }
-    }
+    Guid LanguageGuid { get; }
 }

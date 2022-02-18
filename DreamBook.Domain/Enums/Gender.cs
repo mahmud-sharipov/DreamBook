@@ -1,9 +1,8 @@
-﻿namespace DreamBook.Domain.Enums
+﻿namespace DreamBook.Domain.Enums;
+
+public enum Gender
 {
-    public enum Gender
-    {
-        None = -1,
-        Male = 1,
-        Fimale = 2
-    }
+    None = -1,
+    Male = 1,
+    Fimale = 2
 }

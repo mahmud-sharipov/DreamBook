@@ -1,22 +1,18 @@
-﻿using DreamBook.Domain.Interfaces;
-using System;
+﻿namespace DreamBook.Domain.Entities;
 
-namespace DreamBook.Domain.Entities
+public class EntityBase : IEntity
 {
-    public class EntityBase : IEntity
+    private Guid _guid;
+
+    public Guid Guid
     {
-        private Guid _guid;
-
-        public Guid Guid
+        get
         {
-            get
-            {
-                if (_guid == Guid.Empty)
-                    _guid = Guid.NewGuid();
+            if (_guid == Guid.Empty)
+                _guid = Guid.NewGuid();
 
-                return _guid;
-            }
-            set { _guid = value; }
+            return _guid;
         }
+        set { _guid = value; }
     }
 }

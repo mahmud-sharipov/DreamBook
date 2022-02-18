@@ -1,20 +1,15 @@
-﻿using DreamBook.Domain.Interfaces;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿namespace DreamBook.Domain.Entities;
 
-namespace DreamBook.Domain.Entities
+public class DreamType : EntityBase, ITranslatable<DreamTypeTranslation>
 {
-    public class DreamType : EntityBase, ITranslatable<DreamTypeTranslation>
+    public DreamType()
     {
-        public DreamType()
-        {
-            Dreams = new Collection<Dream>();
-            Translations = new Collection<DreamTypeTranslation>();
-        }
-
-        public string Color { get; set; }
-
-        public virtual ICollection<Dream> Dreams { get; set; }
-        public virtual ICollection<DreamTypeTranslation> Translations { get; set; }
+        Dreams = new Collection<Dream>();
+        Translations = new Collection<DreamTypeTranslation>();
     }
+
+    public string Color { get; set; }
+
+    public virtual ICollection<Dream> Dreams { get; set; }
+    public virtual ICollection<DreamTypeTranslation> Translations { get; set; }
 }

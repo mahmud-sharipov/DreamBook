@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace DreamBook.Domain.Interfaces;
 
-namespace DreamBook.Domain.Interfaces
+public interface IEntity
 {
-    public interface IEntity
-    {
-        Guid Guid { get; }
-    }
+    Guid Guid { get; }
 }
