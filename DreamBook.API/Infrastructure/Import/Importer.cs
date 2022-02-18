@@ -39,8 +39,8 @@ namespace DreamBook.API.Infrastructure.Import
                 var wordInterpretations = interpretationsByWord[i];
                 Console.WriteLine($"Imported {index++} of {totalcount}");
                 var word = new Word();
-                var wordRu = new WordTranslation() { WordGuid = word.Guid, Name = wordInterpretations.Key, LanguageGuid = RuGuid };
-                var wordEn = new WordTranslation() { WordGuid = word.Guid, Name = wordInterpretations.Key, LanguageGuid = EnGuid };
+                var wordRu = new WordTranslation() { WordGuid = word.Id, Name = wordInterpretations.Key, LanguageGuid = RuGuid };
+                var wordEn = new WordTranslation() { WordGuid = word.Id, Name = wordInterpretations.Key, LanguageGuid = EnGuid };
                 context.Add(word);
                 context.Add(wordRu);
                 context.Add(wordEn);
@@ -66,7 +66,7 @@ namespace DreamBook.API.Infrastructure.Import
                     context.Add(interpretation);
                     context.Add(new InterpretationTranslation()
                     {
-                        InterpretationGuid = interpretation.Guid,
+                        InterpretationGuid = interpretation.Id,
                         BookGuid = bookData.bookRu,
                         Word = wordRu,
                         Description = interpretationData.Interpretation,
@@ -74,7 +74,7 @@ namespace DreamBook.API.Infrastructure.Import
                     });
                     context.Add(new InterpretationTranslation()
                     {
-                        InterpretationGuid = interpretation.Guid,
+                        InterpretationGuid = interpretation.Id,
                         BookGuid = bookData.bookEn,
                         Word = wordEn,
                         Description = interpretationData.Interpretation,
@@ -89,12 +89,12 @@ namespace DreamBook.API.Infrastructure.Import
         static (Guid book, Guid bookRu, Guid bookEn) CreateBook(IContext context, string name)
         {
             var book = new Book();
-            var bookRu = new BookTranslation() { BookGuid = book.Guid, Name = name, LanguageGuid = RuGuid };
-            var bookEn = new BookTranslation() { BookGuid = book.Guid, Name = name, LanguageGuid = EnGuid };
+            var bookRu = new BookTranslation() { BookGuid = book.Id, Name = name, LanguageGuid = RuGuid };
+            var bookEn = new BookTranslation() { BookGuid = book.Id, Name = name, LanguageGuid = EnGuid };
             context.Add(book);
             context.Add(bookRu);
             context.Add(bookEn);
-            return (book.Guid, bookRu.Guid, bookEn.Guid);
+            return (book.Id, bookRu.Id, bookEn.Id);
         }
 
         static void CreateAds(IContext context)

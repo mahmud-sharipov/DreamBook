@@ -1,0 +1,13 @@
+﻿global using AutoMapper;
+global using DreamBook.Application.Abstraction;
+global using DreamBook.Application.Abstraction.Service;
+global using DreamBook.Application.Exceptions;
+global using DreamBook.Application.LanguageResources;
+global using DreamBook.Domain.Entities;
+global using System;
+global using System.Linq;
+global using DreamBook.Domain.Interfaces;
+global using System.Threading.Tasks;
+global using DreamBook.Application.Abstraction.Request;
+global using DreamBook.Application.Abstraction.Response;
+global using DreamBook.Domain.Enums;

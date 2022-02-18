@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using DreamBook.Domain.Entities;
 
-namespace DreamBook.Application.Users
+namespace DreamBook.Persistence.Services
 {
     public class UserMappingProfile : Profile
     {

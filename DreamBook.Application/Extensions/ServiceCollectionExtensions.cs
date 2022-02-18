@@ -1,15 +1,13 @@
-﻿using DreamBook.Application.Abstraction;
-using DreamBook.Application.Ads;
+﻿using DreamBook.Application.Ads;
 using DreamBook.Application.Books;
-using DreamBook.Application.PostCategories;
-using DreamBook.Application.Words;
+using DreamBook.Application.Dreams;
 using DreamBook.Application.DreamTypes;
 using DreamBook.Application.Interpretations;
 using DreamBook.Application.Languages;
+using DreamBook.Application.PostCategories;
 using DreamBook.Application.Posts;
-using DreamBook.Application.Users;
+using DreamBook.Application.Words;
 using Microsoft.Extensions.DependencyInjection;
-using DreamBook.Application.Dreams;
 
 namespace DreamBook.Application.Extensions
 {
@@ -26,7 +24,6 @@ namespace DreamBook.Application.Extensions
                 typeof(LanguageMappingProfile),
                 typeof(PostCategoryMappingProfile),
                 typeof(PostMappingProfile),
-                typeof(UserMappingProfile),
                 typeof(WordMappingProfile));
 
             service.AddScoped<AppLanguageManager>();
@@ -37,7 +34,6 @@ namespace DreamBook.Application.Extensions
             service.AddScoped<IInterpretationService, InterpretationService>();
             service.AddScoped<IPostCategoryService, PostCategoryService>();
             service.AddScoped<IPostService, PostService>();
-            service.AddScoped<IUserService, UserService>();
             service.AddScoped<IWordService, WordService>();
 
             return service;

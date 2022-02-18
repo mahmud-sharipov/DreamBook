@@ -24,7 +24,7 @@ namespace DreamBook.Application.Interpretations
 
             CreateMap<InterpretationTranslation, WordInterpretationResponseModel>()
                 .ForMember(des => des.Guid, opt => opt.MapFrom(src => src.InterpretationGuid))
-                .ForMember(des => des.BookGuid, opt => opt.MapFrom(src => src.Book.Guid))
+                .ForMember(des => des.BookGuid, opt => opt.MapFrom(src => src.Book.Id))
                 .ForMember(des => des.Book, opt => opt.MapFrom(src => src.Book.Name));
 
             CreateMap<InterpretationTranslation, BookInterpretationResponseModel>()

@@ -4,7 +4,7 @@ public class EntityBase : IEntity
 {
     private Guid _guid;
 
-    public Guid Guid
+    public Guid Id
     {
         get
         {

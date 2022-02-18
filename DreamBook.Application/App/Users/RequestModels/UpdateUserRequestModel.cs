@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace DreamBook.Application.Users;
 
-namespace DreamBook.Application.Users
+public class UpdateUserRequestModel : UserRequestModel
 {
-    public class UpdateUserRequestModel : UserRequestModel
-    {
-        public Guid Guid { get; set; }
-    }
+    public Guid Guid { get; set; }
 }

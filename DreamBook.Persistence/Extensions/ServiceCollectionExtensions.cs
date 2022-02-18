@@ -1,61 +1,57 @@
-﻿using DreamBook.Application.Abstraction;
-using DreamBook.Persistence.Database;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using DreamBook.Persistence.Services;
 
-namespace DreamBook.Persistence.Extensions
+namespace DreamBook.Persistence.Extensions;
+
+public static class ServiceCollectionExtensions
 {
-    public static class ServiceCollectionExtensions
+    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
-        {
-            var dp = configuration.GetDBProvider();
-            if (dp == DBProvider.SqlServer)
-                AddSqlServer(services, configuration);
-            else if (dp == DBProvider.MySql)
-                AddMySql(services, configuration);
-            else if (dp == DBProvider.Sqlite)
-                AddSqlite(services, configuration);
+        var dp = configuration.GetDBProvider();
+        if (dp == DBProvider.SqlServer)
+            AddSqlServer(services, configuration);
+        else if (dp == DBProvider.MySql)
+            AddMySql(services, configuration);
+        else if (dp == DBProvider.Sqlite)
+            throw new NotSupportedException("Sqlite does bot support!");
 
-            return services;
-        }
+        services.AddScoped<IUserService, UserService>();
+        services.AddAutoMapper(typeof(UserMappingProfile));
+        return services;
+    }
 
-        private static void AddMySql(IServiceCollection service, IConfiguration configuration)
+    private static void AddMySql(IServiceCollection service, IConfiguration configuration)
+    {
+        service.AddScoped<IContext, DreamBookMySqlContext>();
+        service.AddScoped<IDreamBookContextFactory, DreamBookMySqlContextFactory>();
+        service.AddScoped<DreamBookBaseContext, DreamBookMySqlContext>();
+        service.AddDbContext<DreamBookMySqlContext>(options =>
         {
-            service.AddScoped<IContext, DreamBookMySqlContext>();
-            service.AddScoped<IDreamBookContextFactory, DreamBookMySqlContextFactory>();
-            service.AddScoped<DreamBookBaseContext, DreamBookMySqlContext>();
-            service.AddDbContext<DreamBookMySqlContext>(options =>
-            {
-                options.UseLazyLoadingProxies();
-                var connnectionString = configuration.GetDBConnectionString(DBProvider.MySql);
-                options.UseMySql(connnectionString, ServerVersion.AutoDetect(connnectionString));
-            }, ServiceLifetime.Scoped);
-        }
+            options.UseLazyLoadingProxies();
+            var connnectionString = configuration.GetDBConnectionString(DBProvider.MySql);
+            options.UseMySql(connnectionString, ServerVersion.AutoDetect(connnectionString));
+        }, ServiceLifetime.Scoped);
 
-        private static void AddSqlServer(IServiceCollection service, IConfiguration configuration)
+        service.AddIdentity<User, Role>(options =>
         {
-            service.AddScoped<IContext, DreamBookSqlServerContext>();
-            service.AddScoped<IDreamBookContextFactory, DreamBookSqlServerContextFactory>();
-            service.AddScoped<DreamBookBaseContext, DreamBookSqlServerContext>();
-            service.AddDbContext<DreamBookSqlServerContext>(options =>
-            {
-                options.UseLazyLoadingProxies();
-                options.UseSqlServer(configuration.GetDBConnectionString(DBProvider.SqlServer));
-            }, ServiceLifetime.Scoped);
-        }
+            options.SignIn.RequireConfirmedAccount = true;
+        }).AddEntityFrameworkStores<DreamBookMySqlContext>();
+    }
 
-        static void AddSqlite(IServiceCollection services, IConfiguration configuration)
+    private static void AddSqlServer(IServiceCollection service, IConfiguration configuration)
+    {
+        service.AddScoped<IContext, DreamBookSqlServerContext>();
+        service.AddScoped<IDreamBookContextFactory, DreamBookSqlServerContextFactory>();
+        service.AddScoped<DreamBookBaseContext, DreamBookSqlServerContext>();
+
+        service.AddDbContext<DreamBookSqlServerContext>(options =>
         {
-            services.AddScoped<IContext, DreamBookSqliteContext>();
-            services.AddScoped<IDreamBookContextFactory, DreamBookSqliteContextFactory>();
-            services.AddScoped<DreamBookBaseContext, DreamBookSqliteContext>();
-            services.AddDbContext<DreamBookSqliteContext>(options =>
-            {
-                options.UseLazyLoadingProxies();
-                options.UseSqlite(configuration.GetDBConnectionString(DBProvider.Sqlite));
-            }, ServiceLifetime.Scoped);
-        }
+            options.UseLazyLoadingProxies();
+            options.UseSqlServer(configuration.GetDBConnectionString(DBProvider.SqlServer));
+        }, ServiceLifetime.Scoped);
+
+        service.AddIdentity<User, Role>(options =>
+        {
+            options.SignIn.RequireConfirmedAccount = true;
+        }).AddEntityFrameworkStores<DreamBookSqlServerContext>();
     }
 }

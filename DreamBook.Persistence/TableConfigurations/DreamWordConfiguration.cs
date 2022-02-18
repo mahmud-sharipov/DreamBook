@@ -1,16 +1,12 @@
-﻿using DreamBook.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace DreamBook.Persistence.TableConfigurations
+﻿namespace DreamBook.Persistence.TableConfigurations
 {
     public class DreamWordConfiguration : IEntityTypeConfiguration<DreamWord>
     {
         public void Configure(EntityTypeBuilder<DreamWord> builder)
         {
             builder.ToTable(nameof(DreamWord));
-            builder.HasKey(p => p.Guid);
-            builder.Property(p => p.Guid).ValueGeneratedOnAdd();
+            builder.HasKey(p => p.Id);
+            builder.Property(p => p.Id).ValueGeneratedOnAdd();
 
             builder.HasOne(p => p.Word)
                 .WithMany(p => p.Dreams)

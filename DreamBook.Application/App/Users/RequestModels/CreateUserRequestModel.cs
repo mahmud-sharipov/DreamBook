@@ -1,10 +1,7 @@
-﻿using DreamBook.Domain.Enums;
+﻿namespace DreamBook.Application.Users;
 
-namespace DreamBook.Application.Users
+public class CreateUserRequestModel : UserRequestModel
 {
-    public class CreateUserRequestModel : UserRequestModel
-    {
-        public string UserName { get; set; }
-        public string Email { get; set; }
-    }
+    public string UserName { get; set; }
+    public string Email { get; set; }
 }

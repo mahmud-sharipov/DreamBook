@@ -1,16 +1,12 @@
-﻿using DreamBook.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace DreamBook.Persistence.TableConfigurations
+﻿namespace DreamBook.Persistence.TableConfigurations
 {
     public class AdsTranslationConiguration : IEntityTypeConfiguration<AdTranslation>
     {
         public void Configure(EntityTypeBuilder<AdTranslation> builder)
         {
             builder.ToTable(nameof(AdTranslation));
-            builder.HasKey(p => p.Guid);
-            builder.Property(p => p.Guid).ValueGeneratedOnAdd();
+            builder.HasKey(p => p.Id);
+            builder.Property(p => p.Id).ValueGeneratedOnAdd();
 
             builder.HasOne(p => p.Ad)
                .WithMany(p => p.Translations) 

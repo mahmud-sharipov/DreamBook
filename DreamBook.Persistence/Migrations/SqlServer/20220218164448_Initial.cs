@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -13,7 +12,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Ad",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Source = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -21,213 +20,236 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ad", x => x.Guid);
+                    table.PrimaryKey("PK_Ad", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AvatarImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Book",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Book", x => x.Guid);
+                    table.PrimaryKey("PK_Book", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "DreamType",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DreamType", x => x.Guid);
+                    table.PrimaryKey("PK_DreamType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Language",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDefault = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Language", x => x.Guid);
+                    table.PrimaryKey("PK_Language", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PostCategory",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostCategory", x => x.Guid);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AvatarImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.Guid);
+                    table.PrimaryKey("PK_PostCategory", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Word",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Word", x => x.Guid);
+                    table.PrimaryKey("PK_Word", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdTranslation",
+                name: "AspNetRoleClaims",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AdGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdTranslation", x => x.Guid);
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AdTranslation_Ad_AdGuid",
-                        column: x => x.AdGuid,
-                        principalTable: "Ad",
-                        principalColumn: "Guid",
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AdTranslation_Language_LanguageGuid",
-                        column: x => x.LanguageGuid,
-                        principalTable: "Language",
-                        principalColumn: "Guid",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BookTranslation",
-                columns: table => new
-                {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BookTranslation", x => x.Guid);
-                    table.ForeignKey(
-                        name: "FK_BookTranslation_Book_BookGuid",
-                        column: x => x.BookGuid,
-                        principalTable: "Book",
-                        principalColumn: "Guid",
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BookTranslation_Language_LanguageGuid",
-                        column: x => x.LanguageGuid,
-                        principalTable: "Language",
-                        principalColumn: "Guid",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DreamTypeTranslation",
+                name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DreamTypeGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DreamTypeTranslation", x => x.Guid);
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_DreamTypeTranslation_DreamType_DreamTypeGuid",
-                        column: x => x.DreamTypeGuid,
-                        principalTable: "DreamType",
-                        principalColumn: "Guid",
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DreamTypeTranslation_Language_LanguageGuid",
-                        column: x => x.LanguageGuid,
-                        principalTable: "Language",
-                        principalColumn: "Guid",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Post",
+                name: "RefreshToken",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CategoryGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExpiryOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedByIp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RevokedByIp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RevokedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Post", x => x.Guid);
+                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Post_PostCategory_CategoryGuid",
-                        column: x => x.CategoryGuid,
-                        principalTable: "PostCategory",
-                        principalColumn: "Guid",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PostCategoryTranslation",
-                columns: table => new
-                {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CategoryGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PostCategoryTranslation", x => x.Guid);
-                    table.ForeignKey(
-                        name: "FK_PostCategoryTranslation_Language_LanguageGuid",
-                        column: x => x.LanguageGuid,
-                        principalTable: "Language",
-                        principalColumn: "Guid",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PostCategoryTranslation_PostCategory_CategoryGuid",
-                        column: x => x.CategoryGuid,
-                        principalTable: "PostCategory",
-                        principalColumn: "Guid",
+                        name: "FK_RefreshToken_AspNetUsers_UserGuid",
+                        column: x => x.UserGuid,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -235,7 +257,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "Dream",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -251,43 +273,174 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dream", x => x.Guid);
+                    table.PrimaryKey("PK_Dream", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Dream_AspNetUsers_AuthorGuid",
+                        column: x => x.AuthorGuid,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Dream_DreamType_TypeGuid",
                         column: x => x.TypeGuid,
                         principalTable: "DreamType",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AdTranslation",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AdGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdTranslation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AdTranslation_Ad_AdGuid",
+                        column: x => x.AdGuid,
+                        principalTable: "Ad",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AdTranslation_Language_LanguageGuid",
+                        column: x => x.LanguageGuid,
+                        principalTable: "Language",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BookTranslation",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookTranslation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BookTranslation_Book_BookGuid",
+                        column: x => x.BookGuid,
+                        principalTable: "Book",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BookTranslation_Language_LanguageGuid",
+                        column: x => x.LanguageGuid,
+                        principalTable: "Language",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DreamTypeTranslation",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DreamTypeGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DreamTypeTranslation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DreamTypeTranslation_DreamType_DreamTypeGuid",
+                        column: x => x.DreamTypeGuid,
+                        principalTable: "DreamType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DreamTypeTranslation_Language_LanguageGuid",
+                        column: x => x.LanguageGuid,
+                        principalTable: "Language",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Post",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CategoryGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Post", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Post_PostCategory_CategoryGuid",
+                        column: x => x.CategoryGuid,
+                        principalTable: "PostCategory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PostCategoryTranslation",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PostCategoryTranslation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PostCategoryTranslation_Language_LanguageGuid",
+                        column: x => x.LanguageGuid,
+                        principalTable: "Language",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Dream_User_AuthorGuid",
-                        column: x => x.AuthorGuid,
-                        principalTable: "User",
-                        principalColumn: "Guid",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_PostCategoryTranslation_PostCategory_CategoryGuid",
+                        column: x => x.CategoryGuid,
+                        principalTable: "PostCategory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Interpretation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     WordGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BookGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Interpretation", x => x.Guid);
+                    table.PrimaryKey("PK_Interpretation", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Interpretation_Book_BookGuid",
                         column: x => x.BookGuid,
                         principalTable: "Book",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Interpretation_Word_WordGuid",
                         column: x => x.WordGuid,
                         principalTable: "Word",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -295,25 +448,25 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "WordTranslation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     WordGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WordTranslation", x => x.Guid);
+                    table.PrimaryKey("PK_WordTranslation", x => x.Id);
                     table.ForeignKey(
                         name: "FK_WordTranslation_Language_LanguageGuid",
                         column: x => x.LanguageGuid,
                         principalTable: "Language",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_WordTranslation_Word_WordGuid",
                         column: x => x.WordGuid,
                         principalTable: "Word",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -321,24 +474,24 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "DreamWord",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DreamGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     WordGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DreamWord", x => x.Guid);
+                    table.PrimaryKey("PK_DreamWord", x => x.Id);
                     table.ForeignKey(
                         name: "FK_DreamWord_Dream_DreamGuid",
                         column: x => x.DreamGuid,
                         principalTable: "Dream",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DreamWord_Word_WordGuid",
                         column: x => x.WordGuid,
                         principalTable: "Word",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -346,45 +499,45 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "InterpretationTranslation",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     InterpretationGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LanguageGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WordGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BookGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookTranslationGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    BookTranslationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InterpretationTranslation", x => x.Guid);
+                    table.PrimaryKey("PK_InterpretationTranslation", x => x.Id);
                     table.ForeignKey(
                         name: "FK_InterpretationTranslation_BookTranslation_BookGuid",
                         column: x => x.BookGuid,
                         principalTable: "BookTranslation",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_InterpretationTranslation_BookTranslation_BookTranslationGuid",
-                        column: x => x.BookTranslationGuid,
+                        name: "FK_InterpretationTranslation_BookTranslation_BookTranslationId",
+                        column: x => x.BookTranslationId,
                         principalTable: "BookTranslation",
-                        principalColumn: "Guid");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_InterpretationTranslation_Interpretation_InterpretationGuid",
                         column: x => x.InterpretationGuid,
                         principalTable: "Interpretation",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_InterpretationTranslation_Language_LanguageGuid",
                         column: x => x.LanguageGuid,
                         principalTable: "Language",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_InterpretationTranslation_WordTranslation_WordGuid",
                         column: x => x.WordGuid,
                         principalTable: "WordTranslation",
-                        principalColumn: "Guid",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -397,6 +550,45 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "IX_AdTranslation_LanguageGuid",
                 table: "AdTranslation",
                 column: "LanguageGuid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookTranslation_BookGuid",
@@ -454,9 +646,9 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 column: "BookGuid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InterpretationTranslation_BookTranslationGuid",
+                name: "IX_InterpretationTranslation_BookTranslationId",
                 table: "InterpretationTranslation",
-                column: "BookTranslationGuid");
+                column: "BookTranslationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InterpretationTranslation_InterpretationGuid",
@@ -489,6 +681,11 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 column: "LanguageGuid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RefreshToken_UserGuid",
+                table: "RefreshToken",
+                column: "UserGuid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WordTranslation_LanguageGuid",
                 table: "WordTranslation",
                 column: "LanguageGuid");
@@ -503,6 +700,21 @@ namespace DreamBook.Persistence.Migrations.SqlServer
         {
             migrationBuilder.DropTable(
                 name: "AdTranslation");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
                 name: "DreamTypeTranslation");
@@ -520,7 +732,13 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "PostCategoryTranslation");
 
             migrationBuilder.DropTable(
+                name: "RefreshToken");
+
+            migrationBuilder.DropTable(
                 name: "Ad");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Dream");
@@ -538,10 +756,10 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                 name: "PostCategory");
 
             migrationBuilder.DropTable(
-                name: "DreamType");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "DreamType");
 
             migrationBuilder.DropTable(
                 name: "Book");

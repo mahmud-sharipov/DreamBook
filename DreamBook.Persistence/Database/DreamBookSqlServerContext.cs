@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace DreamBook.Persistence.Database
+﻿namespace DreamBook.Persistence.Database
 {
     public class DreamBookSqlServerContext : DreamBookBaseContext
     {

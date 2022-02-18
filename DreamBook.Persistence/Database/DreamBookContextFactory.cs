@@ -1,7 +1,4 @@
-﻿using DreamBook.Application.Abstraction;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore.Design;
 using System.IO;
 
 namespace DreamBook.Persistence.Database
@@ -9,13 +6,10 @@ namespace DreamBook.Persistence.Database
     public interface IDreamBookContextFactory
     {
         public IContext CreateDbContext();
-
     }
 
     public abstract class DreamBookContextFactoryBase<TContext> : IDreamBookContextFactory where TContext : DbContext
     {
-        private const string AspNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
-
         public TContext CreateDbContext(string[] args)
         {
             var configuration = new ConfigurationBuilder()
@@ -45,7 +39,6 @@ namespace DreamBook.Persistence.Database
         }
     }
 
-
     public class DreamBookSqlServerContextFactory : DreamBookContextFactoryBase<DreamBookSqlServerContext>, IDesignTimeDbContextFactory<DreamBookSqlServerContext>
     {
         protected override DreamBookSqlServerContext CreateInstance(IConfiguration configuration)
@@ -55,18 +48,6 @@ namespace DreamBook.Persistence.Database
             var connnectionString = configuration.GetDBConnectionString(DBProvider.SqlServer);
             optionsBuilder.UseSqlServer(connnectionString);
             return new DreamBookSqlServerContext(optionsBuilder.Options);
-        }
-    }
-
-    public class DreamBookSqliteContextFactory : DreamBookContextFactoryBase<DreamBookSqliteContext>, IDesignTimeDbContextFactory<DreamBookSqliteContext>
-    {
-        protected override DreamBookSqliteContext CreateInstance(IConfiguration configuration)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<DreamBookSqliteContext>();
-            optionsBuilder.UseLazyLoadingProxies();
-            var connnectionString = configuration.GetDBConnectionString(DBProvider.Sqlite);
-            optionsBuilder.UseSqlite(connnectionString);
-            return new DreamBookSqliteContext(optionsBuilder.Options);
         }
     }
 }

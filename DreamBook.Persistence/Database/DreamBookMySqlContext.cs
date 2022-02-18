@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace DreamBook.Persistence.Database;
 
-namespace DreamBook.Persistence.Database
+public class DreamBookMySqlContext : DreamBookBaseContext
 {
-    public class DreamBookMySqlContext : DreamBookBaseContext
-    {
-        public DreamBookMySqlContext(DbContextOptions<DreamBookMySqlContext> dbContextOptions) : base(dbContextOptions) { }
-    }
+    public DreamBookMySqlContext(DbContextOptions<DreamBookMySqlContext> dbContextOptions) : base(dbContextOptions) { }
 }

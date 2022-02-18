@@ -1,15 +1,15 @@
 ﻿namespace DreamBook.Persistence.Models;
 
-public class ApplicationUser : IdentityUser<Guid>, IUser
+public class User : IdentityUser<Guid>, IUser
 {
-    public ApplicationUser()
+    public User()
     {
         RefreshTokens = new Collection<RefreshToken>();
     }
 
-    public Guid Guid => Id;
-
     public virtual Collection<RefreshToken> RefreshTokens { get; set; }
+    public virtual Collection<Dream> Dreams { get; set; }
+
     public string FullName { get; set; }
     public string AvatarImage { get; set; }
 }

@@ -53,7 +53,7 @@ namespace DreamBook.Application.Words
 
         protected override (bool CanBeDeleted, string Reason) CanEntityBeDeleted(Word entity)
         {
-            if (Context.Count<DreamWord>(dw => dw.WordGuid == entity.Guid) > 0)
+            if (Context.Count<DreamWord>(dw => dw.WordGuid == entity.Id) > 0)
                 return (false, ExceptionMessages.WordCanNotBeDeletedReason);
 
             return base.CanEntityBeDeleted(entity);

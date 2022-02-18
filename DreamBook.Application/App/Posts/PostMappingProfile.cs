@@ -16,7 +16,7 @@ namespace DreamBook.Application.Posts
             //Responses
             CreateMap<Post, PostResponseModel>()
                 .ForMember(des => des.CategoryName, opt =>
-                opt.MapFrom(src => src.Category.Translations.Single(t => t.LanguageGuid == AppLanguageManager.CurrentAppLanguage.Guid).Name));
+                opt.MapFrom(src => src.Category.Translations.Single(t => t.LanguageGuid == AppLanguageManager.CurrentAppLanguage.Id).Name));
         }
     }
 }

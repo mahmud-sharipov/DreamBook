@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-
-public enum DBProvider
+﻿public enum DBProvider
 {
     SqlServer,
     Sqlite,

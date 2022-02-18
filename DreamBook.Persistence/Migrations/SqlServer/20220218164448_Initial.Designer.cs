@@ -12,21 +12,21 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamBook.Persistence.Migrations.SqlServer
 {
     [DbContext(typeof(DreamBookSqlServerContext))]
-    [Migration("20220204193801_Initial")]
+    [Migration("20220218164448_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Ad", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -42,14 +42,14 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Source")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.ToTable("Ad", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.AdTranslation", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -65,7 +65,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("AdGuid");
 
@@ -76,18 +76,18 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Book", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.ToTable("Book", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.BookTranslation", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -103,7 +103,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookGuid");
 
@@ -114,7 +114,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Dream", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -154,7 +154,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Weather")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("AuthorGuid");
 
@@ -165,21 +165,21 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamType", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.ToTable("DreamType", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamTypeTranslation", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -195,7 +195,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("DreamTypeGuid");
 
@@ -206,7 +206,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.DreamWord", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -216,7 +216,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("WordGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("DreamGuid");
 
@@ -227,7 +227,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Interpretation", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -237,7 +237,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("WordGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookGuid");
 
@@ -248,14 +248,14 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.InterpretationTranslation", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BookGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BookTranslationGuid")
+                    b.Property<Guid?>("BookTranslationId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -270,11 +270,11 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("WordGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookGuid");
 
-                    b.HasIndex("BookTranslationGuid");
+                    b.HasIndex("BookTranslationId");
 
                     b.HasIndex("InterpretationGuid");
 
@@ -287,7 +287,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Language", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -300,14 +300,14 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.ToTable("Language", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Post", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -329,7 +329,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryGuid");
 
@@ -338,18 +338,18 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.PostCategory", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.ToTable("PostCategory", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.PostCategoryTranslation", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -365,7 +365,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryGuid");
 
@@ -374,49 +374,20 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.ToTable("PostCategoryTranslation", (string)null);
                 });
 
-            modelBuilder.Entity("DreamBook.Domain.Entities.User", b =>
-                {
-                    b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AvatarImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Guid");
-
-                    b.ToTable("User", (string)null);
-                });
-
             modelBuilder.Entity("DreamBook.Domain.Entities.Word", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.ToTable("Word", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.WordTranslation", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -429,13 +400,250 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Property<Guid>("WordGuid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("LanguageGuid");
 
                     b.HasIndex("WordGuid");
 
                     b.ToTable("WordTranslation", (string)null);
+                });
+
+            modelBuilder.Entity("DreamBook.Persistence.Models.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedByIp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiryOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RevokedByIp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RevokedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserGuid")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserGuid");
+
+                    b.ToTable("RefreshToken", (string)null);
+                });
+
+            modelBuilder.Entity("DreamBook.Persistence.Models.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("DreamBook.Persistence.Models.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AvatarImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("DreamBook.Domain.Entities.AdTranslation", b =>
@@ -478,7 +686,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
             modelBuilder.Entity("DreamBook.Domain.Entities.Dream", b =>
                 {
-                    b.HasOne("DreamBook.Domain.Entities.User", "Author")
+                    b.HasOne("DreamBook.Persistence.Models.User", null)
                         .WithMany("Dreams")
                         .HasForeignKey("AuthorGuid")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -489,8 +697,6 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                         .HasForeignKey("TypeGuid")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Author");
 
                     b.Navigation("Type");
                 });
@@ -562,7 +768,7 @@ namespace DreamBook.Persistence.Migrations.SqlServer
 
                     b.HasOne("DreamBook.Domain.Entities.BookTranslation", null)
                         .WithMany("Interpretations")
-                        .HasForeignKey("BookTranslationGuid");
+                        .HasForeignKey("BookTranslationId");
 
                     b.HasOne("DreamBook.Domain.Entities.Interpretation", "Interpretation")
                         .WithMany("Translations")
@@ -640,6 +846,68 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Navigation("Word");
                 });
 
+            modelBuilder.Entity("DreamBook.Persistence.Models.RefreshToken", b =>
+                {
+                    b.HasOne("DreamBook.Persistence.Models.User", "User")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UserGuid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("DreamBook.Persistence.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("DreamBook.Persistence.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("DreamBook.Persistence.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.HasOne("DreamBook.Persistence.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DreamBook.Persistence.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("DreamBook.Persistence.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DreamBook.Domain.Entities.Ad", b =>
                 {
                     b.Navigation("Translations");
@@ -681,11 +949,6 @@ namespace DreamBook.Persistence.Migrations.SqlServer
                     b.Navigation("Translations");
                 });
 
-            modelBuilder.Entity("DreamBook.Domain.Entities.User", b =>
-                {
-                    b.Navigation("Dreams");
-                });
-
             modelBuilder.Entity("DreamBook.Domain.Entities.Word", b =>
                 {
                     b.Navigation("Dreams");
@@ -698,6 +961,13 @@ namespace DreamBook.Persistence.Migrations.SqlServer
             modelBuilder.Entity("DreamBook.Domain.Entities.WordTranslation", b =>
                 {
                     b.Navigation("Interpretations");
+                });
+
+            modelBuilder.Entity("DreamBook.Persistence.Models.User", b =>
+                {
+                    b.Navigation("Dreams");
+
+                    b.Navigation("RefreshTokens");
                 });
 #pragma warning restore 612, 618
         }

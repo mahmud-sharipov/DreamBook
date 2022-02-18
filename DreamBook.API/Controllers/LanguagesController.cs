@@ -34,7 +34,7 @@ namespace DreamBook.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<LanguageResponseModel>> ById([FromRoute] Guid id)
         {
-            return Ok(await Task.FromResult(Mapper.Map<LanguageResponseModel>(Service.SupportLanguages.FirstOrDefault(l => l.Guid == id))));
+            return Ok(await Task.FromResult(Mapper.Map<LanguageResponseModel>(Service.SupportLanguages.FirstOrDefault(l => l.Id == id))));
         }
     }
 }

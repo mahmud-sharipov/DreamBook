@@ -5,6 +5,6 @@
 			"MySql": "server=localhost; database=DreamBook; user=root; password=",
 			"Sqlite": "Data Source=DreamBook.db;"
 		},
-		"Provider": "Sqlite"
+		"Provider": "MySql"
 	}
 }

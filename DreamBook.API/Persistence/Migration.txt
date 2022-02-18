@@ -1,3 +1,0 @@
-﻿dotnet ef migrations add Initial --context DreamBookIdentitySqlServerContext -o Persistence/Migrations/SqlServer
-dotnet ef migrations add Initial --context DreamBookIdentitySqliteContext -o Persistence/Migrations/Sqlite
-dotnet ef migrations add Initial --context DreamBookIdentityMySqlContext -o Persistence/Migrations/MySql
