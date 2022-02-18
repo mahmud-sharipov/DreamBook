@@ -24,6 +24,7 @@ namespace DreamBook.Persistence.Extensions
         private static void AddMySql(IServiceCollection service, IConfiguration configuration)
         {
             service.AddScoped<IContext, DreamBookMySqlContext>();
+            service.AddScoped<IDreamBookContextFactory, DreamBookMySqlContextFactory>();
             service.AddScoped<DreamBookBaseContext, DreamBookMySqlContext>();
             service.AddDbContext<DreamBookMySqlContext>(options =>
             {
@@ -36,6 +37,7 @@ namespace DreamBook.Persistence.Extensions
         private static void AddSqlServer(IServiceCollection service, IConfiguration configuration)
         {
             service.AddScoped<IContext, DreamBookSqlServerContext>();
+            service.AddScoped<IDreamBookContextFactory, DreamBookSqlServerContextFactory>();
             service.AddScoped<DreamBookBaseContext, DreamBookSqlServerContext>();
             service.AddDbContext<DreamBookSqlServerContext>(options =>
             {
@@ -47,6 +49,7 @@ namespace DreamBook.Persistence.Extensions
         static void AddSqlite(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IContext, DreamBookSqliteContext>();
+            services.AddScoped<IDreamBookContextFactory, DreamBookSqliteContextFactory>();
             services.AddScoped<DreamBookBaseContext, DreamBookSqliteContext>();
             services.AddDbContext<DreamBookSqliteContext>(options =>
             {

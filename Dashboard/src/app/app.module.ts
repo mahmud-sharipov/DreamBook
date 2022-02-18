@@ -98,7 +98,7 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '33115024297-3frqcmhigpghgap5g8262lb49d6t530b.apps.googleusercontent.com'
+              '212273882569-8m7fj3jjf4mka7cjjo4h6b4ivi7c0sv7.apps.googleusercontent.com'
             )
           }
         ]

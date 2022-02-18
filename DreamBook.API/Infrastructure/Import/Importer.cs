@@ -2,6 +2,7 @@
 using DreamBook.Domain.Entities;
 using DreamBook.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,17 @@ namespace DreamBook.API.Infrastructure.Import
 {
     public static class Importer
     {
-        public static void ImportAll(IContext context)
+        public static void ImportAll(IServiceProvider serviceProvider)
         {
-            ImportInterpretation(context);
-            CreateAds(context);
+            var factory = serviceProvider.GetService<IDreamBookContextFactory>();
+            ImportInterpretation(factory);
+            CreateAds(factory.CreateDbContext());
         }
 
-        public static void ImportInterpretation(IContext mainContext)
+        public static void ImportInterpretation(IDreamBookContextFactory factory)
         {
+            using var mainContext = factory.CreateDbContext();
             if (mainContext.Count<Book>() > 0) return;
-
-            var factory = new DreamBookSqliteContextFactory();
 
             List<InterpretationImportModel> interpretations = JsonConvert.DeserializeObject<List<InterpretationImportModel>>(File.ReadAllText(@"Infrastructure/Import/sonnik.json"));
             Dictionary<string, (Guid book, Guid bookRu, Guid bookEn)> books =
@@ -34,7 +35,7 @@ namespace DreamBook.API.Infrastructure.Import
             var totalcount = interpretationsByWord.Count;
             for (int i = 0; i < totalcount; i++)
             {
-                using var context = factory.CreateDbContext(null);
+                using var context = factory.CreateDbContext();
                 var wordInterpretations = interpretationsByWord[i];
                 Console.WriteLine($"Imported {index++} of {totalcount}");
                 var word = new Word();
@@ -80,6 +81,7 @@ namespace DreamBook.API.Infrastructure.Import
                         LanguageGuid = EnGuid
                     });
                 }
+                context.SaveChanges();
             }
             Console.WriteLine("Finished import!");
         }

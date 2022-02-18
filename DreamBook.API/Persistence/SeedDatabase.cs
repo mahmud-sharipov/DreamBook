@@ -23,7 +23,7 @@ namespace DreamBook.API.Persistence
             {
                 var context = serviceScope.ServiceProvider.GetService<IContext>();
                 CreateLanguages(context);
-                Importer.ImportAll(context);
+                Importer.ImportAll(serviceScope.ServiceProvider);
 
                 CreateDreamTypes(context);
                 CreatePostCategories(context);
@@ -297,8 +297,8 @@ namespace DreamBook.API.Persistence
         {
             if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                 await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.Admin });
-            if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.User });
+            if (!await roleManager.RoleExistsAsync(UserRoles.Basic))
+                await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.Basic });
             if (!await roleManager.RoleExistsAsync(UserRoles.Moderator))
                 await roleManager.CreateAsync(new ApplicationRole() { Name = UserRoles.Moderator });
         }
@@ -329,7 +329,7 @@ namespace DreamBook.API.Persistence
 
                 await userManager.AddToRoleAsync(appUser, UserRoles.Admin);
                 await userManager.AddToRoleAsync(appUser, UserRoles.Moderator);
-                await userManager.AddToRoleAsync(appUser, UserRoles.User);
+                await userManager.AddToRoleAsync(appUser, UserRoles.Basic);
             }
         }
     }

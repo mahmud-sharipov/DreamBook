@@ -51,7 +51,7 @@ namespace DreamBook.API
                 });
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
-            services.AddHttpsRedirection(op => op.RedirectStatusCode = 307);
+            //services.AddHttpsRedirection(op => op.RedirectStatusCode = 307);
             services.AddRouting(options => options.LowercaseUrls = true);
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpContextAccessor();
@@ -82,14 +82,13 @@ namespace DreamBook.API
             app.UseDefaultFiles();
 
             app.UseRequestLocalization();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseCors(x => x
               .AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader());
 
-            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();

@@ -45,9 +45,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSubscription = this.socialAuthService.authState.subscribe((user) => {
       this.loginInvalid = user == null;
       this.authService.loginWithGoogle(user.idToken).subscribe(l => {
+        console.log(l);
+
         this.afterLogin(l);
       }, ex => {
         this.loginInvalid = true;
+        console.log(ex);
+
       })
     });
   }
@@ -72,7 +76,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   afterLogin(result: AuthSucceededResponse): void {
     const jwtHelper = new JwtHelperService();
     const decodedToken = jwtHelper.decodeToken(result.tokenInfo.accessToken);
-    console.log(decodedToken);
 
     var role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
     var roles = <[]>role;

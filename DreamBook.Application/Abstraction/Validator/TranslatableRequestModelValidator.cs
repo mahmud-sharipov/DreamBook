@@ -14,7 +14,6 @@ namespace DreamBook.Application.Abstraction
             RuleFor(p => p.Translations)
                 .NotEmpty()
                 .Must(t => t.GroupBy(t => t.LanguageGuid).All(l => l.Count() == 1)).WithMessage(FluentMessages.DuplicateTranslations.Format(ModelsLabel.Translations))
-                .Must(t => t.Count == 1).WithMessage(FluentMessages.DuplicateTranslations.Format(ModelsLabel.Translations))
                 .WithName(ModelsLabel.Translations);
 
             RuleForEach(p => p.Translations)

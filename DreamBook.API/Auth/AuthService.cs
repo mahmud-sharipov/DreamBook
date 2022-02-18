@@ -96,7 +96,7 @@ namespace DreamBook.API.Auth
                         UserName = googlePayload.Email,
                         Password = RandonPassword(),
                         AvatarImage = ""
-                    }, UserRoles.User);
+                    }, UserRoles.Basic);
                     user = registrationResult.User;
                     userResponseModel = registrationResult.ResponseModel;
                 }

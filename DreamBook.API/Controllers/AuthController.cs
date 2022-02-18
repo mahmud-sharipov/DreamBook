@@ -33,7 +33,7 @@ namespace DreamBook.API.Controllers
         [Route("register")]
         public async Task<ActionResult<UserResponseModel>> Register([FromBody] UserRegisterModel model)
         {
-            var reqult = await _authService.Register(model, UserRoles.User);
+            var reqult = await _authService.Register(model, UserRoles.Basic);
             return Ok(reqult.ResponseModel);
         }
 
@@ -42,7 +42,7 @@ namespace DreamBook.API.Controllers
         [Route("register-admin")]
         public async Task<ActionResult<UserResponseModel>> RegisterAdmin([FromBody] UserRegisterModel model)
         {
-            var reqult = await _authService.Register(model, UserRoles.User, UserRoles.Admin);
+            var reqult = await _authService.Register(model, UserRoles.Basic, UserRoles.Admin);
             return Ok(reqult.ResponseModel);
         }
 

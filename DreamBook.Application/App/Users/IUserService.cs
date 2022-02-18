@@ -13,6 +13,5 @@ namespace DreamBook.Application.Users
         Task Update(Guid userId, UserRequestModel requestModel);
         Task UpdateUsername(UpdateUserUsernameRequestModel requestModel);
         Task DeleteFull(Guid id);
-
     }
 }

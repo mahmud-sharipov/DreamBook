@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DreamBook.API.Controllers
@@ -38,16 +39,8 @@ namespace DreamBook.API.Controllers
         public async Task<ActionResult> GetZip([FromQuery] Guid laguage)
         {
             var result = await Service.GetAllByLanguageInJson(laguage);
-            var fileName = $"words_{laguage}_{DateTime.Now.ToFileTimeUtc()}.json";
-            string path = Path.Combine(_webHostEnvironment.WebRootPath, "Files");
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            var filePaht = Path.Combine(path, fileName);
-            System.IO.File.WriteAllText(filePaht, result);
-            byte[] resultByte = System.IO.File.ReadAllBytes(filePaht);
-            System.IO.File.Delete(filePaht);
-            return File(resultByte, "application/json", $"Words_{laguage}.json");
+            var bytes = Encoding.UTF8.GetBytes(result);
+            return File(bytes, "application/json", $"Words_{laguage}.json");
         }
 
         [HttpGet("{id}")]

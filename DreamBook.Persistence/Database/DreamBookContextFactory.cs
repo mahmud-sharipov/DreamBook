@@ -1,11 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DreamBook.Application.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
 namespace DreamBook.Persistence.Database
 {
-    public abstract class DreamBookContextFactoryBase<TContext> where TContext : DbContext
+    public interface IDreamBookContextFactory
+    {
+        public IContext CreateDbContext();
+
+    }
+
+    public abstract class DreamBookContextFactoryBase<TContext> : IDreamBookContextFactory where TContext : DbContext
     {
         private const string AspNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
 
@@ -22,6 +29,8 @@ namespace DreamBook.Persistence.Database
         }
 
         protected abstract TContext CreateInstance(IConfiguration configuration);
+
+        IContext IDreamBookContextFactory.CreateDbContext() => (IContext)CreateDbContext(null);
     }
 
     public class DreamBookMySqlContextFactory : DreamBookContextFactoryBase<DreamBookMySqlContext>, IDesignTimeDbContextFactory<DreamBookMySqlContext>
