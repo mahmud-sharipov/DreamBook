@@ -58,6 +58,7 @@ namespace DreamBook.API.Swagger
             app.UseSwaggerUI(options =>
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "swagger-ui", "SwaggerDark.css");
+                Console.WriteLine("/swagger-ui/SwaggerDark.css");
                 options.RoutePrefix = "api/docs";
                 options.InjectStylesheet(path);
                 foreach (var description in versionProvider.ApiVersionDescriptions)
