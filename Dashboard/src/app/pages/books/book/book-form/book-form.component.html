@@ -1,19 +1,35 @@
-<form (ngSubmit)="onChangeSubmit($event)">
+<form (ngSubmit)="onChangeSubmit($event)" [formGroup]="form" novalidate>
 
-    <div class="form-group" *ngFor='let bookTranslation of bookEntity.translations'>
-        <label for="{{bookTranslation.language.name}}.name">Название ({{bookTranslation.language.name}})</label>
-        <input type="text" class="form-control" [(ngModel)]='bookTranslation.name'
-            name="{{bookTranslation.language.name}}.name" placeholder="Название...">
+    <div class="form-group">
+        <label for="ruName">Название ({{ruLanguage.name}})</label>
+        <input type="text" class="form-control" formControlName="ruName" placeholder="Название...">
+        <div [hidden]="form.controls['ruName'].valid || form.controls['ruName'].untouched">
+            <p style="color: red;">Укажите обязательно!</p>
+        </div>
 
-        <label for="{{bookTranslation.language.name}}.description">Описание ({{bookTranslation.language.name}})</label>
-        <textarea class="form-control" rows="6" placeholder="Описание..." [(ngModel)]='bookTranslation.description'
-            name="{{bookTranslation.language.name}}.description"></textarea>
+        <label for="ruDescription">Описание ({{ruLanguage.name}})</label>
+        <textarea class="form-control" rows="6" placeholder="Описание..." formControlName="ruDescription"></textarea>
         <hr>
     </div>
+
+    <div class="form-group">
+        <label for="enName">Название ({{enLanguage.name}})</label>
+        <input type="text" class="form-control" formControlName="enName" placeholder="Название...">
+        <div [hidden]="form.controls['enName'].valid || form.controls['enName'].untouched">
+            <p style="color: red;">Укажите обязательно!</p>
+        </div>
+
+        <label for="enDescription">Описание ({{enLanguage.name}})</label>
+        <textarea class="form-control" rows="6" placeholder="Описание..." formControlName="enDescription"></textarea>
+        <hr>
+    </div>
+
     <button class="btn btn-default float-right" type="button" (click)='onChangeCancel($event)'>
         <i class="fas fa-times"></i> Отмена
     </button>
-    <button type="submit" class="btn btn-success float-right mr-3">
+    <button type="submit" class="btn btn-success float-right mr-3" [disabled]="!form.valid">
         <i class="fas fa-save"></i> Сохранть
     </button>
+
 </form>
+<button (click)="alertConfirmation()">Show me Confirmation</button>

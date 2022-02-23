@@ -23,7 +23,7 @@ namespace DreamBook.Application.Abstraction.PagedList
             if (!string.IsNullOrEmpty(SearchText))
                 result = result.Where($"{searchFiled}.StartsWith(@0)", SearchText);
 
-           if (string.IsNullOrEmpty(defaultPropertyToOrderBy))
+           if (!string.IsNullOrEmpty(defaultPropertyToOrderBy))
                 result = result.OrderBy(defaultPropertyToOrderBy);
 
             return result;

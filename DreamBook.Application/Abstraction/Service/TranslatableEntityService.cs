@@ -80,7 +80,7 @@ namespace DreamBook.Application.Abstraction.Service
         {
             var entity = await Context.GetByIdAsync<TEntity>(id);
             if (entity == null)
-                throw new EntityNotFoundException(GetEntityLabel(),id);
+                throw new EntityNotFoundException(GetEntityLabel(), id);
 
             Mapper.Map(requestModel, entity);
             foreach (var translationRequest in requestModel.Translations)
@@ -93,9 +93,12 @@ namespace DreamBook.Application.Abstraction.Service
                 Mapper.Map(translationRequest, translationEntity);
             }
 
-            var result = await Context.SaveChangesAsync();
-            if (result == 0)
-                throw new Exception(ExceptionMessages.EntityWasNotSavedToDB.Format(typeof(TEntity).Name));
+            if (Context.HasChange())
+            {
+                var result = await Context.SaveChangesAsync();
+                if (result == 0)
+                    throw new Exception(ExceptionMessages.EntityWasNotSavedToDB.Format(typeof(TEntity).Name));
+            }
         }
 
         public virtual async Task Delete(Guid id)
@@ -103,7 +106,7 @@ namespace DreamBook.Application.Abstraction.Service
             var entity = await Context.GetByIdAsync<TEntity>(id);
 
             if (entity == null)
-                throw new EntityNotFoundException(GetEntityLabel(),id);
+                throw new EntityNotFoundException(GetEntityLabel(), id);
 
             var canDelete = CanEntityBeDeleted(entity);
             if (!canDelete.CanBeDeleted)

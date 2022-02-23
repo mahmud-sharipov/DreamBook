@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-5 col-sm-6 ">
                 <app-paged-list [page]='words' [canAdd]='true' [canSelect]='true' [displayPropertyName]="'name'"
-                    [isBlocked]='isListBlocked' (onPageNumberChange)='OnPageChanged($event)'
+                    [isEnable]='!isListBlocked' (onPageNumberChange)='OnPageChanged($event)'
                     (onSearchTextChange)='onSearchTextChanged($event)' (onAdd)='onAdd()'
                     (onSelectedItemChange)='OnWordSelectionChanged($event)'>
                 </app-paged-list>

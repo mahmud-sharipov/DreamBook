@@ -14,7 +14,7 @@ export class LanguageService {
   constructor(private http: HttpClient,
     @Inject(API_BASE_URL) private hostUrl: string) { }
 
-  getWords(): Observable<LanguageResponseModel[]> {
+  getLanguages(): Observable<LanguageResponseModel[]> {
     let storageData = localStorage.getItem(LANGUAGES_STORAGE_KEY);
     if (storageData) {
       return of(JSON.parse(storageData))
@@ -29,3 +29,6 @@ export class LanguageService {
     }
   }
 }
+
+export const ruGuid = "943fee14-dba5-4195-9afe-20e4fe46f017";
+export const enGuid = "3b7c7370-8759-400c-9624-e5fc947fb07c";

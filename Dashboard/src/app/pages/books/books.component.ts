@@ -6,7 +6,7 @@ import { BookService } from 'src/app/services/book.service';
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  styles: ['']
 })
 export class BooksComponent implements OnInit {
   books: PagedListResponseModel<BookResponseModel>;
@@ -54,8 +54,7 @@ export class BooksComponent implements OnInit {
   updateList(): void {
     this.service.getBooks(this.pageNumber, this.searchText).subscribe((result: PagedListResponseModel<BookResponseModel>) => {
       this.books = result;
-    }, (error: any) => {
-    });
+    }, (error: any) => { });
   }
 
 }

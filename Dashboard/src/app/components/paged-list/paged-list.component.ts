@@ -16,7 +16,7 @@ export class PagedListComponent implements OnInit, OnDestroy {
   @Input() page!: PagedListResponseModel<any>;
   @Input() canAdd: boolean = true;
   @Input() canSelect: boolean = true;
-  @Input() isBlocked: boolean = false;
+  @Input() isEnable: boolean = true;
 
   @Output() onPageNumberChange = new EventEmitter<number>();
   @Output() onSearchTextChange = new EventEmitter<string>();
@@ -34,7 +34,7 @@ export class PagedListComponent implements OnInit, OnDestroy {
     this.searchTextInput.valueChanges
       .pipe(
         takeUntil(this._unsubscribeAll),
-        debounceTime(500),
+        debounceTime(150),
         distinctUntilChanged()
       )
       .subscribe(searchText => {
