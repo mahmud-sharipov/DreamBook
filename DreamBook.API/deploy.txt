@@ -1,0 +1,5 @@
+﻿#Give access to wwwroot folder
+chmod -R 757 /var/www/dreambook/wwwroot/Images
+
+#See logs
+sudo journalctl -fu kestrel-dreambook.service
