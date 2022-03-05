@@ -1,23 +1,15 @@
-<div class="card ">
-    <div class="card-header">
-        <h3 class="card-title">
-            {{bookNames}}
-        </h3>
-        <div class="card-tools">
-            <button type="button" *ngIf='!isEditing' (click)='onEditBtnClick()' class="btn btn-primary float-right"><i
-                    class="fas fa-pen"></i>
-            </button>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="card" *ngIf="isEditing">
-            <div class="card-body">
-                <app-book-form [bookEntity]='book' (changeSubmitted)='onBookChangeSubmitted($event)'
-                    (changeCanceled)="onBookChangeCanceled($event)">
-                </app-book-form>
-            </div>
-        </div>
+<mat-card>
+    <mat-card-title>{{bookNames}}
+        <button type="button" *ngIf='!isEditing' (click)='onEditBtnClick()' class="btn btn-primary float-right"><i
+                class="fas fa-pen"></i>
+        </button>
+    </mat-card-title>
+    <mat-card-actions align="end"></mat-card-actions>
+    <mat-card-content>
 
+        <app-book-form *ngIf="isEditing" [bookEntity]='book' (changeSubmitted)='onBookChangeSubmitted($event)'
+            (changeCanceled)="onBookChangeCanceled($event)">
+        </app-book-form>
         <div *ngIf='!isEditing'>
             <ul>
                 <li *ngFor='let bookTranslation of book.translations'>
@@ -29,5 +21,5 @@
                 </li>
             </ul>
         </div>
-    </div>
-</div>
+    </mat-card-content>
+</mat-card>

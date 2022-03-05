@@ -24,7 +24,7 @@ namespace DreamBook.API.Services
             _configuration = configuration;
             _jwtSettings = _configuration.GetSection("Jwt");
             _goolgeSettings = _configuration.GetSection("Auth:Google");
-            _accessTokenEexparationTime = new TimeSpan(24, 0, 0);
+            _accessTokenEexparationTime = new TimeSpan(7, 0, 0, 0);
             _refreshTokenExparationTime = new TimeSpan(30, 0, 0, 0);
             _httpContextAccessor = httpContextAccessor;
         }

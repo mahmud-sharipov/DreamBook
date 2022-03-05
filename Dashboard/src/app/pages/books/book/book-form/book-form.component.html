@@ -1,6 +1,14 @@
 <form (ngSubmit)="onChangeSubmit($event)" [formGroup]="form" novalidate>
 
     <div class="form-group">
+        <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Clearable input</mat-label>
+            <input matInput type="text" [(ngModel)]="bookEntity">
+            <button *ngIf="bookEntity" matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
         <label for="ruName">Название ({{ruLanguage.name}})</label>
         <input type="text" class="form-control" formControlName="ruName" placeholder="Название...">
         <div [hidden]="form.controls['ruName'].valid || form.controls['ruName'].untouched">

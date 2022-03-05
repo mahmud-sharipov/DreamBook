@@ -41,6 +41,10 @@ import { AdViewComponent } from './pages/ad/ad-view/ad-view.component';
 import { AdCardComponent } from './pages/ad/ad-card/ad-card.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -83,7 +87,11 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
     ReactiveFormsModule,
     NgxPaginationModule,
     ColorPickerModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule
   ],
   providers: [
     { provide: API_BASE_URL, useFactory: getBaseApiUrl },
