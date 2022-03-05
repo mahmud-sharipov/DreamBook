@@ -1,0 +1,12 @@
+﻿#Give access to wwwroot folder
+chmod -R 757 /var/www/dreambook/wwwroot/Images
+
+#See logs
+sudo journalctl -fu kestrel-dreambook.service
+
+
+#dream-book service config file
+/etc/systemd/system/kestrel-dreambook.service
+
+#nginx confiquration for dream-book app
+/etc/nginx/conf.d/dreabook_apps.conf
