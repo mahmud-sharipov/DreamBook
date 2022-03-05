@@ -1,0 +1,106 @@
+﻿#upload app to /var/www/dreambook
+
+#give access to wwwroot folder
+    chmod -R 757 /var/www/dreambook/server/wwwroot/Images
+
+#Try purging the package list
+  wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  sudo dpkg -i packages-microsoft-prod.deb
+  rm packages-microsoft-prod.deb
+
+#install dot net 6:
+  sudo apt-get update; \
+    sudo apt-get install -y apt-transport-https && \
+    sudo apt-get update && \
+    sudo apt-get install -y dotnet-sdk-6.0
+
+#Configure ASP.NET Core as a Background Service
+  #Create background service
+    sudo vi /etc/systemd/system/kestrel-dreambookapi.service
+    #Content-------------------------------------------------------------------
+      [Unit]
+      Description=DreaBook App running on Ubuntu
+
+      [Service]
+      WorkingDirectory=/var/www/dreambook/server
+      ExecStart=/usr/bin/dotnet /var/www/dreambook/server/DreamBook.API.dll --urls http://localhost:5000
+      Restart=always
+      # Restart service after 10 seconds if the dotnet service crashes:
+      RestartSec=10
+      KillSignal=SIGINT
+      SyslogIdentifier=dotnet-example
+      User=www-data
+      Environment=ASPNETCORE_ENVIRONMENT=Production
+      Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+      [Install]
+      WantedBy=multi-user.target
+    #-------------------------------------------------------------------
+  #reload services
+    sudo systemctl daemon-reload 
+  #enable service
+    sudo systemctl enable kestrel-dreambookapi.service
+  #start service
+    sudo systemctl start kestrel-dreambookapi.service
+    sudo systemctl restart kestrel-dreambookapi.service
+  #check service status
+    sudo systemctl status kestrel-dreambookapi.service
+  #get service logs
+    sudo journalctl -fu kestrel-dreambookapi.service
+
+#install mysql
+  sudo apt update
+  sudo apt upgrade
+  wget -c https://repo.mysql.com//mysql-apt-config_0.8.13-1_all.deb
+  sudo dpkg -i mysql-apt-config_0.8.13-1_all.deb 
+  sudo apt-get install mysql-server
+  sudo mysql_secure_installation
+  -y
+  -password level: 2
+  -enter MySql user new password
+  -y
+  -Disallow root login remotely? n
+  -y
+  -y
+  -y
+  #check mysql server status
+    sudo systemctl status mysql
+  #start mysql automatically at system startup
+    sudo systemctl enable mysql
+  #connect to mysql server
+    sudo mysql -u root -p
+    >enter password
+
+#install and setup nginx
+  sudo apt-get install nginx
+  sudo service nginx start
+  sudo service nginx status
+
+  #remove /etc/nginx/sites-available/default
+  #create /etc/nginx/conf.d/dreambook.conf---------------
+    server {
+        listen        80;
+      
+        location /api/ {
+            proxy_pass         http://localhost:5000;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection keep-alive;
+            proxy_set_header   Host $host;
+            proxy_cache_bypass $http_upgrade;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+        }
+      
+      location / {
+            root /var/www/dreambook/dashboard;
+            try_files $uri $uri/ /index.html;
+            index index.html;
+        }
+    }
+  #-------------------------------------------------
+
+  #Check Syntax of the Default file
+    sudo nginx -t
+  #reload
+    sudo nginx -s reload
